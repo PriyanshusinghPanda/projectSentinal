@@ -55,6 +55,16 @@
         "entity_ids": [
           "3585961"
         ]
+      },
+      {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4968 \u2014 cleared, none (similarity 0.72); CC-5308 \u2014 cleared, none (similarity 0.72); CC-3625 \u2014 cleared, none (similarity 0.72)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-4968",
+          "CC-5308",
+          "CC-3625"
+        ]
       }
     ],
     "similar_prior_cases": [
@@ -62,7 +72,8 @@
       "CC-2974",
       "CC-3259",
       "CC-3601",
-      "CC-4631"
+      "CC-4631",
+      "CC-4968"
     ],
     "summary": "Out of region use on card C11543: 1 transaction(s), exposure $953.90. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -121,7 +132,7 @@
     "activity_dates": []
   },
   "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
-  "tool_calls": 19,
+  "tool_calls": 20,
   "tokens": 0,
-  "latency_s": 0.025
+  "latency_s": 0.023
 }

@@ -67,13 +67,13 @@
         "entity_ids": []
       },
       {
-        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5262 \u2014 cleared, none (similarity 0.68); CC-4249 \u2014 cleared, none (similarity 0.68); CC-1887 \u2014 cleared, none (similarity 0.68)",
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0009 \u2014 cleared, none (similarity 0.68); CC-0010 \u2014 cleared, none (similarity 0.68); CC-0015 \u2014 cleared, none (similarity 0.68)",
         "source": "document",
         "ref": "mcp:similar_notes(k=3)",
         "entity_ids": [
-          "CC-5262",
-          "CC-4249",
-          "CC-1887"
+          "CC-0009",
+          "CC-0010",
+          "CC-0015"
         ]
       }
     ],
@@ -83,7 +83,7 @@
       "CC-0772",
       "CC-1293",
       "CC-1715",
-      "CC-5262"
+      "CC-0009"
     ],
     "summary": "Card not present fraud on card C13171-K2: 3 transaction(s), exposure $166.97. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -139,5 +139,5 @@
   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
   "tool_calls": 21,
   "tokens": 0,
-  "latency_s": 0.042
+  "latency_s": 3.137
 }

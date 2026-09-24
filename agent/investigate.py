@@ -502,7 +502,7 @@ def investigate(case, assume=None):
         sar["reason"] = ("3a: verdict is not fraud, no report" if verdict != "fraud" else "3a: fraud confirmed but exposure ≤ $1,000 with no shared device, region cluster, or coordinated pattern — case only")
 
     summary = {
-        "fraud": f"{pattern_out.replace('_', ' ').capitalize()} on card {card_id}: {len(affected)} transaction(s), exposure {money(exposure)}. " + (desc[:220] + " " if desc else "") + ("Customer denial confirmed the verdict." if ev_req else ""),
+        "fraud": f"{pattern_out.replace('_', ' ').capitalize()} on card {card_id}: {len(affected)} transaction(s), exposure {money(exposure)}. " + (desc.split(". ")[0].rstrip(".") + ". " if desc else "") + ("Customer denial confirmed the verdict." if ev_req else ""),
         "legitimate": f"Alert on {f.id} ({money(f.amt)}) is consistent with the cardholder's own activity" + (" after the customer confirmed it" if ev_req else "") + ". Closed without customer impact.",
         "uncertain": f"Mixed evidence on {f.id}; escalated with verification pending.",
     }[verdict]
@@ -640,17 +640,44 @@ def graph_pass(mcp, case, answers):
         print(f"  {case['case_id']}: graph write-back failed: {e}", file=sys.stderr)
 
 
-if __name__ == "__main__":
-    only = sys.argv[1:]
+def run_case(case, mcp=None):
+    """Full investigation of one alert: the graded answer (agent's own assumption) plus the console bundle
+    holding the answer under each simulated reply. With `mcp`, graph evidence + write-back go through TigerGraph."""
+    t0 = time.time()
+    a = investigate(case)
+    ui = a.pop("_ui")
+    variants = {"agent": a}
+    for alt in ("deny", "confirm"):
+        v = investigate(case, alt)
+        v.pop("_ui")
+        variants[alt] = v
+    if mcp:
+        graph_pass(mcp, case, [a, variants["deny"], variants["confirm"]])
+    for v in variants.values():
+        v["latency_s"] = round(time.time() - t0, 3)
+    return a, {"context": ui, "variants": variants}
+
+
+def write_bundle(case_id, bundle):
+    os.makedirs(UI_OUT, exist_ok=True)
+    json.dump(bundle, open(os.path.join(UI_OUT, f"{case_id}.json"), "w"), indent=1)
+
+
+def load_env():
     env_file = os.path.join(HERE, "..", ".env")
     if os.path.exists(env_file):  # same TG_* vars tigergraph-mcp reads
         for line in open(env_file):
             if "=" in line and not line.lstrip().startswith("#"):
                 k, v = line.strip().split("=", 1)
                 os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+
+if __name__ == "__main__":
+    only = sys.argv[1:]
+    load_env()
     mcp = None
     if os.environ.get("TG_HOST"):
-        from tg_mcp import TigerGraphMCP, write_case
+        from tg_mcp import TigerGraphMCP
         mcp = TigerGraphMCP()
         print("TigerGraph MCP connected", file=sys.stderr)
         try:
@@ -660,19 +687,9 @@ if __name__ == "__main__":
     for case in CASES:
         if only and case["case_id"] not in only:
             continue
-        a = investigate(case)
-        ui = {"default": a.pop("_ui")}
-        # web console bundle: the answer under each simulated reply
-        variants = {"agent": a}
-        for alt in ("deny", "confirm"):
-            v = investigate(case, alt)
-            v.pop("_ui")
-            variants[alt] = v
-        if mcp:
-            graph_pass(mcp, case, [a, variants["deny"], variants["confirm"]])
+        a, bundle = run_case(case, mcp)
         json.dump(a, open(os.path.join(OUT, f"{case['case_id']}.json"), "w"), indent=2)
-        os.makedirs(UI_OUT, exist_ok=True)
-        json.dump({"context": ui["default"], "variants": variants}, open(os.path.join(UI_OUT, f"{case['case_id']}.json"), "w"), indent=1)
+        write_bundle(case["case_id"], bundle)
         c = a["case"]
         print(f"{a['case_id']}  {case['trigger_type']:<15} {c['verdict']:<10} p={c['fraud_probability']:<5} {c['pattern']:<28} exp={c['exposure_usd']:<9} sar={a['sar']['file']}  "
               f"graph={a['case']['written_to_graph']}  init={[x['action'] for x in a['next_best_actions']['initial']]} final={[x['action'] for x in a['next_best_actions']['final']]}")

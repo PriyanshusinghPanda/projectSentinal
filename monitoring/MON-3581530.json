@@ -65,6 +65,16 @@
         "source": "graph",
         "ref": "mcp:device_neighbors(days=31)",
         "entity_ids": []
+      },
+      {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5262 \u2014 cleared, none (similarity 0.74); CC-4249 \u2014 cleared, none (similarity 0.74); CC-1887 \u2014 cleared, none (similarity 0.74)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-5262",
+          "CC-4249",
+          "CC-1887"
+        ]
       }
     ],
     "similar_prior_cases": [
@@ -72,7 +82,8 @@
       "CC-1195",
       "CC-1367",
       "CC-1948",
-      "CC-2105"
+      "CC-2105",
+      "CC-5262"
     ],
     "summary": "Card not present fraud on card C05381: 3 transaction(s), exposure $53.83. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -121,7 +132,7 @@
     "activity_dates": []
   },
   "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
-  "tool_calls": 20,
+  "tool_calls": 21,
   "tokens": 0,
-  "latency_s": 0.051
+  "latency_s": 0.049
 }

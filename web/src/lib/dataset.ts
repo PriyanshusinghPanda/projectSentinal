@@ -64,6 +64,10 @@ export const PATTERN_NAMES: Record<string, string> = {
 };
 
 const cache = new Map<string, Bundle>();
+/** Drop a cached bundle after the live agent rewrites it. */
+export function invalidate(id: string) {
+  cache.delete(id);
+}
 export function bundle(id: string): Bundle {
   if (!cache.has(id)) {
     const file = path.join(BUNDLE_DIR, `${id}.json`);

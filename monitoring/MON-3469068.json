@@ -99,6 +99,16 @@
         ]
       },
       {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-2985 \u2014 confirmed fraud, undocumented (similarity 0.57); CC-3035 \u2014 confirmed fraud, undocumented (similarity 0.57); CC-2649 \u2014 confirmed fraud, undocumented (similarity 0.57)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-2985",
+          "CC-3035",
+          "CC-2649"
+        ]
+      },
+      {
         "claim": "Case memory in the graph: 3 earlier Sentinel investigation(s) on this device profile",
         "source": "graph",
         "ref": "mcp:case_memory",
@@ -206,7 +216,7 @@
     ]
   },
   "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
-  "tool_calls": 19,
+  "tool_calls": 20,
   "tokens": 0,
-  "latency_s": 0.008
+  "latency_s": 0.005
 }

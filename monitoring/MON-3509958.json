@@ -63,6 +63,16 @@
         "entity_ids": []
       },
       {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3813 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-5168 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-5499 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-3813",
+          "CC-5168",
+          "CC-5499"
+        ]
+      },
+      {
         "claim": "Case memory in the graph: 3 earlier Sentinel investigation(s) on this device profile",
         "source": "graph",
         "ref": "mcp:case_memory",
@@ -74,7 +84,8 @@
       "CC-4162",
       "CC-5068",
       "CC-4750",
-      "CC-4993"
+      "CC-4993",
+      "CC-3813"
     ],
     "summary": "Card not present new device on card C09918: 1 transaction(s), exposure $100.05. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -133,7 +144,7 @@
     "activity_dates": []
   },
   "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
-  "tool_calls": 20,
+  "tool_calls": 21,
   "tokens": 0,
-  "latency_s": 0.005
+  "latency_s": 0.009
 }

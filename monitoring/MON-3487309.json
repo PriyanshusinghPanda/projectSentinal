@@ -60,6 +60,16 @@
         "entity_ids": []
       },
       {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4501 \u2014 confirmed fraud, card_testing (similarity 0.53); CC-5187 \u2014 confirmed fraud, card_testing (similarity 0.53); CC-4225 \u2014 confirmed fraud, card_testing (similarity 0.53)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-4501",
+          "CC-5187",
+          "CC-4225"
+        ]
+      },
+      {
         "claim": "Case memory in the graph: 2 earlier Sentinel investigation(s) on this device profile",
         "source": "graph",
         "ref": "mcp:case_memory",
@@ -71,7 +81,8 @@
       "CC-1217",
       "CC-1514",
       "CC-1610",
-      "CC-1734"
+      "CC-1734",
+      "CC-4501"
     ],
     "summary": "Card testing on card C04034: 3 transaction(s), exposure $427.24. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -130,7 +141,7 @@
     "activity_dates": []
   },
   "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
-  "tool_calls": 20,
+  "tool_calls": 21,
   "tokens": 0,
-  "latency_s": 0.027
+  "latency_s": 0.026
 }

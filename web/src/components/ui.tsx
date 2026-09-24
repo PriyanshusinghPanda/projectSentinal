@@ -1,10 +1,9 @@
 "use client";
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
 import { Brain, Fingerprint, GitFork, Network, Receipt, Scale, ShieldCheck, Swords, User, Zap } from "lucide-react";
 import type { AgentId, ApprovalRoute, Assessment } from "@/lib/types";
 
-export const cn = (...c: ClassValue[]) => twMerge(clsx(c));
+import { cn } from "@/lib/cn";
+export { cn };
 
 export const AGENTS: Record<AgentId, { name: string; icon: typeof Network; var: string; text: string }> = {
   graph: { name: "Graph Analyst", icon: Network, var: "--agent-graph", text: "text-agent-graph" },

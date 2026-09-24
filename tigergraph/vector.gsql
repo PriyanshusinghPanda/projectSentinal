@@ -19,7 +19,7 @@ CREATE OR REPLACE QUERY similar_notes(LIST<DOUBLE> qv, INT k = 5) FOR GRAPH Sent
         FOREACH i IN RANGE[0, n - 1] DO
           s.@sim += s.note_vec.get(i) * @@q.get(i)
         END
-      ORDER BY s.@sim DESC
+      ORDER BY s.@sim DESC, s.id ASC
       LIMIT k;
   PRINT S[S.id, S.outcome, S.pattern, S.analyst_notes, S.@sim AS similarity];
 }

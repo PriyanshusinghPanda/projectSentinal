@@ -185,22 +185,22 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5217 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-3954 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-2946 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0249 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-0502 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-0660 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-5217",
-       "CC-3954",
-       "CC-2946"
+       "CC-0249",
+       "CC-0502",
+       "CC-0660"
       ]
      }
     ],
     "similar_prior_cases": [
      "CC-0873",
      "CC-0009",
-     "CC-5217",
-     "CC-3954",
-     "CC-2946"
+     "CC-0249",
+     "CC-0502",
+     "CC-0660"
     ],
     "summary": "Alert on 3506725 ($1,000.03) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -256,7 +256,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 18,
    "tokens": 0,
-   "latency_s": 0.002
+   "latency_s": 2.664
   },
   "deny": {
    "case_id": "HHG-010",
@@ -325,13 +325,13 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5217 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-3954 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-2946 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0249 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-0502 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-0660 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-5217",
-       "CC-3954",
-       "CC-2946"
+       "CC-0249",
+       "CC-0502",
+       "CC-0660"
       ]
      }
     ],
@@ -339,9 +339,9 @@
      "CC-0873",
      "CC-0011",
      "CC-0018",
-     "CC-5217",
-     "CC-3954",
-     "CC-2946"
+     "CC-0249",
+     "CC-0502",
+     "CC-0660"
     ],
     "summary": "Card not present new device on card C10434-K1: 1 transaction(s), exposure $1,000.03. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -409,7 +409,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 12,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 2.664
   },
   "confirm": {
    "case_id": "HHG-010",
@@ -473,22 +473,22 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5217 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-3954 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-2946 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0249 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-0502 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44); CC-0660 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.44)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-5217",
-       "CC-3954",
-       "CC-2946"
+       "CC-0249",
+       "CC-0502",
+       "CC-0660"
       ]
      }
     ],
     "similar_prior_cases": [
      "CC-0873",
      "CC-0009",
-     "CC-5217",
-     "CC-3954",
-     "CC-2946"
+     "CC-0249",
+     "CC-0502",
+     "CC-0660"
     ],
     "summary": "Alert on 3506725 ($1,000.03) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -544,7 +544,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 11,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 2.664
   }
  }
 }

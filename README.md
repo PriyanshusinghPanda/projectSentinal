@@ -15,7 +15,9 @@ Seven agents investigate, argue and decide; the analyst approves. Built for the 
 | `tigergraph/algorithms.gsql` | `ring_components`: connected-components ring detection over new-device + proxy transactions |
 | `tigergraph/vector.gsql` | `similar_notes`: exact cosine k-NN over closed-case note embeddings stored in TigerGraph |
 | `tigergraph/` | `schema.gsql` (README schema + case memory), `prepare_data.py`, `loading_job.gsql`, `queries.gsql` |
-| `web/` | Analyst console (Next.js). Replays each real investigation; switch the simulated customer reply to see the NBA change |
+| `web/` | Analyst console (Next.js): case queue and investigation view (replay, switch the customer's reply, **run live on TigerGraph**, graded case file), approvals inbox (L1/L2), fraud rings (graph algorithm), autonomous monitoring, case memory with semantic search, evaluation, Fraud Policy |
+| `agent/server.py` | Local API the console calls to re-run the agent live and to search case memory (TigerGraph MCP) |
+| `agent/export_insights.py` | Exports backtest, audit, rings, monitoring and rule usage to `web/insights/` |
 | `data/` | The HHGOA_IEEE download (not committed) |
 
 ## Run
@@ -23,10 +25,16 @@ Seven agents investigate, argue and decide; the analyst approves. Built for the 
 # 1. answers (no TigerGraph needed)
 cd agent && python3 slim.py && python3 investigate.py          # -> ../cases/*.json and web/case_bundles/
 
-# 2. console
+# 2. analytics for the console (backtest, audit, rings, monitoring)
+cd agent && python3 backtest.py && python3 monitor.py && python3 export_insights.py
+
+# 3. live agent API (lets the console run the agent on TigerGraph + semantic search)
+cd agent && python3 server.py                                  # http://127.0.0.1:8765
+
+# 4. console
 cd web && npm install && npm run dev                           # http://localhost:3100   (demo engine: /?demo=1)
 
-# 3. TigerGraph (Savanna): put TG_HOST / TG_USERNAME / TG_PASSWORD / TG_GRAPHNAME=Sentinel / TG_TGCLOUD=true in .env
+# 5. TigerGraph (Savanna): put TG_HOST / TG_USERNAME / TG_PASSWORD / TG_GRAPHNAME=Sentinel / TG_TGCLOUD=true in .env
 python3.12 -m venv .tgvenv && .tgvenv/bin/pip install pyTigerGraph tigergraph-mcp
 python3 tigergraph/prepare_data.py                             # -> tigergraph/load_data/*.csv
 .tgvenv/bin/python agent/load_tigergraph.py                    # schema + loading job + data + queries

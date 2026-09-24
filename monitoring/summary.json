@@ -1,0 +1,483 @@
+{
+ "period_txns": 173318,
+ "threshold": 0.85,
+ "alerts": 1370,
+ "model_alerts": 1159,
+ "ring_alerts": 221,
+ "card_days": 1257,
+ "triage": {
+  "\u22650.70": 71,
+  "0.30\u20130.70": 813,
+  "<0.30": 373
+ },
+ "patterns": {
+  "card_not_present_new_device": 432,
+  "out_of_region_use": 226,
+  "account_takeover": 80,
+  "card_not_present_fraud": 76,
+  "undocumented": 68,
+  "card_testing": 2
+ },
+ "investigated": [
+  {
+   "id": "MON-3491243",
+   "opened_at": "2016-11-27 12:30:51",
+   "txn": "3491243",
+   "amount": 49.93,
+   "model_score": 0.91,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3587839",
+   "opened_at": "2016-12-30 23:17:53",
+   "txn": "3587839",
+   "amount": 99.97,
+   "model_score": 0.9,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": false,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3577354",
+   "opened_at": "2016-12-26 20:46:31",
+   "txn": "3577354",
+   "amount": 100.01,
+   "model_score": 0.88,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": false,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3530919",
+   "opened_at": "2016-12-10 17:42:50",
+   "txn": "3530919",
+   "amount": 100.09,
+   "model_score": 0.81,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3462939",
+   "opened_at": "2016-11-16 18:10:32",
+   "txn": "3462939",
+   "amount": 24.92,
+   "model_score": 0.68,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3581872",
+   "opened_at": "2016-12-28 17:32:14",
+   "txn": "3581872",
+   "amount": 99.92,
+   "model_score": 0.66,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3533997",
+   "opened_at": "2016-12-11 18:32:21",
+   "txn": "3533997",
+   "amount": 100.04,
+   "model_score": 0.6,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3527874",
+   "opened_at": "2016-12-09 16:56:39",
+   "txn": "3527874",
+   "amount": 50.03,
+   "model_score": 0.56,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3510591",
+   "opened_at": "2016-12-03 18:18:45",
+   "txn": "3510591",
+   "amount": 150.06,
+   "model_score": 0.54,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3477916",
+   "opened_at": "2016-11-22 09:50:00",
+   "txn": "3477916",
+   "amount": 129.35,
+   "model_score": 0.44,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3527376",
+   "opened_at": "2016-12-09 13:55:50",
+   "txn": "3527376",
+   "amount": 49.93,
+   "model_score": 0.42,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3469068",
+   "opened_at": "2016-11-18 22:45:00",
+   "txn": "3469068",
+   "amount": 196.09,
+   "model_score": 0.37,
+   "p0": 0.85,
+   "pattern": "undocumented",
+   "verdict": "fraud",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "BLOCK_CARD (L1)",
+    "CREATE_CASE (auto)",
+    "FILE_REPORT (L2)",
+    "MONITOR_CONNECTED_CARDS (auto)",
+    "ESCALATE_TO_ANALYST (auto)"
+   ]
+  },
+  {
+   "id": "MON-3487309",
+   "opened_at": "2016-11-25 21:05:39",
+   "txn": "3487309",
+   "amount": 389.86,
+   "model_score": 0.93,
+   "p0": 0.8,
+   "pattern": "card_testing",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": false,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "STEP_UP_AUTH (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3578454",
+   "opened_at": "2016-12-27 04:31:33",
+   "txn": "3578454",
+   "amount": 134.57,
+   "model_score": 0.86,
+   "p0": 0.8,
+   "pattern": "card_testing",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": false,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "STEP_UP_AUTH (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3585961",
+   "opened_at": "2016-12-30 08:22:36",
+   "txn": "3585961",
+   "amount": 953.9,
+   "model_score": 0.85,
+   "p0": 0.7,
+   "pattern": "out_of_region_use",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": false,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3529317",
+   "opened_at": "2016-12-10 00:27:26",
+   "txn": "3529317",
+   "amount": 99.94,
+   "model_score": 0.89,
+   "p0": 0.65,
+   "pattern": "card_not_present_fraud",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": false,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3585781",
+   "opened_at": "2016-12-30 02:50:35",
+   "txn": "3585781",
+   "amount": 100.03,
+   "model_score": 0.87,
+   "p0": 0.65,
+   "pattern": "card_not_present_new_device",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": false,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3482657",
+   "opened_at": "2016-11-24 00:55:20",
+   "txn": "3482657",
+   "amount": 200.01,
+   "model_score": 0.86,
+   "p0": 0.65,
+   "pattern": "card_not_present_new_device",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3490645",
+   "opened_at": "2016-11-27 00:53:21",
+   "txn": "3490645",
+   "amount": 24.94,
+   "model_score": 0.86,
+   "p0": 0.65,
+   "pattern": "card_not_present_new_device",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3509958",
+   "opened_at": "2016-12-03 15:03:35",
+   "txn": "3509958",
+   "amount": 100.05,
+   "model_score": 0.36,
+   "p0": 0.65,
+   "pattern": "card_not_present_new_device",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3578858",
+   "opened_at": "2016-12-27 14:13:31",
+   "txn": "3578858",
+   "amount": 25.03,
+   "model_score": 0.24,
+   "p0": 0.65,
+   "pattern": "card_not_present_new_device",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3589621",
+   "opened_at": "2016-12-31 17:39:48",
+   "txn": "3589621",
+   "amount": 100.01,
+   "model_score": 0.03,
+   "p0": 0.65,
+   "pattern": "card_not_present_new_device",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": true,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3527815",
+   "opened_at": "2016-12-09 16:37:42",
+   "txn": "3527815",
+   "amount": 28.08,
+   "model_score": 0.9,
+   "p0": 0.62,
+   "pattern": "account_takeover",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": false,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3467166",
+   "opened_at": "2016-11-18 03:54:27",
+   "txn": "3467166",
+   "amount": 44.37,
+   "model_score": 0.87,
+   "p0": 0.62,
+   "pattern": "account_takeover",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": false,
+   "actions": [
+    "DECLINE_TRANSACTION (L1)",
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  },
+  {
+   "id": "MON-3581530",
+   "opened_at": "2016-12-28 15:33:36",
+   "txn": "3581530",
+   "amount": 18.12,
+   "model_score": 0.97,
+   "p0": 0.55,
+   "pattern": "card_not_present_fraud",
+   "verdict": "uncertain",
+   "status": "open",
+   "ring": false,
+   "actions": [
+    "VERIFY_WITH_CUSTOMER (auto)",
+    "CREATE_CASE (auto)"
+   ]
+  }
+ ]
+}

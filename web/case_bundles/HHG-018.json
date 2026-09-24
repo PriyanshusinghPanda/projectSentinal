@@ -354,13 +354,13 @@
       ]
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4968 \u2014 cleared, none (similarity 0.65); CC-5308 \u2014 cleared, none (similarity 0.65); CC-3625 \u2014 cleared, none (similarity 0.65)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0003 \u2014 cleared, none (similarity 0.65); CC-0021 \u2014 cleared, none (similarity 0.65); CC-0023 \u2014 cleared, none (similarity 0.65)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-4968",
-       "CC-5308",
-       "CC-3625"
+       "CC-0003",
+       "CC-0021",
+       "CC-0023"
       ]
      }
     ],
@@ -370,7 +370,7 @@
      "CC-0454",
      "CC-0631",
      "CC-1450",
-     "CC-4968"
+     "CC-0003"
     ],
     "summary": "Out of region use on card C02354-K2: 1 transaction(s), exposure $39.08. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -426,7 +426,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 0.095
+   "latency_s": 2.708
   },
   "deny": {
    "case_id": "HHG-018",
@@ -495,13 +495,13 @@
       ]
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4968 \u2014 cleared, none (similarity 0.65); CC-5308 \u2014 cleared, none (similarity 0.65); CC-3625 \u2014 cleared, none (similarity 0.65)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0003 \u2014 cleared, none (similarity 0.65); CC-0021 \u2014 cleared, none (similarity 0.65); CC-0023 \u2014 cleared, none (similarity 0.65)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-4968",
-       "CC-5308",
-       "CC-3625"
+       "CC-0003",
+       "CC-0021",
+       "CC-0023"
       ]
      }
     ],
@@ -511,7 +511,7 @@
      "CC-0454",
      "CC-0631",
      "CC-1450",
-     "CC-4968"
+     "CC-0003"
     ],
     "summary": "Out of region use on card C02354-K2: 1 transaction(s), exposure $39.08. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -567,7 +567,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.015
+   "latency_s": 2.708
   },
   "confirm": {
    "case_id": "HHG-018",
@@ -634,13 +634,13 @@
       ]
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4968 \u2014 cleared, none (similarity 0.65); CC-5308 \u2014 cleared, none (similarity 0.65); CC-3625 \u2014 cleared, none (similarity 0.65)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0003 \u2014 cleared, none (similarity 0.65); CC-0021 \u2014 cleared, none (similarity 0.65); CC-0023 \u2014 cleared, none (similarity 0.65)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-4968",
-       "CC-5308",
-       "CC-3625"
+       "CC-0003",
+       "CC-0021",
+       "CC-0023"
       ]
      }
     ],
@@ -650,7 +650,7 @@
      "CC-0454",
      "CC-0631",
      "CC-1450",
-     "CC-4968"
+     "CC-0003"
     ],
     "summary": "Alert on 3491361 ($39.08) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -706,7 +706,7 @@
    "stop_reason": "Verification settled the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.013
+   "latency_s": 2.708
   }
  }
 }

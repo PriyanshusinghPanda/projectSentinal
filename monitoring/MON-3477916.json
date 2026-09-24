@@ -98,6 +98,16 @@
         ]
       },
       {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-2985 \u2014 confirmed fraud, undocumented (similarity 0.57); CC-3035 \u2014 confirmed fraud, undocumented (similarity 0.57); CC-2649 \u2014 confirmed fraud, undocumented (similarity 0.57)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-2985",
+          "CC-3035",
+          "CC-2649"
+        ]
+      },
+      {
         "claim": "Case memory in the graph: 3 earlier Sentinel investigation(s) on this device profile",
         "source": "graph",
         "ref": "mcp:case_memory",
@@ -109,7 +119,8 @@
       "CC-2047",
       "CC-3508",
       "CC-3599",
-      "CC-4592"
+      "CC-4592",
+      "CC-2985"
     ],
     "summary": "Undocumented on card C03676: 1 transaction(s), exposure $129.35. Device profile 'SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080' behind an anonymous proxy is new to this account and transacted on 27 other customers' cards within a month; 4 closed cases on th Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -206,7 +217,7 @@
     ]
   },
   "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
-  "tool_calls": 20,
+  "tool_calls": 21,
   "tokens": 0,
-  "latency_s": 0.015
+  "latency_s": 0.024
 }

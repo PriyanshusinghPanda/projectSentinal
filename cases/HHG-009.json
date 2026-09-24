@@ -49,13 +49,13 @@
         ]
       },
       {
-        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4351 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-4373 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-4276 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46)",
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0001 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-0012 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-0052 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46)",
         "source": "document",
         "ref": "mcp:similar_notes(k=3)",
         "entity_ids": [
-          "CC-4351",
-          "CC-4373",
-          "CC-4276"
+          "CC-0001",
+          "CC-0012",
+          "CC-0052"
         ]
       }
     ],
@@ -63,9 +63,7 @@
       "CC-0001",
       "CC-0007",
       "CC-0012",
-      "CC-4351",
-      "CC-4373",
-      "CC-4276"
+      "CC-0052"
     ],
     "summary": "Mixed evidence on 3581141; escalated with verification pending.",
     "written_to_graph": true,
@@ -131,5 +129,5 @@
   "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
   "tool_calls": 18,
   "tokens": 0,
-  "latency_s": 0.002
+  "latency_s": 2.62
 }

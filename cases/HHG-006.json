@@ -71,23 +71,22 @@
         ]
       },
       {
-        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3841 \u2014 confirmed fraud, undocumented (similarity 0.40); CC-3748 \u2014 confirmed fraud, undocumented (similarity 0.40); CC-4124 \u2014 confirmed fraud, undocumented (similarity 0.40)",
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3748 \u2014 confirmed fraud, undocumented (similarity 0.40); CC-3841 \u2014 confirmed fraud, undocumented (similarity 0.40); CC-3907 \u2014 confirmed fraud, undocumented (similarity 0.40)",
         "source": "document",
         "ref": "mcp:similar_notes(k=3)",
         "entity_ids": [
-          "CC-3841",
           "CC-3748",
-          "CC-4124"
+          "CC-3841",
+          "CC-3907"
         ]
       }
     ],
     "similar_prior_cases": [
       "CC-3748",
       "CC-3841",
-      "CC-3907",
-      "CC-4124"
+      "CC-3907"
     ],
-    "summary": "Undocumented on card C07297-K1: 4 transaction(s), exposure $1,906.07. 4 online purchases between $450 and $500 within an hour on one card \u2014 amounts appear chosen to stay under a $500 authorization threshold. The same structuring shape appears in confirmed closed cases (e.g. CC-3748, CC-384 Customer denial confirmed the verdict.",
+    "summary": "Undocumented on card C07297-K1: 4 transaction(s), exposure $1,906.07. 4 online purchases between $450 and $500 within an hour on one card \u2014 amounts appear chosen to stay under a $500 authorization threshold. Customer denial confirmed the verdict.",
     "written_to_graph": true,
     "graph_case_id": "CASE-HHG-006"
   },
@@ -157,5 +156,5 @@
   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
   "tool_calls": 19,
   "tokens": 0,
-  "latency_s": 0.01
+  "latency_s": 2.92
 }

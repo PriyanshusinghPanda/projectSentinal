@@ -170,13 +170,13 @@
       ]
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4351 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-4373 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-4276 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0001 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-0012 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-0052 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-4351",
-       "CC-4373",
-       "CC-4276"
+       "CC-0001",
+       "CC-0012",
+       "CC-0052"
       ]
      }
     ],
@@ -184,9 +184,7 @@
      "CC-0001",
      "CC-0007",
      "CC-0012",
-     "CC-4351",
-     "CC-4373",
-     "CC-4276"
+     "CC-0052"
     ],
     "summary": "Mixed evidence on 3581141; escalated with verification pending.",
     "written_to_graph": true,
@@ -252,7 +250,7 @@
    "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
    "tool_calls": 18,
    "tokens": 0,
-   "latency_s": 0.002
+   "latency_s": 2.62
   },
   "deny": {
    "case_id": "HHG-009",
@@ -305,13 +303,13 @@
       ]
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4351 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-4373 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-4276 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0001 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-0012 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-0052 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-4351",
-       "CC-4373",
-       "CC-4276"
+       "CC-0001",
+       "CC-0012",
+       "CC-0052"
       ]
      }
     ],
@@ -319,9 +317,7 @@
      "CC-0001",
      "CC-0007",
      "CC-0012",
-     "CC-4351",
-     "CC-4373",
-     "CC-4276"
+     "CC-0052"
     ],
     "summary": "Mixed evidence on 3581141; escalated with verification pending.",
     "written_to_graph": true,
@@ -387,7 +383,7 @@
    "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
    "tool_calls": 11,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 2.62
   },
   "confirm": {
    "case_id": "HHG-009",
@@ -437,22 +433,22 @@
       ]
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4351 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-4373 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-4276 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0001 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-0012 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46); CC-0052 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.46)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-4351",
-       "CC-4373",
-       "CC-4276"
+       "CC-0001",
+       "CC-0012",
+       "CC-0052"
       ]
      }
     ],
     "similar_prior_cases": [
      "CC-0009",
      "CC-0010",
-     "CC-4351",
-     "CC-4373",
-     "CC-4276"
+     "CC-0001",
+     "CC-0012",
+     "CC-0052"
     ],
     "summary": "Alert on 3581141 ($30.02) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -508,7 +504,7 @@
    "stop_reason": "Verification settled the question (policy 6).",
    "tool_calls": 10,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 2.62
   }
  }
 }

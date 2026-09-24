@@ -207,12 +207,12 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-2920 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-2670 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-3047 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-2670 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-2920 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-3047 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-2920",
        "CC-2670",
+       "CC-2920",
        "CC-3047"
       ]
      },
@@ -228,8 +228,8 @@
      "CC-1736",
      "CC-2121",
      "CC-3778",
-     "CC-2920",
-     "CC-2670"
+     "CC-2670",
+     "CC-2920"
     ],
     "summary": "Card not present new device on card C08106-K1: 1 transaction(s), exposure $128.33. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -285,7 +285,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 0.008
+   "latency_s": 3.147
   },
   "deny": {
    "case_id": "HHG-004",
@@ -346,12 +346,12 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-2920 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-2670 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-3047 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-2670 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-2920 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-3047 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-2920",
        "CC-2670",
+       "CC-2920",
        "CC-3047"
       ]
      },
@@ -367,8 +367,8 @@
      "CC-1736",
      "CC-2121",
      "CC-3778",
-     "CC-2920",
-     "CC-2670"
+     "CC-2670",
+     "CC-2920"
     ],
     "summary": "Card not present new device on card C08106-K1: 1 transaction(s), exposure $128.33. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -424,7 +424,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.002
+   "latency_s": 3.147
   },
   "confirm": {
    "case_id": "HHG-004",
@@ -481,12 +481,12 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-2920 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-2670 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-3047 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-2670 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-2920 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-3047 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-2920",
        "CC-2670",
+       "CC-2920",
        "CC-3047"
       ]
      },
@@ -502,8 +502,8 @@
      "CC-1736",
      "CC-2121",
      "CC-3778",
-     "CC-2920",
-     "CC-2670"
+     "CC-2670",
+     "CC-2920"
     ],
     "summary": "Alert on 3583227 ($128.33) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -559,7 +559,7 @@
    "stop_reason": "Verification settled the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 3.147
   }
  }
 }

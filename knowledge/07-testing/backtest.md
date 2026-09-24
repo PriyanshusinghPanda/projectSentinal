@@ -8,7 +8,7 @@ Every model-scored closed case was cleared and every customer-reported one was f
 {'risk_score': 0.0, 'customer_report': 1.0, 'analyst_request': 0.0}), so the trigger alone predicts the outcome. The exam pack deliberately mixes them, so we
 don't report an accuracy number that would really measure the trigger.
 
-## Finding 2 — pattern recognition: 39% → 62.8%
+## Finding 2 — pattern recognition: 39% (first 400 cases, before tuning) → 62.8%
 Pattern the agent assigns once fraud is confirmed, against the analyst's label, on 4665 confirmed-fraud cases.
 
 | Pattern | Cases | Recognised | Main confusions |

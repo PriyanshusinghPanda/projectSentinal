@@ -358,13 +358,13 @@
       ]
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4759 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-4876 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-4676 \u2014 confirmed fraud, account_takeover (similarity 0.48)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0008 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-0013 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-0020 \u2014 confirmed fraud, account_takeover (similarity 0.48)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-4759",
-       "CC-4876",
-       "CC-4676"
+       "CC-0008",
+       "CC-0013",
+       "CC-0020"
       ]
      }
     ],
@@ -373,8 +373,8 @@
      "CC-3216",
      "CC-3761",
      "CC-4294",
-     "CC-4759",
-     "CC-4876"
+     "CC-0008",
+     "CC-0013"
     ],
     "summary": "Account takeover on card C07671-K2: 1 transaction(s), exposure $35.66. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -430,7 +430,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 0.024
+   "latency_s": 3.054
   },
   "deny": {
    "case_id": "HHG-013",
@@ -498,13 +498,13 @@
       ]
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4759 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-4876 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-4676 \u2014 confirmed fraud, account_takeover (similarity 0.48)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0008 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-0013 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-0020 \u2014 confirmed fraud, account_takeover (similarity 0.48)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-4759",
-       "CC-4876",
-       "CC-4676"
+       "CC-0008",
+       "CC-0013",
+       "CC-0020"
       ]
      }
     ],
@@ -513,8 +513,8 @@
      "CC-3216",
      "CC-3761",
      "CC-4294",
-     "CC-4759",
-     "CC-4876"
+     "CC-0008",
+     "CC-0013"
     ],
     "summary": "Account takeover on card C07671-K2: 1 transaction(s), exposure $35.66. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -570,7 +570,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.004
+   "latency_s": 3.054
   },
   "confirm": {
    "case_id": "HHG-013",
@@ -636,13 +636,13 @@
       ]
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4759 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-4876 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-4676 \u2014 confirmed fraud, account_takeover (similarity 0.48)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0008 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-0013 \u2014 confirmed fraud, account_takeover (similarity 0.48); CC-0020 \u2014 confirmed fraud, account_takeover (similarity 0.48)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-4759",
-       "CC-4876",
-       "CC-4676"
+       "CC-0008",
+       "CC-0013",
+       "CC-0020"
       ]
      }
     ],
@@ -651,8 +651,8 @@
      "CC-3216",
      "CC-3761",
      "CC-4294",
-     "CC-4759",
-     "CC-4876"
+     "CC-0008",
+     "CC-0013"
     ],
     "summary": "Alert on 3526826 ($35.66) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -708,7 +708,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.003
+   "latency_s": 3.054
   }
  }
 }

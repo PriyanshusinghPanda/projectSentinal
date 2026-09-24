@@ -137,6 +137,14 @@ def main():
         lines.append(f"| {case['case_id']} | {case['opened_at'][:16]} | {x.id} | ${x.amt:,.2f} | {x.risk:.2f} | {p0:.2f} | {a['case']['pattern']} | {a['case']['verdict']} | "
                      + ", ".join(f"{y['action']} ({y['route']})" for y in a["next_best_actions"]["final"]) + " |")
     open(os.path.join(OUT, "README.md"), "w").write("\n".join(lines) + "\n")
+    json.dump({
+        "period_txns": len(period), "threshold": args.threshold, "alerts": len(cand), "model_alerts": len(scored),
+        "ring_alerts": len(ringed), "card_days": len(alerts), "triage": dict(dist), "patterns": dict(pats.most_common()),
+        "investigated": [{"id": c["case_id"], "opened_at": c["opened_at"], "txn": c["flagged_txn_id"], "amount": inv.TX[c["flagged_txn_id"]].amt,
+                          "model_score": inv.TX[c["flagged_txn_id"]].risk, "p0": p0, "pattern": a["case"]["pattern"], "verdict": a["case"]["verdict"],
+                          "status": a["case"]["status"], "ring": inv.TX[c["flagged_txn_id"]].dev in ring_devs,
+                          "actions": [f"{y['action']} ({y['route']})" for y in a["next_best_actions"]["final"]]} for c, a, p0 in written],
+    }, open(os.path.join(OUT, "summary.json"), "w"), indent=1)
     print(f"wrote {len(written)} investigations + README in {time.time() - t0:.0f}s", file=sys.stderr)
 
 

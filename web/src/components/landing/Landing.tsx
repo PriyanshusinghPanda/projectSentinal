@@ -109,7 +109,9 @@ export function Landing({ stats }: { stats: LandingStats }) {
             <a href="#agents" className="hover:text-foreground">Agents</a>
             <a href="#controls" className="hover:text-foreground">Controls</a>
             <a href="#results" className="hover:text-foreground">Results</a>
-            <Link href="/memory" className="hover:text-foreground">Case memory</Link>
+            <Link href="/rings" className="hover:text-foreground">Rings</Link>
+            <Link href="/monitoring" className="hover:text-foreground">Monitoring</Link>
+            <Link href="/evaluation" className="hover:text-foreground">Evaluation</Link>
           </div>
           <Link href="/cases" className="flex h-9 items-center rounded-md bg-primary px-4 text-[14px] font-medium text-primary-foreground hover:bg-primary/90">
             Open the console

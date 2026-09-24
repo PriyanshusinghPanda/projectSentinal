@@ -1,13 +1,18 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Brain, Home, LayoutGrid, Search, ShieldHalf } from "lucide-react";
+import { BarChart3, Brain, Home, LayoutGrid, Network, Radar, Scale, Search, ShieldHalf, UserCheck } from "lucide-react";
 import { cn } from "./ui";
 
 const NAV = [
   { href: "/", icon: Home, label: "Overview" },
   { href: "/cases", icon: LayoutGrid, label: "Case queue" },
+  { href: "/approvals", icon: UserCheck, label: "Approvals" },
+  { href: "/rings", icon: Network, label: "Fraud rings" },
+  { href: "/monitoring", icon: Radar, label: "Monitoring" },
   { href: "/memory", icon: Brain, label: "Case memory" },
+  { href: "/evaluation", icon: BarChart3, label: "Evaluation" },
+  { href: "/policy", icon: Scale, label: "Policy" },
 ];
 
 export function Shell({ crumbs, children, source }: { crumbs: React.ReactNode; children: React.ReactNode; source?: string }) {

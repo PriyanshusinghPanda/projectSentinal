@@ -1,0 +1,303 @@
+{
+ "R1": {
+  "HHG-001": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-002": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-003": [
+   "initial: STEP_UP_AUTH"
+  ],
+  "HHG-004": [
+   "initial: STEP_UP_AUTH"
+  ],
+  "HHG-005": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-006": [
+   "initial: STEP_UP_AUTH"
+  ],
+  "HHG-007": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-008": [
+   "initial: STEP_UP_AUTH"
+  ],
+  "HHG-009": [
+   "initial: STEP_UP_AUTH"
+  ],
+  "HHG-010": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-011": [
+   "initial: STEP_UP_AUTH"
+  ],
+  "HHG-012": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-013": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-015": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-016": [
+   "initial: STEP_UP_AUTH"
+  ],
+  "HHG-017": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-018": [
+   "initial: STEP_UP_AUTH"
+  ],
+  "HHG-019": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-020": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ]
+ },
+ "3b": {
+  "HHG-001": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-010": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-012": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-013": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-015": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-017": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ],
+  "HHG-020": [
+   "initial: VERIFY_WITH_CUSTOMER"
+  ]
+ },
+ "3a": {
+  "HHG-001": [
+   "initial: CREATE_CASE"
+  ],
+  "HHG-002": [
+   "initial: CREATE_CASE"
+  ],
+  "HHG-003": [
+   "final: CREATE_CASE",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-004": [
+   "final: CREATE_CASE",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-005": [
+   "initial: CREATE_CASE"
+  ],
+  "HHG-006": [
+   "final: CREATE_CASE",
+   "final: FILE_REPORT",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-007": [
+   "initial: CREATE_CASE"
+  ],
+  "HHG-008": [
+   "final: CREATE_CASE",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-009": [
+   "final: CREATE_CASE",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-010": [
+   "initial: CREATE_CASE"
+  ],
+  "HHG-011": [
+   "final: CREATE_CASE",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-012": [
+   "initial: CREATE_CASE"
+  ],
+  "HHG-013": [
+   "final: CREATE_CASE",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-014": [
+   "final: CREATE_CASE",
+   "final: FILE_REPORT",
+   "initial: CREATE_CASE",
+   "initial: FILE_REPORT"
+  ],
+  "HHG-015": [
+   "final: CREATE_CASE",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-016": [
+   "final: CREATE_CASE",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-017": [
+   "final: CREATE_CASE",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-018": [
+   "final: CREATE_CASE",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-019": [
+   "initial: CREATE_CASE"
+  ],
+  "HHG-020": [
+   "initial: CREATE_CASE"
+  ]
+ },
+ "R3": {
+  "HHG-001": [
+   "final: ALLOW_TRANSACTION",
+   "final: CLOSE_NO_FRAUD"
+  ],
+  "HHG-002": [
+   "final: ALLOW_TRANSACTION",
+   "final: CLOSE_NO_FRAUD"
+  ],
+  "HHG-005": [
+   "final: ALLOW_TRANSACTION",
+   "final: CLOSE_NO_FRAUD"
+  ],
+  "HHG-007": [
+   "final: ALLOW_TRANSACTION",
+   "final: CLOSE_NO_FRAUD"
+  ],
+  "HHG-010": [
+   "final: ALLOW_TRANSACTION",
+   "final: CLOSE_NO_FRAUD"
+  ],
+  "HHG-012": [
+   "final: ALLOW_TRANSACTION",
+   "final: CLOSE_NO_FRAUD"
+  ],
+  "HHG-019": [
+   "final: ALLOW_TRANSACTION",
+   "final: CLOSE_NO_FRAUD"
+  ],
+  "HHG-020": [
+   "final: ALLOW_TRANSACTION",
+   "final: CLOSE_NO_FRAUD"
+  ]
+ },
+ "R4": {
+  "HHG-003": [
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-004": [
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-006": [
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-008": [
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-009": [
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-011": [
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-016": [
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-018": [
+   "initial: DECLINE_TRANSACTION"
+  ]
+ },
+ "R2": {
+  "HHG-003": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE",
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-004": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE",
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-006": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE",
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-008": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE",
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-009": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE",
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-011": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE",
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-013": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE"
+  ],
+  "HHG-014": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE",
+   "initial: BLOCK_CARD",
+   "initial: CREATE_CASE"
+  ],
+  "HHG-015": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE"
+  ],
+  "HHG-016": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE",
+   "initial: DECLINE_TRANSACTION"
+  ],
+  "HHG-017": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE"
+  ],
+  "HHG-018": [
+   "final: BLOCK_CARD",
+   "final: CREATE_CASE",
+   "initial: DECLINE_TRANSACTION"
+  ]
+ },
+ "R9": {
+  "HHG-006": [
+   "final: ESCALATE_TO_ANALYST"
+  ],
+  "HHG-014": [
+   "final: ESCALATE_TO_ANALYST",
+   "final: FILE_REPORT",
+   "initial: ESCALATE_TO_ANALYST",
+   "initial: FILE_REPORT"
+  ]
+ },
+ "R8": {
+  "HHG-009": [
+   "final: ESCALATE_TO_ANALYST"
+  ]
+ },
+ "R6": {
+  "HHG-014": [
+   "final: MONITOR_CONNECTED_CARDS",
+   "initial: MONITOR_CONNECTED_CARDS"
+  ]
+ }
+}

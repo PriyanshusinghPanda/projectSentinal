@@ -245,13 +245,13 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3409 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.42); CC-2757 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.39); CC-5145 \u2014 confirmed fraud, out_of_region_use (similarity 0.38)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3409 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.42); CC-2757 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.39); CC-0002 \u2014 confirmed fraud, out_of_region_use (similarity 0.38)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
        "CC-3409",
        "CC-2757",
-       "CC-5145"
+       "CC-0002"
       ]
      }
     ],
@@ -312,7 +312,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 0.005
+   "latency_s": 2.835
   },
   "deny": {
    "case_id": "HHG-019",
@@ -373,13 +373,13 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3409 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.42); CC-2757 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.39); CC-5145 \u2014 confirmed fraud, out_of_region_use (similarity 0.38)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3409 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.42); CC-2757 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.39); CC-0002 \u2014 confirmed fraud, out_of_region_use (similarity 0.38)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
        "CC-3409",
        "CC-2757",
-       "CC-5145"
+       "CC-0002"
       ]
      }
     ],
@@ -440,7 +440,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 2.835
   },
   "confirm": {
    "case_id": "HHG-019",
@@ -497,13 +497,13 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3409 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.42); CC-2757 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.39); CC-5145 \u2014 confirmed fraud, out_of_region_use (similarity 0.38)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3409 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.42); CC-2757 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.39); CC-0002 \u2014 confirmed fraud, out_of_region_use (similarity 0.38)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
        "CC-3409",
        "CC-2757",
-       "CC-5145"
+       "CC-0002"
       ]
      }
     ],
@@ -564,7 +564,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.002
+   "latency_s": 2.835
   }
  }
 }

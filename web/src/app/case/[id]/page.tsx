@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Check, CircleDashed, Download, FileWarning, Loader2, Play, RotateCcw, Terminal, X } from "lucide-react";
+import { ArrowRight, Check, CircleDashed, Database, Download, FileWarning, Loader2, Play, RotateCcw, Terminal, X } from "lucide-react";
+import { CaseFileView } from "@/components/CaseFileView";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import type { FraudCase, AgentId, DecisionLogEntry, Dispute, Finding, InvestigationEvent, PastCase, Recommendation } from "@/lib/types";
@@ -15,7 +16,7 @@ type TimelineItem =
   | { k: "agent"; agent: AgentId; task: string; tools: string[]; findings: Finding[] }
   | { k: "dispute"; dispute: Dispute; target?: Finding };
 
-type Tab = "timeline" | "evidence" | "sar" | "log";
+type Tab = "timeline" | "evidence" | "sar" | "log" | "file";
 
 export default function CasePage() {
   const { id } = useParams<{ id: string }>();
@@ -37,6 +38,8 @@ export default function CasePage() {
   const [evidenceChoice, setEvidenceChoice] = useState<string | null>(null);
   const [approvals, setApprovals] = useState<Record<string, "approved" | "rejected">>({});
   const [tab, setTab] = useState<Tab>("timeline");
+  const [live, setLive] = useState<{ busy: boolean; msg: string | null; error?: boolean }>({ busy: false, msg: null });
+  const [fileVersion, setFileVersion] = useState(0);
   const scroller = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
@@ -186,6 +189,21 @@ export default function CasePage() {
     setLog((l) => [...l, entry]);
   }
 
+  async function runLive() {
+    setLive({ busy: true, msg: null });
+    const r = await fetch("/api/agent/investigate", { method: "POST", body: JSON.stringify({ case_id: id }) });
+    const d = await r.json();
+    if (!r.ok) {
+      setLive({ busy: false, msg: d.error ?? "Live run failed", error: true });
+      return;
+    }
+    setLive({ busy: false, msg: `Live run on TigerGraph: ${d.seconds}s · ${d.mcp_calls} MCP calls · written to the graph as ${d.graph_case_id}` });
+    setFileVersion((v) => v + 1);
+    setEvidenceChoice(null);
+    setNarr({});
+    run();
+  }
+
   function exportAnswer() {
     if (!c) return;
     if (mode === "dataset") {
@@ -232,13 +250,24 @@ export default function CasePage() {
         </div>
         <div className="flex gap-2">
           <button onClick={() => { setEvidenceChoice(null); setNarr({}); run(); }} disabled={running} className="flex h-8 items-center gap-1.5 rounded-md border border-border px-3 text-[13px] hover:bg-elevated disabled:opacity-50">
-            <RotateCcw size={13} /> Re-run
+            <RotateCcw size={13} /> Replay
           </button>
+          {mode === "dataset" && (
+            <button onClick={runLive} disabled={running || live.busy} title="Re-run the real agent now: graph queries and write-back through TigerGraph MCP" className="flex h-8 items-center gap-1.5 rounded-md border border-accent/40 px-3 text-[13px] text-accent hover:bg-accent/5 disabled:opacity-50">
+              {live.busy ? <Loader2 size={13} className="animate-spin" /> : <Database size={13} />} {live.busy ? "Investigating on TigerGraph…" : "Run live on TigerGraph"}
+            </button>
+          )}
           <button onClick={exportAnswer} disabled={running || !pre} className="flex h-8 items-center gap-1.5 rounded-md bg-primary px-3 text-[13px] font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50">
             <Download size={13} /> Export answer
           </button>
         </div>
       </div>
+
+      {live.msg && (
+        <div className={cn("mb-4 flex items-center gap-2 rounded-lg border px-4 py-2.5 text-[13px]", live.error ? "border-risk-critical/40 bg-risk-critical/5 text-risk-critical" : "border-risk-low/40 bg-risk-low/5 text-risk-low")}>
+          {live.error ? <X size={14} /> : <Check size={14} />} {live.msg}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-12">
         {/* LEFT */}
@@ -283,9 +312,9 @@ export default function CasePage() {
 
           <Card className="flex flex-col">
             <div className="flex h-11 items-center gap-1 border-b border-border px-2">
-              {(["timeline", "evidence", "sar", "log"] as Tab[]).map((t) => (
+              {((mode === "dataset" ? ["timeline", "evidence", "file", "sar", "log"] : ["timeline", "evidence", "sar", "log"]) as Tab[]).map((t) => (
                 <button key={t} onClick={() => setTab(t)} className={cn("h-7 rounded-md px-3 text-[13px] capitalize text-muted-foreground hover:text-foreground", tab === t && "bg-elevated text-foreground")}>
-                  {t === "sar" ? "SAR" : t === "timeline" ? "Agent timeline" : t === "evidence" ? `Findings (${findings.length})` : `Decision log (${log.length})`}
+                  {t === "sar" ? "SAR" : t === "timeline" ? "Agent timeline" : t === "evidence" ? `Findings (${findings.length})` : t === "file" ? "Case file" : `Decision log (${log.length})`}
                 </button>
               ))}
               {running && (
@@ -299,6 +328,7 @@ export default function CasePage() {
               {tab === "evidence" && <FindingsTable findings={findings} />}
               {tab === "sar" && <SarView sar={sar} />}
               {tab === "log" && <LogView log={log} />}
+              {tab === "file" && <CaseFileView id={id} reply={evidenceChoice ?? "agent"} version={fileVersion} />}
             </div>
           </Card>
         </div>

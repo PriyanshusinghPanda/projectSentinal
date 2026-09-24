@@ -63,6 +63,16 @@
         "entity_ids": []
       },
       {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4852 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-4613 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40); CC-1719 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.40)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-4852",
+          "CC-4613",
+          "CC-1719"
+        ]
+      },
+      {
         "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
         "source": "graph",
         "ref": "mcp:case_memory",
@@ -73,7 +83,9 @@
       "CC-5299",
       "CC-1087",
       "CC-2631",
-      "CC-2728"
+      "CC-2728",
+      "CC-4852",
+      "CC-4613"
     ],
     "summary": "Card not present new device on card C06469: 1 transaction(s), exposure $200.01. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -132,7 +144,7 @@
     "activity_dates": []
   },
   "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
-  "tool_calls": 19,
+  "tool_calls": 20,
   "tokens": 0,
   "latency_s": 0.005
 }

@@ -4,6 +4,7 @@ import type { PastCase } from "@/lib/types";
 import { FRAUD_PATTERNS } from "@/lib/data";
 import { Shell } from "@/components/Shell";
 import { Card, Label, cn } from "@/components/ui";
+import { SemanticSearch } from "@/components/SemanticSearch";
 
 const DATASET_PATTERNS: Record<string, [string, string]> = {
   card_testing: ["Card testing", "3+ tiny online authorizations, then a larger purchase (R5)"],
@@ -24,7 +25,7 @@ export default function Memory() {
     <Shell source={source} crumbs={<span>Case memory</span>}>
       <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-[22px] font-semibold tracking-[-0.02em]">Case memory</h1>
+          <h1 className="font-serif text-[34px] leading-tight">Case memory</h1>
           <p className="text-xs text-muted-foreground">Closed investigations, decisions and outcomes ({memory.length} most recent shown). Retrieved as precedent for every new case.</p>
         </div>
         <div className="flex gap-2">
@@ -34,12 +35,13 @@ export default function Memory() {
           ))}
         </div>
       </div>
+      <SemanticSearch />
       <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-5">
         {(memory.some((m) => m.pattern in DATASET_PATTERNS) ? Object.entries(DATASET_PATTERNS).map(([id, [name, description]]) => ({ id, name, description })) : FRAUD_PATTERNS).map((p) => {
           const cases = memory.filter((m) => m.pattern === p.id);
           return (
             <Card key={p.id} className="p-3">
-              <div className="flex justify-between"><span className="font-mono text-[11px] text-muted-foreground">{p.id}</span><span className="font-mono text-[11px]">{cases.length}</span></div>
+              <div className="flex justify-between"><span className="text-[11px] text-muted-foreground">{p.id.replace(/_/g, " ")}</span><span className="font-mono text-[11px]">{cases.length}</span></div>
               <div className="mt-1 text-[13px] font-medium">{p.name}</div>
               <div className="mt-1 line-clamp-2 text-[11px] text-muted-foreground">{p.description}</div>
             </Card>

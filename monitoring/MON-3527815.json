@@ -62,6 +62,16 @@
           "CC-3960",
           "CC-4033"
         ]
+      },
+      {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4351 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.55); CC-4373 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.55); CC-4276 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.55)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-4351",
+          "CC-4373",
+          "CC-4276"
+        ]
       }
     ],
     "similar_prior_cases": [
@@ -69,7 +79,8 @@
       "CC-3375",
       "CC-3959",
       "CC-4123",
-      "CC-4852"
+      "CC-4852",
+      "CC-4351"
     ],
     "summary": "Account takeover on card C05690: 1 transaction(s), exposure $28.08. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -128,7 +139,7 @@
     "activity_dates": []
   },
   "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
-  "tool_calls": 20,
+  "tool_calls": 21,
   "tokens": 0,
-  "latency_s": 0.016
+  "latency_s": 0.019
 }

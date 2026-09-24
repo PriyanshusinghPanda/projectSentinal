@@ -245,13 +245,13 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0455 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-2677 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-1510 \u2014 confirmed fraud, account_takeover (similarity 0.56)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0033 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-0145 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-0255 \u2014 confirmed fraud, account_takeover (similarity 0.56)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-0455",
-       "CC-2677",
-       "CC-1510"
+       "CC-0033",
+       "CC-0145",
+       "CC-0255"
       ]
      }
     ],
@@ -260,8 +260,8 @@
      "CC-2717",
      "CC-2857",
      "CC-1672",
-     "CC-0455",
-     "CC-2677"
+     "CC-0033",
+     "CC-0145"
     ],
     "summary": "Alert on 3523199 ($100.07) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -312,7 +312,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 0.024
+   "latency_s": 2.84
   },
   "deny": {
    "case_id": "HHG-005",
@@ -373,13 +373,13 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0455 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-2677 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-1510 \u2014 confirmed fraud, account_takeover (similarity 0.56)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0033 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-0145 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-0255 \u2014 confirmed fraud, account_takeover (similarity 0.56)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-0455",
-       "CC-2677",
-       "CC-1510"
+       "CC-0033",
+       "CC-0145",
+       "CC-0255"
       ]
      }
     ],
@@ -388,8 +388,8 @@
      "CC-2717",
      "CC-2857",
      "CC-1672",
-     "CC-0455",
-     "CC-2677"
+     "CC-0033",
+     "CC-0145"
     ],
     "summary": "Card not present new device on card C02923-K1: 1 transaction(s), exposure $100.07. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -440,7 +440,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.01
+   "latency_s": 2.84
   },
   "confirm": {
    "case_id": "HHG-005",
@@ -497,13 +497,13 @@
       "entity_ids": []
      },
      {
-      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0455 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-2677 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-1510 \u2014 confirmed fraud, account_takeover (similarity 0.56)",
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0033 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-0145 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-0255 \u2014 confirmed fraud, account_takeover (similarity 0.56)",
       "source": "document",
       "ref": "mcp:similar_notes(k=3)",
       "entity_ids": [
-       "CC-0455",
-       "CC-2677",
-       "CC-1510"
+       "CC-0033",
+       "CC-0145",
+       "CC-0255"
       ]
      }
     ],
@@ -512,8 +512,8 @@
      "CC-2717",
      "CC-2857",
      "CC-1672",
-     "CC-0455",
-     "CC-2677"
+     "CC-0033",
+     "CC-0145"
     ],
     "summary": "Alert on 3523199 ($100.07) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -564,7 +564,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.002
+   "latency_s": 2.84
   }
  }
 }

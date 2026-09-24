@@ -80,6 +80,16 @@
         "entity_ids": []
       },
       {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3035 \u2014 confirmed fraud, undocumented (similarity 0.50); CC-2649 \u2014 confirmed fraud, undocumented (similarity 0.50); CC-2985 \u2014 confirmed fraud, undocumented (similarity 0.50)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-3035",
+          "CC-2649",
+          "CC-2985"
+        ]
+      },
+      {
         "claim": "Case memory in the graph: 3 earlier Sentinel investigation(s) on this device profile",
         "source": "graph",
         "ref": "mcp:case_memory",
@@ -89,7 +99,8 @@
     "similar_prior_cases": [
       "CC-2649",
       "CC-2971",
-      "CC-2985"
+      "CC-2985",
+      "CC-3035"
     ],
     "summary": "Undocumented on card C06223: 1 transaction(s), exposure $49.93. Device profile 'Trident/7.0 | Windows 7 | ie 11.0 for desktop | 1920x1200' behind an anonymous proxy is new to this account and transacted on 11 other customers' cards within a month; 0 closed cases on this profile were  Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -185,7 +196,7 @@
     ]
   },
   "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
-  "tool_calls": 18,
+  "tool_calls": 19,
   "tokens": 0,
   "latency_s": 0.003
 }
