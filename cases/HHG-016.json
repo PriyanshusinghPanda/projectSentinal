@@ -1,0 +1,143 @@
+{
+  "case_id": "HHG-016",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.86,
+    "pattern": "undocumented",
+    "pattern_description": "Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardholders \u2014 a shared-device ring that none of the five documented patterns describes.",
+    "affected_txn_ids": [
+      "3534820"
+    ],
+    "first_suspicious_txn_id": "3534820",
+    "connected_card_ids": [],
+    "connected_device_profiles": [
+      "Windows | edge 16.0"
+    ],
+    "exposure_usd": 59.67,
+    "evidence": [
+      {
+        "claim": "Device profile shared with 70 other customers within 31 days; linked to confirmed closed cases CC-0497, CC-2540, CC-2675, CC-2694",
+        "source": "graph",
+        "ref": "query:device_neighbors(device_profile='Windows | edge 16.0', days=31)",
+        "entity_ids": [
+          "C00045",
+          "C00294",
+          "C00854",
+          "C01002",
+          "C01109",
+          "C01351",
+          "C01521",
+          "C01525",
+          "C02181",
+          "C02545",
+          "CC-0497",
+          "CC-2540",
+          "CC-2675",
+          "CC-2694"
+        ]
+      },
+      {
+        "claim": "Customer C09988 message: 'I never made this $59.67 purchase. Please check my card.' Refers to 3534820.",
+        "source": "customer",
+        "ref": "trigger:HHG-016",
+        "entity_ids": [
+          "3534820"
+        ]
+      },
+      {
+        "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-0497 confirmed_fraud (card_not_present_fraud); CC-2540 confirmed_fraud (card_not_present_new_device); CC-2675 confirmed_fraud (card_not_present_new_device)",
+        "source": "document",
+        "ref": "closed_cases_history",
+        "entity_ids": [
+          "CC-0497",
+          "CC-2540",
+          "CC-2675"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-0497",
+      "CC-2540",
+      "CC-2675",
+      "CC-2694",
+      "CC-2732"
+    ],
+    "summary": "Undocumented on card C09988-K1: 1 transaction(s), exposure $59.67. Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardhol Customer denial confirmed the verdict.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+  },
+  "evidence_requests": [
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 4,
+      "assumed_response": "Account holder passed step-up on their registered phone and reaffirmed they did not make the purchase and still hold the card"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: customer disputes a charge"
+      },
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R4/R2: hold pending authorizations while the denial is confirmed"
+      },
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R1: confirm the account holder before further activity"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denied the transaction; exposure $59.67 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2 / 3a: confirmed fraud"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "3a: coordinated / undocumented pattern (R9)"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: cards sharing device profile 'Windows | edge 16.0'"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R9: undocumented coordinated pattern"
+      }
+    ],
+    "what_changed": "Step-up confirmed the genuine cardholder is the one denying the purchase, which settles unauthorised use; the case moves from hold to block and a regulatory report."
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: coordinated / undocumented pattern (R9)",
+    "narrative": "Between 2016-12-11 and 2016-12-11, card C09988-K1 held by customer C09988 was used for 1 transaction(s) totaling $59.67 that the bank assesses as unauthorized. The transactions were: 3534820 ($59.67, 2016-12-11 22:39, online, product C). The activity was identified through a customer report on transaction 3534820 opened 2016-12-12 01:39:08. The activity shows Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardholders \u2014 a shared-device ring that none of the five documented patterns describes.. The same device profile (Windows | edge 16.0) was used on the cards of 70 other customers within the same month, including cards not individually identified, and appears on confirmed-fraud closed cases CC-0497, CC-2540, CC-2675, CC-2694. The cardholder reported that they did not make the purchase(s) and remains in possession of the card; identity was confirmed through the bank's verification step. Channel: online; billing region code(s): not recorded. The activity is suspicious because it departs from the cardholder's established history (median transaction $37.75) and matches a coordinated scheme across multiple cardholders. The card has been recommended for blocking and reissue and a case has been opened; connected cards are under monitoring where applicable.",
+    "subjects": [
+      "C09988",
+      "C09988-K1",
+      "Windows | edge 16.0"
+    ],
+    "total_amount_usd": 59.67,
+    "activity_dates": [
+      "2016-12-11",
+      "2016-12-11"
+    ]
+  },
+  "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
+  "tool_calls": 10,
+  "tokens": 0,
+  "latency_s": 0.001
+}

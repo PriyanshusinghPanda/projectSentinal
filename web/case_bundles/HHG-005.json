@@ -1,0 +1,492 @@
+{
+ "context": {
+  "opened_at": "2016-12-08 03:38:37",
+  "trigger_type": "risk_score",
+  "trigger_text": "Real-time model scored transaction 3523199 ($100.07, online) at 0.54. Review and decide.",
+  "flagged_txn_id": "3523199",
+  "card_id": "C02923-K1",
+  "customer_id": "C02923",
+  "risk_score": 0.54,
+  "amount": 100.07,
+  "channel": "online",
+  "initial_probability": 0.35,
+  "transactions": [
+   {
+    "id": "3523199",
+    "ts": "12-07 21:38",
+    "amount": 100.07,
+    "product": "R",
+    "channel": "online",
+    "region": "330.0",
+    "risk": 0.54,
+    "device_new": true,
+    "subject": true,
+    "affected": false
+   }
+  ],
+  "nodes": [
+   {
+    "id": "card:C02923-K1",
+    "kind": "card",
+    "label": "C02923-K1",
+    "subject": true
+   },
+   {
+    "id": "cust:C02923",
+    "kind": "account",
+    "label": "C02923"
+   },
+   {
+    "id": "dev",
+    "kind": "device",
+    "label": "iOS Device | iOS 9.3.5 | mobile sa\u2026",
+    "flagged": false
+   },
+   {
+    "id": "oc:C08299",
+    "kind": "account",
+    "label": "C08299",
+    "flagged": false
+   },
+   {
+    "id": "oc:C11496",
+    "kind": "account",
+    "label": "C11496",
+    "flagged": false
+   },
+   {
+    "id": "oc:C11539",
+    "kind": "account",
+    "label": "C11539",
+    "flagged": false
+   },
+   {
+    "id": "oc:C12267",
+    "kind": "account",
+    "label": "C12267",
+    "flagged": false
+   },
+   {
+    "id": "reg",
+    "kind": "address",
+    "label": "region 330.0"
+   },
+   {
+    "id": "em",
+    "kind": "email",
+    "label": "icloud.com"
+   },
+   {
+    "id": "prod",
+    "kind": "merchant",
+    "label": "product R \u00b7 online"
+   },
+   {
+    "id": "cc:CC-2400",
+    "kind": "account",
+    "label": "CC-2400 (confirmed fraud)",
+    "flagged": true
+   },
+   {
+    "id": "cc:CC-2717",
+    "kind": "account",
+    "label": "CC-2717 (confirmed fraud)",
+    "flagged": true
+   },
+   {
+    "id": "cc:CC-2857",
+    "kind": "account",
+    "label": "CC-2857 (confirmed fraud)",
+    "flagged": true
+   }
+  ],
+  "edges": [
+   {
+    "from": "cust:C02923",
+    "to": "card:C02923-K1",
+    "label": "OWNS"
+   },
+   {
+    "from": "card:C02923-K1",
+    "to": "dev",
+    "label": "FROM_DEVICE (New)"
+   },
+   {
+    "from": "oc:C08299",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C11496",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C11539",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C12267",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "card:C02923-K1",
+    "to": "reg",
+    "label": "BILLED_IN"
+   },
+   {
+    "from": "card:C02923-K1",
+    "to": "em",
+    "label": "PURCHASER_EMAIL"
+   },
+   {
+    "from": "card:C02923-K1",
+    "to": "prod",
+    "label": "PAID $100.07"
+   },
+   {
+    "from": "cust:C02923",
+    "to": "cc:CC-2400",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "cust:C02923",
+    "to": "cc:CC-2717",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "cust:C02923",
+    "to": "cc:CC-2857",
+    "label": "SIMILAR_CASE"
+   }
+  ],
+  "similar": [
+   {
+    "id": "CC-1672",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-1672: cardholder C05551 reported unrecognized activity on card C05551-K2. 1 transaction(s) between 2016-08-03 and 2016-08-03 totaling $174.92 were confirmed fraudulent. Online purchases from a device not previous"
+   },
+   {
+    "id": "CC-2400",
+    "outcome": "confirmed_fraud",
+    "pattern": "account_takeover",
+    "notes": "Case CC-2400: cardholder C02923 reported unrecognized activity on card C02923-K1. 3 transaction(s) between 2016-08-18 and 2016-08-19 totaling $350.99 were confirmed fraudulent. Mixed-channel activity inconsistent with th"
+   },
+   {
+    "id": "CC-2717",
+    "outcome": "confirmed_fraud",
+    "pattern": "account_takeover",
+    "notes": "Case CC-2717: cardholder C02923 reported unrecognized activity on card C02923-K1. 6 transaction(s) between 2016-08-25 and 2016-08-27 totaling $896.08 were confirmed fraudulent. Mixed-channel activity inconsistent with th"
+   },
+   {
+    "id": "CC-2857",
+    "outcome": "confirmed_fraud",
+    "pattern": "account_takeover",
+    "notes": "Case CC-2857: cardholder C02923 reported unrecognized activity on card C02923-K1. 2 transaction(s) between 2016-08-30 and 2016-08-30 totaling $539.97 were confirmed fraudulent. Mixed-channel activity inconsistent with th"
+   }
+  ]
+ },
+ "variants": {
+  "agent": {
+   "case_id": "HHG-005",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Online purchase from a device the identity record marks New for this account (iOS Device | iOS 9.3.5 | mobile safari 9.0 | 1024x768); amount and product fit the card's history, so this is a single weak signal (people buy new phones)",
+      "source": "graph",
+      "ref": "query:device_history(card_id=C02923-K1)",
+      "entity_ids": [
+       "3523199"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.54 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3523199",
+      "entity_ids": [
+       "3523199"
+      ]
+     },
+     {
+      "claim": "Case memory: 4 closed case(s) retrieved \u2014 CC-2400 confirmed_fraud (account_takeover); CC-2717 confirmed_fraud (account_takeover); CC-2857 confirmed_fraud (account_takeover)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-2400",
+       "CC-2717",
+       "CC-2857"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-2400",
+     "CC-2717",
+     "CC-2857",
+     "CC-1672"
+    ],
+    "summary": "Alert on 3523199 ($100.07) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer confirms they made the purchase"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1: single signal, probability 0.35 < 0.70 \u2014 verify before any block"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
+     }
+    ],
+    "final": [
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "R3"
+     }
+    ],
+    "what_changed": "Customer confirmation lowered probability from 0.35 to 0.08; the alert closes as legitimate (R3)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "The verification response settles the question (policy 6).",
+   "tool_calls": 9,
+   "tokens": 0,
+   "latency_s": 0.001
+  },
+  "deny": {
+   "case_id": "HHG-005",
+   "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.88,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3523199"
+    ],
+    "first_suspicious_txn_id": "3523199",
+    "connected_card_ids": [],
+    "connected_device_profiles": [
+     "iOS Device | iOS 9.3.5 | mobile safari 9.0 | 1024x768"
+    ],
+    "exposure_usd": 100.07,
+    "evidence": [
+     {
+      "claim": "Online purchase from a device the identity record marks New for this account (iOS Device | iOS 9.3.5 | mobile safari 9.0 | 1024x768); amount and product fit the card's history, so this is a single weak signal (people buy new phones)",
+      "source": "graph",
+      "ref": "query:device_history(card_id=C02923-K1)",
+      "entity_ids": [
+       "3523199"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.54 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3523199",
+      "entity_ids": [
+       "3523199"
+      ]
+     },
+     {
+      "claim": "Case memory: 4 closed case(s) retrieved \u2014 CC-2400 confirmed_fraud (account_takeover); CC-2717 confirmed_fraud (account_takeover); CC-2857 confirmed_fraud (account_takeover)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-2400",
+       "CC-2717",
+       "CC-2857"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-2400",
+     "CC-2717",
+     "CC-2857",
+     "CC-1672"
+    ],
+    "summary": "Card not present new device on card C02923-K1: 1 transaction(s), exposure $100.07. Customer denial confirmed the verdict.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer states they did not make the purchase and still holds the card"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1: single signal, probability 0.35 < 0.70 \u2014 verify before any block"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $100.07 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a: confirmed fraud"
+     }
+    ],
+    "what_changed": "Customer denial raised probability from 0.35 to 0.88; the recommendation moves from verification to block (R2)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "The verification response settles the question (policy 6).",
+   "tool_calls": 9,
+   "tokens": 0,
+   "latency_s": 0.001
+  },
+  "confirm": {
+   "case_id": "HHG-005",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Online purchase from a device the identity record marks New for this account (iOS Device | iOS 9.3.5 | mobile safari 9.0 | 1024x768); amount and product fit the card's history, so this is a single weak signal (people buy new phones)",
+      "source": "graph",
+      "ref": "query:device_history(card_id=C02923-K1)",
+      "entity_ids": [
+       "3523199"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.54 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3523199",
+      "entity_ids": [
+       "3523199"
+      ]
+     },
+     {
+      "claim": "Case memory: 4 closed case(s) retrieved \u2014 CC-2400 confirmed_fraud (account_takeover); CC-2717 confirmed_fraud (account_takeover); CC-2857 confirmed_fraud (account_takeover)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-2400",
+       "CC-2717",
+       "CC-2857"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-2400",
+     "CC-2717",
+     "CC-2857",
+     "CC-1672"
+    ],
+    "summary": "Alert on 3523199 ($100.07) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer confirms they made the purchase"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1: single signal, probability 0.35 < 0.70 \u2014 verify before any block"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
+     }
+    ],
+    "final": [
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "R3"
+     }
+    ],
+    "what_changed": "Customer confirmation lowered probability from 0.35 to 0.08; the alert closes as legitimate (R3)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "The verification response settles the question (policy 6).",
+   "tool_calls": 9,
+   "tokens": 0,
+   "latency_s": 0.001
+  }
+ }
+}

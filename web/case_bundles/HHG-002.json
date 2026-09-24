@@ -1,0 +1,395 @@
+{
+ "context": {
+  "opened_at": "2016-11-22 23:27:07",
+  "trigger_type": "risk_score",
+  "trigger_text": "Real-time model scored transaction 3478782 ($292.36, online) at 0.79. Review and decide.",
+  "flagged_txn_id": "3478782",
+  "card_id": "C11891-K1",
+  "customer_id": "C11891",
+  "risk_score": 0.79,
+  "amount": 292.36,
+  "channel": "online",
+  "initial_probability": 0.42,
+  "transactions": [
+   {
+    "id": "3478782",
+    "ts": "11-22 17:27",
+    "amount": 292.36,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.79,
+    "device_new": false,
+    "subject": true,
+    "affected": false
+   }
+  ],
+  "nodes": [
+   {
+    "id": "card:C11891-K1",
+    "kind": "card",
+    "label": "C11891-K1",
+    "subject": true
+   },
+   {
+    "id": "cust:C11891",
+    "kind": "account",
+    "label": "C11891"
+   },
+   {
+    "id": "em",
+    "kind": "email",
+    "label": "hotmail.com"
+   },
+   {
+    "id": "prod",
+    "kind": "merchant",
+    "label": "product C \u00b7 online"
+   },
+   {
+    "id": "cc:CC-4160",
+    "kind": "account",
+    "label": "CC-4160 (confirmed fraud)",
+    "flagged": true
+   },
+   {
+    "id": "cc:CC-0009",
+    "kind": "account",
+    "label": "CC-0009 (cleared)",
+    "flagged": false
+   }
+  ],
+  "edges": [
+   {
+    "from": "cust:C11891",
+    "to": "card:C11891-K1",
+    "label": "OWNS"
+   },
+   {
+    "from": "card:C11891-K1",
+    "to": "em",
+    "label": "PURCHASER_EMAIL"
+   },
+   {
+    "from": "card:C11891-K1",
+    "to": "prod",
+    "label": "PAID $292.36"
+   },
+   {
+    "from": "cust:C11891",
+    "to": "cc:CC-4160",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "card:C11891-K1",
+    "to": "cc:CC-0009",
+    "label": "SIMILAR_CASE"
+   }
+  ],
+  "similar": [
+   {
+    "id": "CC-0009",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0009: model scored a $149.98 transaction at 0.84. Cardholder confirmed the purchase from a new phone. Device added to profile. Alert cleared."
+   },
+   {
+    "id": "CC-4160",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-4160: cardholder C11891 reported unrecognized activity on card C11891-K1. 1 transaction(s) between 2016-09-29 and 2016-09-29 totaling $90.54 were confirmed fraudulent. Online purchases inconsistent with the cardh"
+   }
+  ]
+ },
+ "variants": {
+  "agent": {
+   "case_id": "HHG-002",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Online $292.36 is above the card history (median $47.29, 95th pct $90.54); 1 unusual online purchases within 48h",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C11891-K1, before=2016-11-22)",
+      "entity_ids": [
+       "3478782"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.79 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3478782",
+      "entity_ids": [
+       "3478782"
+      ]
+     },
+     {
+      "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-0009 cleared (none); CC-4160 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-4160",
+       "CC-0009"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-4160",
+     "CC-0009"
+    ],
+    "summary": "Alert on 3478782 ($292.36) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer confirms they made the purchase"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1: single signal, probability 0.42 < 0.70 \u2014 verify before any block"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
+     }
+    ],
+    "final": [
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "R3"
+     }
+    ],
+    "what_changed": "Customer confirmation lowered probability from 0.42 to 0.08; the alert closes as legitimate (R3)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "The verification response settles the question (policy 6).",
+   "tool_calls": 7,
+   "tokens": 0,
+   "latency_s": 0.0
+  },
+  "deny": {
+   "case_id": "HHG-002",
+   "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.88,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3478782"
+    ],
+    "first_suspicious_txn_id": "3478782",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 292.36,
+    "evidence": [
+     {
+      "claim": "Online $292.36 is above the card history (median $47.29, 95th pct $90.54); 1 unusual online purchases within 48h",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C11891-K1, before=2016-11-22)",
+      "entity_ids": [
+       "3478782"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.79 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3478782",
+      "entity_ids": [
+       "3478782"
+      ]
+     },
+     {
+      "claim": "Case memory: 3 closed case(s) retrieved \u2014 CC-0001 confirmed_fraud (card_not_present_fraud); CC-0007 confirmed_fraud (card_not_present_fraud); CC-4160 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-4160",
+       "CC-0001",
+       "CC-0007"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-4160",
+     "CC-0001",
+     "CC-0007"
+    ],
+    "summary": "Card not present fraud on card C11891-K1: 1 transaction(s), exposure $292.36. Customer denial confirmed the verdict.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer states they did not make the purchase and still holds the card"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1: single signal, probability 0.42 < 0.70 \u2014 verify before any block"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $292.36 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a: confirmed fraud"
+     }
+    ],
+    "what_changed": "Customer denial raised probability from 0.42 to 0.88; the recommendation moves from verification to block (R2)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "The verification response settles the question (policy 6).",
+   "tool_calls": 8,
+   "tokens": 0,
+   "latency_s": 0.0
+  },
+  "confirm": {
+   "case_id": "HHG-002",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Online $292.36 is above the card history (median $47.29, 95th pct $90.54); 1 unusual online purchases within 48h",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C11891-K1, before=2016-11-22)",
+      "entity_ids": [
+       "3478782"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.79 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3478782",
+      "entity_ids": [
+       "3478782"
+      ]
+     },
+     {
+      "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-0009 cleared (none); CC-4160 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-4160",
+       "CC-0009"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-4160",
+     "CC-0009"
+    ],
+    "summary": "Alert on 3478782 ($292.36) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer confirms they made the purchase"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1: single signal, probability 0.42 < 0.70 \u2014 verify before any block"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
+     }
+    ],
+    "final": [
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "R3"
+     }
+    ],
+    "what_changed": "Customer confirmation lowered probability from 0.42 to 0.08; the alert closes as legitimate (R3)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "The verification response settles the question (policy 6).",
+   "tool_calls": 7,
+   "tokens": 0,
+   "latency_s": 0.0
+  }
+ }
+}

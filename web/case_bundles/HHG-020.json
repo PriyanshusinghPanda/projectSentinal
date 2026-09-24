@@ -1,0 +1,455 @@
+{
+ "context": {
+  "opened_at": "2016-12-03 12:04:26",
+  "trigger_type": "risk_score",
+  "trigger_text": "Real-time model scored transaction 3509359 ($125.08, online) at 0.52. Review and decide.",
+  "flagged_txn_id": "3509359",
+  "card_id": "C12265-K2",
+  "customer_id": "C12265",
+  "risk_score": 0.52,
+  "amount": 125.08,
+  "channel": "online",
+  "initial_probability": 0.45,
+  "transactions": [
+   {
+    "id": "3509359",
+    "ts": "12-03 06:04",
+    "amount": 125.08,
+    "product": "R",
+    "channel": "online",
+    "region": "264.0",
+    "risk": 0.52,
+    "device_new": true,
+    "subject": true,
+    "affected": false
+   }
+  ],
+  "nodes": [
+   {
+    "id": "card:C12265-K2",
+    "kind": "card",
+    "label": "C12265-K2",
+    "subject": true
+   },
+   {
+    "id": "cust:C12265",
+    "kind": "account",
+    "label": "C12265"
+   },
+   {
+    "id": "dev",
+    "kind": "device",
+    "label": "Trident/7.0 | Windows 10 | ie 11.0\u2026",
+    "flagged": false
+   },
+   {
+    "id": "reg",
+    "kind": "address",
+    "label": "region 264.0"
+   },
+   {
+    "id": "em",
+    "kind": "email",
+    "label": "yahoo.com"
+   },
+   {
+    "id": "prod",
+    "kind": "merchant",
+    "label": "product R \u00b7 online"
+   },
+   {
+    "id": "cc:CC-2277",
+    "kind": "account",
+    "label": "CC-2277 (confirmed fraud)",
+    "flagged": true
+   },
+   {
+    "id": "cc:CC-2447",
+    "kind": "account",
+    "label": "CC-2447 (confirmed fraud)",
+    "flagged": true
+   }
+  ],
+  "edges": [
+   {
+    "from": "cust:C12265",
+    "to": "card:C12265-K2",
+    "label": "OWNS"
+   },
+   {
+    "from": "card:C12265-K2",
+    "to": "dev",
+    "label": "FROM_DEVICE (New)"
+   },
+   {
+    "from": "card:C12265-K2",
+    "to": "reg",
+    "label": "BILLED_IN"
+   },
+   {
+    "from": "card:C12265-K2",
+    "to": "em",
+    "label": "PURCHASER_EMAIL"
+   },
+   {
+    "from": "card:C12265-K2",
+    "to": "prod",
+    "label": "PAID $125.08"
+   },
+   {
+    "from": "cust:C12265",
+    "to": "cc:CC-2277",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "cust:C12265",
+    "to": "cc:CC-2447",
+    "label": "SIMILAR_CASE"
+   }
+  ],
+  "similar": [
+   {
+    "id": "CC-2277",
+    "outcome": "confirmed_fraud",
+    "pattern": "account_takeover",
+    "notes": "Case CC-2277: cardholder C12265 reported unrecognized activity on card C12265-K2. 1 transaction(s) between 2016-08-17 and 2016-08-17 totaling $81.93 were confirmed fraudulent. Mixed-channel activity inconsistent with the"
+   },
+   {
+    "id": "CC-2447",
+    "outcome": "confirmed_fraud",
+    "pattern": "account_takeover",
+    "notes": "Case CC-2447: cardholder C12265 reported unrecognized activity on card C12265-K2. 1 transaction(s) between 2016-08-21 and 2016-08-21 totaling $33.95 were confirmed fraudulent. Mixed-channel activity inconsistent with the"
+   }
+  ]
+ },
+ "variants": {
+  "agent": {
+   "case_id": "HHG-020",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Online purchase from a device the identity record marks New (Trident/7.0 | Windows 10 | ie 11.0 for desktop | 1920x1080)",
+      "source": "graph",
+      "ref": "query:device_history(card_id=C12265-K2)",
+      "entity_ids": [
+       "3509359"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.52 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3509359",
+      "entity_ids": [
+       "3509359"
+      ]
+     },
+     {
+      "claim": "Challenger: Device profile 'Trident/7.0 | Windows 10 | ie 11.0 for desktop | 1920x1080' is common (253 customers) \u2014 shared use is expected, not evidence of a ring",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C12265-K2)",
+      "entity_ids": [
+       "3509359"
+      ]
+     },
+     {
+      "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-2277 confirmed_fraud (account_takeover); CC-2447 confirmed_fraud (account_takeover)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-2277",
+       "CC-2447"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-2277",
+     "CC-2447"
+    ],
+    "summary": "Alert on 3509359 ($125.08) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer confirms they made the purchase"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "Hold the flagged authorization while verifying"
+     },
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1/3b: confirm before blocking"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
+     }
+    ],
+    "final": [
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "R3"
+     }
+    ],
+    "what_changed": "Customer confirmation lowered probability from 0.45 to 0.08; the alert closes as legitimate (R3)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "The verification response settles the question (policy 6).",
+   "tool_calls": 7,
+   "tokens": 0,
+   "latency_s": 0.001
+  },
+  "deny": {
+   "case_id": "HHG-020",
+   "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.88,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3509359"
+    ],
+    "first_suspicious_txn_id": "3509359",
+    "connected_card_ids": [],
+    "connected_device_profiles": [
+     "Trident/7.0 | Windows 10 | ie 11.0 for desktop | 1920x1080"
+    ],
+    "exposure_usd": 125.08,
+    "evidence": [
+     {
+      "claim": "Online purchase from a device the identity record marks New (Trident/7.0 | Windows 10 | ie 11.0 for desktop | 1920x1080)",
+      "source": "graph",
+      "ref": "query:device_history(card_id=C12265-K2)",
+      "entity_ids": [
+       "3509359"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.52 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3509359",
+      "entity_ids": [
+       "3509359"
+      ]
+     },
+     {
+      "claim": "Challenger: Device profile 'Trident/7.0 | Windows 10 | ie 11.0 for desktop | 1920x1080' is common (253 customers) \u2014 shared use is expected, not evidence of a ring",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C12265-K2)",
+      "entity_ids": [
+       "3509359"
+      ]
+     },
+     {
+      "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-2277 confirmed_fraud (account_takeover); CC-2447 confirmed_fraud (account_takeover)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-2277",
+       "CC-2447"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-2277",
+     "CC-2447"
+    ],
+    "summary": "Card not present new device on card C12265-K2: 1 transaction(s), exposure $125.08. Customer denial confirmed the verdict.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer states they did not make the purchase and still holds the card"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "Hold the flagged authorization while verifying"
+     },
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1/3b: confirm before blocking"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $125.08 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a: confirmed fraud"
+     }
+    ],
+    "what_changed": "Customer denial raised probability from 0.45 to 0.88; the recommendation moves from verification to block (R2)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "The verification response settles the question (policy 6).",
+   "tool_calls": 7,
+   "tokens": 0,
+   "latency_s": 0.0
+  },
+  "confirm": {
+   "case_id": "HHG-020",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Online purchase from a device the identity record marks New (Trident/7.0 | Windows 10 | ie 11.0 for desktop | 1920x1080)",
+      "source": "graph",
+      "ref": "query:device_history(card_id=C12265-K2)",
+      "entity_ids": [
+       "3509359"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.52 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3509359",
+      "entity_ids": [
+       "3509359"
+      ]
+     },
+     {
+      "claim": "Challenger: Device profile 'Trident/7.0 | Windows 10 | ie 11.0 for desktop | 1920x1080' is common (253 customers) \u2014 shared use is expected, not evidence of a ring",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C12265-K2)",
+      "entity_ids": [
+       "3509359"
+      ]
+     },
+     {
+      "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-2277 confirmed_fraud (account_takeover); CC-2447 confirmed_fraud (account_takeover)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-2277",
+       "CC-2447"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-2277",
+     "CC-2447"
+    ],
+    "summary": "Alert on 3509359 ($125.08) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer confirms they made the purchase"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "Hold the flagged authorization while verifying"
+     },
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1/3b: confirm before blocking"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
+     }
+    ],
+    "final": [
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "R3"
+     }
+    ],
+    "what_changed": "Customer confirmation lowered probability from 0.45 to 0.08; the alert closes as legitimate (R3)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "The verification response settles the question (policy 6).",
+   "tool_calls": 7,
+   "tokens": 0,
+   "latency_s": 0.0
+  }
+ }
+}

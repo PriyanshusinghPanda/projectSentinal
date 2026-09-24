@@ -1,0 +1,704 @@
+{
+ "context": {
+  "opened_at": "2016-12-20 03:08:56",
+  "trigger_type": "customer_report",
+  "trigger_text": "Customer C13171 message: 'I never made this $55.68 purchase. Please check my card.' Refers to 3558054.",
+  "flagged_txn_id": "3558054",
+  "card_id": "C13171-K2",
+  "customer_id": "C13171",
+  "risk_score": 0.38,
+  "amount": 55.68,
+  "channel": "online",
+  "initial_probability": 0.55,
+  "transactions": [
+   {
+    "id": "3554288",
+    "ts": "12-18 16:52",
+    "amount": 78.56,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.07,
+    "device_new": true,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3554589",
+    "ts": "12-18 18:17",
+    "amount": 11.91,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.02,
+    "device_new": true,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3554683",
+    "ts": "12-18 18:41",
+    "amount": 85.57,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.04,
+    "device_new": true,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3555638",
+    "ts": "12-18 23:43",
+    "amount": 11.85,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.02,
+    "device_new": true,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3555768",
+    "ts": "12-19 00:22",
+    "amount": 65.36,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.31,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3556719",
+    "ts": "12-19 14:34",
+    "amount": 8.33,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.11,
+    "device_new": true,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3557118",
+    "ts": "12-19 16:55",
+    "amount": 20.49,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.14,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3557979",
+    "ts": "12-19 21:48",
+    "amount": 55.6,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.44,
+    "device_new": false,
+    "subject": false,
+    "affected": true
+   },
+   {
+    "id": "3557987",
+    "ts": "12-19 21:50",
+    "amount": 55.69,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.09,
+    "device_new": true,
+    "subject": false,
+    "affected": true
+   },
+   {
+    "id": "3558054",
+    "ts": "12-19 22:08",
+    "amount": 55.68,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.38,
+    "device_new": false,
+    "subject": true,
+    "affected": true
+   },
+   {
+    "id": "3558907",
+    "ts": "12-20 03:25",
+    "amount": 11.65,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.13,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   }
+  ],
+  "nodes": [
+   {
+    "id": "card:C13171-K2",
+    "kind": "card",
+    "label": "C13171-K2",
+    "subject": true
+   },
+   {
+    "id": "cust:C13171",
+    "kind": "account",
+    "label": "C13171"
+   },
+   {
+    "id": "dev",
+    "kind": "device",
+    "label": "chrome 66.0",
+    "flagged": false
+   },
+   {
+    "id": "oc:C00027",
+    "kind": "account",
+    "label": "C00027",
+    "flagged": false
+   },
+   {
+    "id": "oc:C00036",
+    "kind": "account",
+    "label": "C00036",
+    "flagged": false
+   },
+   {
+    "id": "oc:C00073",
+    "kind": "account",
+    "label": "C00073",
+    "flagged": false
+   },
+   {
+    "id": "oc:C00259",
+    "kind": "account",
+    "label": "C00259",
+    "flagged": false
+   },
+   {
+    "id": "oc:C00294",
+    "kind": "account",
+    "label": "C00294",
+    "flagged": false
+   },
+   {
+    "id": "oc:C00426",
+    "kind": "account",
+    "label": "C00426",
+    "flagged": false
+   },
+   {
+    "id": "oc:C00583",
+    "kind": "account",
+    "label": "C00583",
+    "flagged": false
+   },
+   {
+    "id": "oc:C00606",
+    "kind": "account",
+    "label": "C00606",
+    "flagged": false
+   },
+   {
+    "id": "em",
+    "kind": "email",
+    "label": "hotmail.com"
+   },
+   {
+    "id": "prod",
+    "kind": "merchant",
+    "label": "product C \u00b7 online"
+   },
+   {
+    "id": "cc:CC-0056",
+    "kind": "account",
+    "label": "CC-0056 (confirmed fraud)",
+    "flagged": true
+   },
+   {
+    "id": "cc:CC-0467",
+    "kind": "account",
+    "label": "CC-0467 (confirmed fraud)",
+    "flagged": true
+   },
+   {
+    "id": "cc:CC-0772",
+    "kind": "account",
+    "label": "CC-0772 (confirmed fraud)",
+    "flagged": true
+   }
+  ],
+  "edges": [
+   {
+    "from": "cust:C13171",
+    "to": "card:C13171-K2",
+    "label": "OWNS"
+   },
+   {
+    "from": "card:C13171-K2",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C00027",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C00036",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C00073",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C00259",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C00294",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C00426",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C00583",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "oc:C00606",
+    "to": "dev",
+    "label": "FROM_DEVICE"
+   },
+   {
+    "from": "card:C13171-K2",
+    "to": "em",
+    "label": "PURCHASER_EMAIL"
+   },
+   {
+    "from": "card:C13171-K2",
+    "to": "prod",
+    "label": "PAID $55.68"
+   },
+   {
+    "from": "cust:C13171",
+    "to": "cc:CC-0056",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "cust:C13171",
+    "to": "cc:CC-0467",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "cust:C13171",
+    "to": "cc:CC-0772",
+    "label": "SIMILAR_CASE"
+   }
+  ],
+  "similar": [
+   {
+    "id": "CC-0056",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-0056: cardholder C13171 reported unrecognized activity on card C13171-K2. 1 transaction(s) between 2016-07-03 and 2016-07-03 totaling $40.21 were confirmed fraudulent. Online purchases from a device not previousl"
+   },
+   {
+    "id": "CC-0467",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-0467: cardholder C13171 reported unrecognized activity on card C13171-K2. 8 transaction(s) between 2016-07-06 and 2016-07-12 totaling $649.77 were confirmed fraudulent. Online purchases from a device not previous"
+   },
+   {
+    "id": "CC-0772",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-0772: cardholder C13171 reported unrecognized activity on card C13171-K2. 3 transaction(s) between 2016-07-15 and 2016-07-19 totaling $183.27 were confirmed fraudulent. Online purchases from a device not previous"
+   },
+   {
+    "id": "CC-1293",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-1293: cardholder C13171 reported unrecognized activity on card C13171-K2. 10 transaction(s) between 2016-07-22 and 2016-07-27 totaling $419.34 were confirmed fraudulent. Online purchases inconsistent with the car"
+   },
+   {
+    "id": "CC-1715",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-1715: cardholder C13171 reported unrecognized activity on card C13171-K2. 8 transaction(s) between 2016-07-29 and 2016-08-05 totaling $553.72 were confirmed fraudulent. Online purchases from a device not previous"
+   }
+  ]
+ },
+ "variants": {
+  "agent": {
+   "case_id": "HHG-008",
+   "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.86,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3557979",
+     "3557987",
+     "3558054"
+    ],
+    "first_suspicious_txn_id": "3557979",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 166.97,
+    "evidence": [
+     {
+      "claim": "3 near-identical online charges of about $55.68 within two hours on this card \u2014 a card-not-present burst",
+      "source": "graph",
+      "ref": "query:card_window(card_id=C13171-K2, hours=2)",
+      "entity_ids": [
+       "3557979",
+       "3557987",
+       "3558054"
+      ]
+     },
+     {
+      "claim": "Customer C13171 message: 'I never made this $55.68 purchase. Please check my card.' Refers to 3558054.",
+      "source": "customer",
+      "ref": "trigger:HHG-008",
+      "entity_ids": [
+       "3558054"
+      ]
+     },
+     {
+      "claim": "Customer has 1 cleared prior alert(s): Case CC-4819: model scored a $66.52 transaction at 0.92. Cardholder confirmed the purchase from a new phone. Device added to profile. Alert cleared.",
+      "source": "document",
+      "ref": "closed_case:CC-4819",
+      "entity_ids": [
+       "CC-4819"
+      ]
+     },
+     {
+      "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-0056 confirmed_fraud (card_not_present_new_device); CC-0467 confirmed_fraud (card_not_present_new_device); CC-0772 confirmed_fraud (card_not_present_new_device)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0056",
+       "CC-0467",
+       "CC-0772"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0056",
+     "CC-0467",
+     "CC-0772",
+     "CC-1293",
+     "CC-1715"
+    ],
+    "summary": "Card not present fraud on card C13171-K2: 3 transaction(s), exposure $166.97. Customer denial confirmed the verdict.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "step_up_auth",
+     "asked_after_step": 4,
+     "assumed_response": "Account holder passed step-up on their registered phone and reaffirmed they did not make the purchase and still hold the card"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations while the denial is confirmed"
+     },
+     {
+      "action": "STEP_UP_AUTH",
+      "route": "auto",
+      "reason": "R1: confirm the account holder before further activity"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $166.97 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a: confirmed fraud"
+     }
+    ],
+    "what_changed": "Step-up confirmed the genuine cardholder is the one denying the purchase, which settles unauthorised use; the case moves from hold to block."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
+   "tool_calls": 10,
+   "tokens": 0,
+   "latency_s": 0.003
+  },
+  "deny": {
+   "case_id": "HHG-008",
+   "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.86,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3557979",
+     "3557987",
+     "3558054"
+    ],
+    "first_suspicious_txn_id": "3557979",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 166.97,
+    "evidence": [
+     {
+      "claim": "3 near-identical online charges of about $55.68 within two hours on this card \u2014 a card-not-present burst",
+      "source": "graph",
+      "ref": "query:card_window(card_id=C13171-K2, hours=2)",
+      "entity_ids": [
+       "3557979",
+       "3557987",
+       "3558054"
+      ]
+     },
+     {
+      "claim": "Customer C13171 message: 'I never made this $55.68 purchase. Please check my card.' Refers to 3558054.",
+      "source": "customer",
+      "ref": "trigger:HHG-008",
+      "entity_ids": [
+       "3558054"
+      ]
+     },
+     {
+      "claim": "Customer has 1 cleared prior alert(s): Case CC-4819: model scored a $66.52 transaction at 0.92. Cardholder confirmed the purchase from a new phone. Device added to profile. Alert cleared.",
+      "source": "document",
+      "ref": "closed_case:CC-4819",
+      "entity_ids": [
+       "CC-4819"
+      ]
+     },
+     {
+      "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-0056 confirmed_fraud (card_not_present_new_device); CC-0467 confirmed_fraud (card_not_present_new_device); CC-0772 confirmed_fraud (card_not_present_new_device)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0056",
+       "CC-0467",
+       "CC-0772"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0056",
+     "CC-0467",
+     "CC-0772",
+     "CC-1293",
+     "CC-1715"
+    ],
+    "summary": "Card not present fraud on card C13171-K2: 3 transaction(s), exposure $166.97. Customer denial confirmed the verdict.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "step_up_auth",
+     "asked_after_step": 4,
+     "assumed_response": "Account holder passed step-up on their registered phone and reaffirmed they did not make the purchase and still hold the card"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations while the denial is confirmed"
+     },
+     {
+      "action": "STEP_UP_AUTH",
+      "route": "auto",
+      "reason": "R1: confirm the account holder before further activity"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $166.97 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a: confirmed fraud"
+     }
+    ],
+    "what_changed": "Step-up confirmed the genuine cardholder is the one denying the purchase, which settles unauthorised use; the case moves from hold to block."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
+   "tool_calls": 10,
+   "tokens": 0,
+   "latency_s": 0.002
+  },
+  "confirm": {
+   "case_id": "HHG-008",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.1,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "3 near-identical online charges of about $55.68 within two hours on this card \u2014 a card-not-present burst",
+      "source": "graph",
+      "ref": "query:card_window(card_id=C13171-K2, hours=2)",
+      "entity_ids": [
+       "3557979",
+       "3557987",
+       "3558054"
+      ]
+     },
+     {
+      "claim": "Customer C13171 message: 'I never made this $55.68 purchase. Please check my card.' Refers to 3558054.",
+      "source": "customer",
+      "ref": "trigger:HHG-008",
+      "entity_ids": [
+       "3558054"
+      ]
+     },
+     {
+      "claim": "Customer has 1 cleared prior alert(s): Case CC-4819: model scored a $66.52 transaction at 0.92. Cardholder confirmed the purchase from a new phone. Device added to profile. Alert cleared.",
+      "source": "document",
+      "ref": "closed_case:CC-4819",
+      "entity_ids": [
+       "CC-4819"
+      ]
+     },
+     {
+      "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-0056 confirmed_fraud (card_not_present_new_device); CC-0467 confirmed_fraud (card_not_present_new_device); CC-0772 confirmed_fraud (card_not_present_new_device)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0056",
+       "CC-0467",
+       "CC-0772"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0056",
+     "CC-0467",
+     "CC-0772",
+     "CC-1293",
+     "CC-1715"
+    ],
+    "summary": "Alert on 3558054 ($55.68) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 4,
+     "assumed_response": "Shown the merchant and time, the customer recognises the purchase (made by a household member) and withdraws the dispute"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations"
+     },
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1: confirm the details of the dispute before any block"
+     }
+    ],
+    "final": [
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "WARN_CUSTOMER",
+      "route": "auto",
+      "reason": "Security tip: card shared within the household"
+     }
+    ],
+    "what_changed": "The customer withdrew the dispute after verification, so the case closes as legitimate instead of blocking (R3)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Verification settled the question (policy 6).",
+   "tool_calls": 10,
+   "tokens": 0,
+   "latency_s": 0.002
+  }
+ }
+}

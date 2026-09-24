@@ -1,0 +1,95 @@
+{
+  "case_id": "HHG-002",
+  "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+      {
+        "claim": "Online $292.36 is above the card history (median $47.29, 95th pct $90.54); 1 unusual online purchases within 48h",
+        "source": "graph",
+        "ref": "query:card_profile(card_id=C11891-K1, before=2016-11-22)",
+        "entity_ids": [
+          "3478782"
+        ]
+      },
+      {
+        "claim": "Bank model risk score 0.79 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+        "source": "graph",
+        "ref": "txn:3478782",
+        "entity_ids": [
+          "3478782"
+        ]
+      },
+      {
+        "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-0009 cleared (none); CC-4160 confirmed_fraud (card_not_present_fraud)",
+        "source": "document",
+        "ref": "closed_cases_history",
+        "entity_ids": [
+          "CC-4160",
+          "CC-0009"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-4160",
+      "CC-0009"
+    ],
+    "summary": "Alert on 3478782 ($292.36) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 5,
+      "assumed_response": "Customer confirms they made the purchase"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: single signal, probability 0.42 < 0.70 \u2014 verify before any block"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "final": [
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "R3: customer confirmed the transaction"
+      },
+      {
+        "action": "ALLOW_TRANSACTION",
+        "route": "auto",
+        "reason": "R3"
+      }
+    ],
+    "what_changed": "Customer confirmation lowered probability from 0.42 to 0.08; the alert closes as legitimate (R3)."
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "The verification response settles the question (policy 6).",
+  "tool_calls": 7,
+  "tokens": 0,
+  "latency_s": 0.0
+}

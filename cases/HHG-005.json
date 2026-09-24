@@ -1,0 +1,98 @@
+{
+  "case_id": "HHG-005",
+  "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+      {
+        "claim": "Online purchase from a device the identity record marks New for this account (iOS Device | iOS 9.3.5 | mobile safari 9.0 | 1024x768); amount and product fit the card's history, so this is a single weak signal (people buy new phones)",
+        "source": "graph",
+        "ref": "query:device_history(card_id=C02923-K1)",
+        "entity_ids": [
+          "3523199"
+        ]
+      },
+      {
+        "claim": "Bank model risk score 0.54 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+        "source": "graph",
+        "ref": "txn:3523199",
+        "entity_ids": [
+          "3523199"
+        ]
+      },
+      {
+        "claim": "Case memory: 4 closed case(s) retrieved \u2014 CC-2400 confirmed_fraud (account_takeover); CC-2717 confirmed_fraud (account_takeover); CC-2857 confirmed_fraud (account_takeover)",
+        "source": "document",
+        "ref": "closed_cases_history",
+        "entity_ids": [
+          "CC-2400",
+          "CC-2717",
+          "CC-2857"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-2400",
+      "CC-2717",
+      "CC-2857",
+      "CC-1672"
+    ],
+    "summary": "Alert on 3523199 ($100.07) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 5,
+      "assumed_response": "Customer confirms they made the purchase"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: single signal, probability 0.35 < 0.70 \u2014 verify before any block"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "final": [
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "R3: customer confirmed the transaction"
+      },
+      {
+        "action": "ALLOW_TRANSACTION",
+        "route": "auto",
+        "reason": "R3"
+      }
+    ],
+    "what_changed": "Customer confirmation lowered probability from 0.35 to 0.08; the alert closes as legitimate (R3)."
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "The verification response settles the question (policy 6).",
+  "tool_calls": 9,
+  "tokens": 0,
+  "latency_s": 0.001
+}

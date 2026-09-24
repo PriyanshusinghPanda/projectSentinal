@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light editorial palette: warm paper, ink text, one deep ink-blue accent. */
+  --background: 40 33% 95%;        /* #f7f3ec paper */
+  --foreground: 30 12% 11%;        /* #201c18 ink */
+  --card: 42 45% 98.5%;            /* #fdfbf7 */
+  --elevated: 38 30% 92%;
+  --border: 35 20% 83%;            /* #ddd4c6 hairline */
+  --muted: 38 28% 91%;
+  --muted-foreground: 30 9% 36%;   /* ~7:1 on paper */
+  --subtle-foreground: 30 7% 50%;
+  --primary: 30 12% 11%;           /* ink buttons */
+  --primary-foreground: 40 33% 96%;
+  --accent: 213 45% 30%;           /* #2a4466 ink blue */
+  --ring: 213 45% 30%;
+
+  /* Risk scale, darkened for contrast on paper */
+  --risk-critical: 3 62% 42%;
+  --risk-high: 22 75% 40%;
+  --risk-medium: 38 85% 34%;
+  --risk-low: 150 45% 29%;
+  --confidence: 186 55% 28%;
+
+  --route-auto: 150 45% 29%;
+  --route-analyst: 213 45% 34%;
+  --route-senior: 32 72% 35%;
+
+  --agent-graph: 262 38% 44%;
+  --agent-txn: 200 62% 32%;
+  --agent-device: 305 32% 40%;
+  --agent-memory: 218 48% 40%;
+  --agent-policy: 88 45% 28%;
+  --agent-challenger: 348 55% 42%;
+  --agent-orchestrator: 30 12% 22%;
+  color-scheme: light;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.grid-bg {
+  background-image: linear-gradient(hsl(var(--border) / 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.45) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+@keyframes dash { to { stroke-dashoffset: -16; } }
+.edge-sus { stroke-dasharray: 4 4; animation: dash 1s linear infinite; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 8px; }
+::selection { background: hsl(var(--accent) / 0.18); }
+
+@media (prefers-reduced-motion: reduce) {
+  .edge-sus, .animate-pulse, .animate-ping { animation: none !important; }
+}

@@ -1,0 +1,539 @@
+{
+ "context": {
+  "opened_at": "2016-12-18 05:00:31",
+  "trigger_type": "risk_score",
+  "trigger_text": "Real-time model scored transaction 3553342 ($30.91, in billing region 494.0) at 0.55. Review and decide.",
+  "flagged_txn_id": "3553342",
+  "card_id": "C05876-K2",
+  "customer_id": "C05876",
+  "risk_score": 0.55,
+  "amount": 30.91,
+  "channel": "in_person",
+  "initial_probability": 0.12,
+  "transactions": [
+   {
+    "id": "3548770",
+    "ts": "12-16 18:05",
+    "amount": 97.02,
+    "product": "W",
+    "channel": "in_person",
+    "region": "272.0",
+    "risk": 0.26,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3549201",
+    "ts": "12-16 20:16",
+    "amount": 49.09,
+    "product": "W",
+    "channel": "in_person",
+    "region": "191.0",
+    "risk": 0.05,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3549583",
+    "ts": "12-16 22:17",
+    "amount": 30.99,
+    "product": "W",
+    "channel": "in_person",
+    "region": "126.0",
+    "risk": 0.12,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3550012",
+    "ts": "12-17 00:30",
+    "amount": 53.94,
+    "product": "W",
+    "channel": "in_person",
+    "region": "264.0",
+    "risk": 0.13,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3550013",
+    "ts": "12-17 00:30",
+    "amount": 39.06,
+    "product": "W",
+    "channel": "in_person",
+    "region": "264.0",
+    "risk": 0.52,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3550293",
+    "ts": "12-17 02:16",
+    "amount": 21.04,
+    "product": "W",
+    "channel": "in_person",
+    "region": "272.0",
+    "risk": 0.04,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3550470",
+    "ts": "12-17 04:12",
+    "amount": 58.99,
+    "product": "W",
+    "channel": "in_person",
+    "region": "264.0",
+    "risk": 0.02,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3551245",
+    "ts": "12-17 16:15",
+    "amount": 112.92,
+    "product": "W",
+    "channel": "in_person",
+    "region": "433.0",
+    "risk": 0.05,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3552000",
+    "ts": "12-17 20:00",
+    "amount": 35.97,
+    "product": "W",
+    "channel": "in_person",
+    "region": "330.0",
+    "risk": 0.23,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3552020",
+    "ts": "12-17 20:06",
+    "amount": 107.87,
+    "product": "W",
+    "channel": "in_person",
+    "region": "330.0",
+    "risk": 0.1,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3553253",
+    "ts": "12-18 03:07",
+    "amount": 21.98,
+    "product": "W",
+    "channel": "in_person",
+    "region": "476.0",
+    "risk": 0.02,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3553342",
+    "ts": "12-18 04:00",
+    "amount": 30.91,
+    "product": "W",
+    "channel": "in_person",
+    "region": "494.0",
+    "risk": 0.55,
+    "device_new": false,
+    "subject": true,
+    "affected": false
+   }
+  ],
+  "nodes": [
+   {
+    "id": "card:C05876-K2",
+    "kind": "card",
+    "label": "C05876-K2",
+    "subject": true
+   },
+   {
+    "id": "cust:C05876",
+    "kind": "account",
+    "label": "C05876"
+   },
+   {
+    "id": "reg",
+    "kind": "address",
+    "label": "region 494.0"
+   },
+   {
+    "id": "em",
+    "kind": "email",
+    "label": "gmail.com"
+   },
+   {
+    "id": "prod",
+    "kind": "merchant",
+    "label": "product W \u00b7 in_person"
+   },
+   {
+    "id": "cc:CC-0003",
+    "kind": "account",
+    "label": "CC-0003 (cleared)",
+    "flagged": false
+   },
+   {
+    "id": "cc:CC-2370",
+    "kind": "account",
+    "label": "CC-2370 (confirmed fraud)",
+    "flagged": true
+   }
+  ],
+  "edges": [
+   {
+    "from": "cust:C05876",
+    "to": "card:C05876-K2",
+    "label": "OWNS"
+   },
+   {
+    "from": "card:C05876-K2",
+    "to": "reg",
+    "label": "BILLED_IN"
+   },
+   {
+    "from": "card:C05876-K2",
+    "to": "em",
+    "label": "PURCHASER_EMAIL"
+   },
+   {
+    "from": "card:C05876-K2",
+    "to": "prod",
+    "label": "PAID $30.91"
+   },
+   {
+    "from": "cust:C05876",
+    "to": "cc:CC-0003",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "cust:C05876",
+    "to": "cc:CC-2370",
+    "label": "SIMILAR_CASE"
+   }
+  ],
+  "similar": [
+   {
+    "id": "CC-0003",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0003: model scored a $442.92 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared."
+   },
+   {
+    "id": "CC-2370",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-2370: cardholder C05876 reported unrecognized activity on card C05876-K2. 2 transaction(s) between 2016-08-19 and 2016-08-19 totaling $149.99 were confirmed fraudulent. Online purchases inconsistent with the card"
+   }
+  ]
+ },
+ "variants": {
+  "agent": {
+   "case_id": "HHG-012",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.12,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Flagged $30.91 (in_person, product W, region 494.0) fits this card's history: median $49.08, 889 prior transactions, region seen 21 times",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C05876-K2, before=2016-12-18)",
+      "entity_ids": [
+       "3553342"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.55 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3553342",
+      "entity_ids": [
+       "3553342"
+      ]
+     },
+     {
+      "claim": "Customer has 1 cleared prior alert(s): Case CC-0003: model scored a $442.92 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+      "source": "document",
+      "ref": "closed_case:CC-0003",
+      "entity_ids": [
+       "CC-0003"
+      ]
+     },
+     {
+      "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-0003 cleared (none); CC-2370 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0003",
+       "CC-2370"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0003",
+     "CC-2370"
+    ],
+    "summary": "Alert on 3553342 ($30.91) is consistent with the cardholder's own activity. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
+     },
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+     }
+    ],
+    "final": [
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
+     },
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+     }
+    ],
+    "what_changed": "nothing"
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Fraud probability at or below 0.15 supported by card history and region/device consistency (policy 6).",
+   "tool_calls": 7,
+   "tokens": 0,
+   "latency_s": 0.002
+  },
+  "deny": {
+   "case_id": "HHG-012",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.12,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Flagged $30.91 (in_person, product W, region 494.0) fits this card's history: median $49.08, 889 prior transactions, region seen 21 times",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C05876-K2, before=2016-12-18)",
+      "entity_ids": [
+       "3553342"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.55 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3553342",
+      "entity_ids": [
+       "3553342"
+      ]
+     },
+     {
+      "claim": "Customer has 1 cleared prior alert(s): Case CC-0003: model scored a $442.92 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+      "source": "document",
+      "ref": "closed_case:CC-0003",
+      "entity_ids": [
+       "CC-0003"
+      ]
+     },
+     {
+      "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-0003 cleared (none); CC-2370 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0003",
+       "CC-2370"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0003",
+     "CC-2370"
+    ],
+    "summary": "Alert on 3553342 ($30.91) is consistent with the cardholder's own activity. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
+     },
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+     }
+    ],
+    "final": [
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
+     },
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+     }
+    ],
+    "what_changed": "nothing"
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Fraud probability at or below 0.15 supported by card history and region/device consistency (policy 6).",
+   "tool_calls": 7,
+   "tokens": 0,
+   "latency_s": 0.001
+  },
+  "confirm": {
+   "case_id": "HHG-012",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.12,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Flagged $30.91 (in_person, product W, region 494.0) fits this card's history: median $49.08, 889 prior transactions, region seen 21 times",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C05876-K2, before=2016-12-18)",
+      "entity_ids": [
+       "3553342"
+      ]
+     },
+     {
+      "claim": "Bank model risk score 0.55 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+      "source": "graph",
+      "ref": "txn:3553342",
+      "entity_ids": [
+       "3553342"
+      ]
+     },
+     {
+      "claim": "Customer has 1 cleared prior alert(s): Case CC-0003: model scored a $442.92 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+      "source": "document",
+      "ref": "closed_case:CC-0003",
+      "entity_ids": [
+       "CC-0003"
+      ]
+     },
+     {
+      "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-0003 cleared (none); CC-2370 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0003",
+       "CC-2370"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0003",
+     "CC-2370"
+    ],
+    "summary": "Alert on 3553342 ($30.91) is consistent with the cardholder's own activity. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
+     },
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+     }
+    ],
+    "final": [
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
+     },
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+     }
+    ],
+    "what_changed": "nothing"
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Fraud probability at or below 0.15 supported by card history and region/device consistency (policy 6).",
+   "tool_calls": 7,
+   "tokens": 0,
+   "latency_s": 0.001
+  }
+ }
+}

@@ -1,0 +1,45 @@
+USE GRAPH Sentinel
+
+// Transaction analyst: a card's transactions in a window around a timestamp
+CREATE OR REPLACE QUERY card_window(VERTEX<Card> card, DATETIME around, INT hours = 48) FOR GRAPH Sentinel {
+  S = {card};
+  T = SELECT t FROM S:c -(MADE>)- Transaction:t
+      WHERE t.ts >= datetime_sub(around, INTERVAL hours HOUR) AND t.ts <= datetime_add(around, INTERVAL 6 HOUR)
+      ORDER BY t.ts ASC;
+  PRINT T[T.id, T.ts, T.amount, T.product_cd, T.channel, T.addr1, T.risk_score, T.device_new, T.proxy];
+}
+
+// Graph analyst: other customers on the same device profile within +/- days, and closed cases on it (R6 / ring)
+CREATE OR REPLACE QUERY device_neighbors(VERTEX<DeviceProfile> dev, DATETIME around, INT days = 31) FOR GRAPH Sentinel {
+  SetAccum<STRING> @@customers;
+  SetAccum<STRING> @@closed_fraud_cases;
+  S = {dev};
+  T = SELECT t FROM S:d -(DEVICE_OF>)- Transaction:t
+      WHERE t.ts >= datetime_sub(around, INTERVAL days DAY) AND t.ts <= datetime_add(around, INTERVAL days DAY);
+  C = SELECT c FROM T:t -(MADE_BY>)- Card:k -(OWNED_BY>)- Customer:c ACCUM @@customers += c.id;
+  F = SELECT cc FROM T:t -(INVOLVED_IN>)- ClosedCase:cc WHERE cc.outcome == "confirmed_fraud" ACCUM @@closed_fraud_cases += cc.id;
+  PRINT @@customers AS customers, @@closed_fraud_cases AS closed_fraud_cases, T.size() AS txns;
+}
+
+// Region: how often a card has been billed in a region before (out-of-region use)
+CREATE OR REPLACE QUERY region_history(VERTEX<Card> card) FOR GRAPH Sentinel {
+  MapAccum<STRING, INT> @@regions;
+  S = {card};
+  T = SELECT t FROM S:c -(MADE>)- Transaction:t -(BILLED_IN>)- BillingRegion:r ACCUM @@regions += (r.id -> 1);
+  PRINT @@regions AS regions;
+}
+
+// Case memory: closed cases for a customer, and our own past investigations touching the same device
+CREATE OR REPLACE QUERY case_memory(VERTEX<Customer> cust, STRING device_profile = "") FOR GRAPH Sentinel {
+  S = {cust};
+  Closed = SELECT cc FROM S:c -(CUSTOMER_CASE>)- ClosedCase:cc;
+  PRINT Closed[Closed.id, Closed.outcome, Closed.pattern, Closed.exposure_usd, Closed.analyst_notes];
+  IF device_profile != "" THEN
+    D = {DeviceProfile.*};
+    D = SELECT d FROM D:d WHERE d.id == device_profile;
+    Ours = SELECT ic FROM D:d -(<INV_DEVICE)- InvestigationCase:ic;
+    PRINT Ours[Ours.id, Ours.verdict, Ours.pattern, Ours.summary];
+  END;
+}
+
+INSTALL QUERY card_window, device_neighbors, region_history, case_memory

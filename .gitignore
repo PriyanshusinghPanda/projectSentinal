@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.env
+.env.local
+.playwright-mcp/
+tigergraph/load_data/
+data/
+agent/slim.pkl
+__pycache__/
+.next-prod/
+
+# organiser brief (not ours to publish)
+*.docx

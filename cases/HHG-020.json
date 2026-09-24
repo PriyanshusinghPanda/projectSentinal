@@ -1,0 +1,108 @@
+{
+  "case_id": "HHG-020",
+  "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+      {
+        "claim": "Online purchase from a device the identity record marks New (Trident/7.0 | Windows 10 | ie 11.0 for desktop | 1920x1080)",
+        "source": "graph",
+        "ref": "query:device_history(card_id=C12265-K2)",
+        "entity_ids": [
+          "3509359"
+        ]
+      },
+      {
+        "claim": "Bank model risk score 0.52 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+        "source": "graph",
+        "ref": "txn:3509359",
+        "entity_ids": [
+          "3509359"
+        ]
+      },
+      {
+        "claim": "Challenger: Device profile 'Trident/7.0 | Windows 10 | ie 11.0 for desktop | 1920x1080' is common (253 customers) \u2014 shared use is expected, not evidence of a ring",
+        "source": "graph",
+        "ref": "query:card_profile(card_id=C12265-K2)",
+        "entity_ids": [
+          "3509359"
+        ]
+      },
+      {
+        "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-2277 confirmed_fraud (account_takeover); CC-2447 confirmed_fraud (account_takeover)",
+        "source": "document",
+        "ref": "closed_cases_history",
+        "entity_ids": [
+          "CC-2277",
+          "CC-2447"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-2277",
+      "CC-2447"
+    ],
+    "summary": "Alert on 3509359 ($125.08) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 5,
+      "assumed_response": "Customer confirms they made the purchase"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "Hold the flagged authorization while verifying"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1/3b: confirm before blocking"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "final": [
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "R3: customer confirmed the transaction"
+      },
+      {
+        "action": "ALLOW_TRANSACTION",
+        "route": "auto",
+        "reason": "R3"
+      }
+    ],
+    "what_changed": "Customer confirmation lowered probability from 0.45 to 0.08; the alert closes as legitimate (R3)."
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "The verification response settles the question (policy 6).",
+  "tool_calls": 7,
+  "tokens": 0,
+  "latency_s": 0.001
+}

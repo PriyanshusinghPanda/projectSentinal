@@ -1,0 +1,451 @@
+{
+ "context": {
+  "opened_at": "2016-12-28 17:10:53",
+  "trigger_type": "customer_report",
+  "trigger_text": "Customer C08299 message: 'I never made this $30.02 purchase. Please check my card.' Refers to 3581141.",
+  "flagged_txn_id": "3581141",
+  "card_id": "C08299-K1",
+  "customer_id": "C08299",
+  "risk_score": 0.28,
+  "amount": 30.02,
+  "channel": "online",
+  "initial_probability": 0.35,
+  "transactions": [
+   {
+    "id": "3581141",
+    "ts": "12-28 12:10",
+    "amount": 30.02,
+    "product": "S",
+    "channel": "online",
+    "region": "203.0",
+    "risk": 0.28,
+    "device_new": false,
+    "subject": true,
+    "affected": true
+   }
+  ],
+  "nodes": [
+   {
+    "id": "card:C08299-K1",
+    "kind": "card",
+    "label": "C08299-K1",
+    "subject": true
+   },
+   {
+    "id": "cust:C08299",
+    "kind": "account",
+    "label": "C08299"
+   },
+   {
+    "id": "reg",
+    "kind": "address",
+    "label": "region 203.0"
+   },
+   {
+    "id": "prod",
+    "kind": "merchant",
+    "label": "product S \u00b7 online"
+   },
+   {
+    "id": "cc:CC-0001",
+    "kind": "account",
+    "label": "CC-0001 (confirmed fraud)",
+    "flagged": true
+   },
+   {
+    "id": "cc:CC-0007",
+    "kind": "account",
+    "label": "CC-0007 (confirmed fraud)",
+    "flagged": true
+   },
+   {
+    "id": "cc:CC-0012",
+    "kind": "account",
+    "label": "CC-0012 (confirmed fraud)",
+    "flagged": true
+   }
+  ],
+  "edges": [
+   {
+    "from": "cust:C08299",
+    "to": "card:C08299-K1",
+    "label": "OWNS"
+   },
+   {
+    "from": "card:C08299-K1",
+    "to": "reg",
+    "label": "BILLED_IN"
+   },
+   {
+    "from": "card:C08299-K1",
+    "to": "prod",
+    "label": "PAID $30.02"
+   },
+   {
+    "from": "card:C08299-K1",
+    "to": "cc:CC-0001",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "card:C08299-K1",
+    "to": "cc:CC-0007",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "card:C08299-K1",
+    "to": "cc:CC-0012",
+    "label": "SIMILAR_CASE"
+   }
+  ],
+  "similar": [
+   {
+    "id": "CC-0001",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-0001: cardholder C00259 reported unrecognized activity on card C00259-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $155.43 were confirmed fraudulent. Online purchases inconsistent with the card"
+   },
+   {
+    "id": "CC-0007",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-0007: cardholder C00732 reported unrecognized activity on card C00732-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $99.91 were confirmed fraudulent. Online purchases inconsistent with the cardh"
+   },
+   {
+    "id": "CC-0012",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-0012: cardholder C07220 reported unrecognized activity on card C07220-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $123.52 were confirmed fraudulent. Online purchases inconsistent with the card"
+   }
+  ]
+ },
+ "variants": {
+  "agent": {
+   "case_id": "HHG-009",
+   "case": {
+    "status": "escalated",
+    "verdict": "uncertain",
+    "fraud_probability": 0.55,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3581141"
+    ],
+    "first_suspicious_txn_id": "3581141",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 30.02,
+    "evidence": [
+     {
+      "claim": "Flagged $30.02 (online, product S, region 203.0) fits this card's history: median $49.96, 45 prior transactions, region seen 1 times",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C08299-K1, before=2016-12-28)",
+      "entity_ids": [
+       "3581141"
+      ]
+     },
+     {
+      "claim": "Customer C08299 message: 'I never made this $30.02 purchase. Please check my card.' Refers to 3581141.",
+      "source": "customer",
+      "ref": "trigger:HHG-009",
+      "entity_ids": [
+       "3581141"
+      ]
+     },
+     {
+      "claim": "Case memory: 3 closed case(s) retrieved \u2014 CC-0001 confirmed_fraud (card_not_present_fraud); CC-0007 confirmed_fraud (card_not_present_fraud); CC-0012 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0001",
+       "CC-0007",
+       "CC-0012"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0001",
+     "CC-0007",
+     "CC-0012"
+    ],
+    "summary": "Mixed evidence on 3581141; escalated with verification pending.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "step_up_auth",
+     "asked_after_step": 4,
+     "assumed_response": "Account holder passed step-up and reaffirmed they did not make the purchase and still hold the card"
+    },
+    {
+     "type": "analyst_info",
+     "asked_after_step": 6,
+     "assumed_response": "No merchant or device evidence available yet; analyst to review the card-present authorization"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations"
+     },
+     {
+      "action": "STEP_UP_AUTH",
+      "route": "auto",
+      "reason": "R1: confirm the account holder before further activity"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $30.02 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a"
+     },
+     {
+      "action": "ESCALATE_TO_ANALYST",
+      "route": "auto",
+      "reason": "R8: the denial conflicts with graph evidence \u2014 the purchase fits the card's own history"
+     }
+    ],
+    "what_changed": "Step-up confirmed the genuine cardholder is disputing, so the card is blocked under R2; because nothing in the graph corroborates the denial, the case is escalated under R8 rather than closed as fraud."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
+   "tool_calls": 8,
+   "tokens": 0,
+   "latency_s": 0.001
+  },
+  "deny": {
+   "case_id": "HHG-009",
+   "case": {
+    "status": "escalated",
+    "verdict": "uncertain",
+    "fraud_probability": 0.55,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3581141"
+    ],
+    "first_suspicious_txn_id": "3581141",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 30.02,
+    "evidence": [
+     {
+      "claim": "Flagged $30.02 (online, product S, region 203.0) fits this card's history: median $49.96, 45 prior transactions, region seen 1 times",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C08299-K1, before=2016-12-28)",
+      "entity_ids": [
+       "3581141"
+      ]
+     },
+     {
+      "claim": "Customer C08299 message: 'I never made this $30.02 purchase. Please check my card.' Refers to 3581141.",
+      "source": "customer",
+      "ref": "trigger:HHG-009",
+      "entity_ids": [
+       "3581141"
+      ]
+     },
+     {
+      "claim": "Case memory: 3 closed case(s) retrieved \u2014 CC-0001 confirmed_fraud (card_not_present_fraud); CC-0007 confirmed_fraud (card_not_present_fraud); CC-0012 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0001",
+       "CC-0007",
+       "CC-0012"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0001",
+     "CC-0007",
+     "CC-0012"
+    ],
+    "summary": "Mixed evidence on 3581141; escalated with verification pending.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "step_up_auth",
+     "asked_after_step": 4,
+     "assumed_response": "Account holder passed step-up and reaffirmed they did not make the purchase and still hold the card"
+    },
+    {
+     "type": "analyst_info",
+     "asked_after_step": 6,
+     "assumed_response": "No merchant or device evidence available yet; analyst to review the card-present authorization"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations"
+     },
+     {
+      "action": "STEP_UP_AUTH",
+      "route": "auto",
+      "reason": "R1: confirm the account holder before further activity"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $30.02 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a"
+     },
+     {
+      "action": "ESCALATE_TO_ANALYST",
+      "route": "auto",
+      "reason": "R8: the denial conflicts with graph evidence \u2014 the purchase fits the card's own history"
+     }
+    ],
+    "what_changed": "Step-up confirmed the genuine cardholder is disputing, so the card is blocked under R2; because nothing in the graph corroborates the denial, the case is escalated under R8 rather than closed as fraud."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
+   "tool_calls": 8,
+   "tokens": 0,
+   "latency_s": 0.001
+  },
+  "confirm": {
+   "case_id": "HHG-009",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.1,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Flagged $30.02 (online, product S, region 203.0) fits this card's history: median $49.96, 45 prior transactions, region seen 1 times",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C08299-K1, before=2016-12-28)",
+      "entity_ids": [
+       "3581141"
+      ]
+     },
+     {
+      "claim": "Customer C08299 message: 'I never made this $30.02 purchase. Please check my card.' Refers to 3581141.",
+      "source": "customer",
+      "ref": "trigger:HHG-009",
+      "entity_ids": [
+       "3581141"
+      ]
+     },
+     {
+      "claim": "Case memory: 2 closed case(s) retrieved \u2014 CC-0009 cleared (none); CC-0010 cleared (none)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0009",
+       "CC-0010"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0009",
+     "CC-0010"
+    ],
+    "summary": "Alert on 3581141 ($30.02) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 4,
+     "assumed_response": "Shown the merchant and time, the customer recognises the purchase (made by a household member) and withdraws the dispute"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations"
+     },
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1: confirm the details of the dispute before any block"
+     }
+    ],
+    "final": [
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "WARN_CUSTOMER",
+      "route": "auto",
+      "reason": "Security tip: card shared within the household"
+     }
+    ],
+    "what_changed": "The customer withdrew the dispute after verification, so the case closes as legitimate instead of blocking (R3)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Verification settled the question (policy 6).",
+   "tool_calls": 7,
+   "tokens": 0,
+   "latency_s": 0.0
+  }
+ }
+}

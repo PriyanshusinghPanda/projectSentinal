@@ -1,0 +1,469 @@
+{
+ "context": {
+  "opened_at": "2016-12-29 07:53:54",
+  "trigger_type": "customer_report",
+  "trigger_text": "Customer C08106 message: 'I never made this $128.33 purchase. Please check my card.' Refers to 3583227.",
+  "flagged_txn_id": "3583227",
+  "card_id": "C08106-K1",
+  "customer_id": "C08106",
+  "risk_score": 0.34,
+  "amount": 128.33,
+  "channel": "online",
+  "initial_probability": 0.55,
+  "transactions": [
+   {
+    "id": "3580804",
+    "ts": "12-28 02:21",
+    "amount": 92.86,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.46,
+    "device_new": true,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3583227",
+    "ts": "12-29 01:53",
+    "amount": 128.33,
+    "product": "C",
+    "channel": "online",
+    "region": "",
+    "risk": 0.34,
+    "device_new": true,
+    "subject": true,
+    "affected": true
+   }
+  ],
+  "nodes": [
+   {
+    "id": "card:C08106-K1",
+    "kind": "card",
+    "label": "C08106-K1",
+    "subject": true
+   },
+   {
+    "id": "cust:C08106",
+    "kind": "account",
+    "label": "C08106"
+   },
+   {
+    "id": "dev",
+    "kind": "device",
+    "label": "firefox 47.0",
+    "flagged": false
+   },
+   {
+    "id": "em",
+    "kind": "email",
+    "label": "hotmail.com"
+   },
+   {
+    "id": "prod",
+    "kind": "merchant",
+    "label": "product C \u00b7 online"
+   },
+   {
+    "id": "cc:CC-0696",
+    "kind": "account",
+    "label": "CC-0696 (cleared)",
+    "flagged": false
+   },
+   {
+    "id": "cc:CC-1736",
+    "kind": "account",
+    "label": "CC-1736 (confirmed fraud)",
+    "flagged": true
+   },
+   {
+    "id": "cc:CC-2121",
+    "kind": "account",
+    "label": "CC-2121 (confirmed fraud)",
+    "flagged": true
+   }
+  ],
+  "edges": [
+   {
+    "from": "cust:C08106",
+    "to": "card:C08106-K1",
+    "label": "OWNS"
+   },
+   {
+    "from": "card:C08106-K1",
+    "to": "dev",
+    "label": "FROM_DEVICE (New)"
+   },
+   {
+    "from": "card:C08106-K1",
+    "to": "em",
+    "label": "PURCHASER_EMAIL"
+   },
+   {
+    "from": "card:C08106-K1",
+    "to": "prod",
+    "label": "PAID $128.33"
+   },
+   {
+    "from": "cust:C08106",
+    "to": "cc:CC-0696",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "cust:C08106",
+    "to": "cc:CC-1736",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "cust:C08106",
+    "to": "cc:CC-2121",
+    "label": "SIMILAR_CASE"
+   }
+  ],
+  "similar": [
+   {
+    "id": "CC-0696",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0696: model scored a $13.68 transaction at 0.83. Cardholder confirmed travel to the billing region in question. Alert cleared."
+   },
+   {
+    "id": "CC-1736",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-1736: cardholder C08106 reported unrecognized activity on card C08106-K1. 1 transaction(s) between 2016-08-05 and 2016-08-05 totaling $9.90 were confirmed fraudulent. Online purchases inconsistent with the cardho"
+   },
+   {
+    "id": "CC-2121",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-2121: cardholder C08106 reported unrecognized activity on card C08106-K1. 1 transaction(s) between 2016-08-14 and 2016-08-14 totaling $102.68 were confirmed fraudulent. Online purchases inconsistent with the card"
+   },
+   {
+    "id": "CC-3778",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-3778: cardholder C08106 reported unrecognized activity on card C08106-K1. 1 transaction(s) between 2016-09-20 and 2016-09-20 totaling $58.42 were confirmed fraudulent. Online purchases inconsistent with the cardh"
+   }
+  ]
+ },
+ "variants": {
+  "agent": {
+   "case_id": "HHG-004",
+   "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.86,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3583227"
+    ],
+    "first_suspicious_txn_id": "3583227",
+    "connected_card_ids": [],
+    "connected_device_profiles": [
+     "firefox 47.0"
+    ],
+    "exposure_usd": 128.33,
+    "evidence": [
+     {
+      "claim": "Online purchase from a device the identity record marks New (firefox 47.0)",
+      "source": "graph",
+      "ref": "query:device_history(card_id=C08106-K1)",
+      "entity_ids": [
+       "3583227"
+      ]
+     },
+     {
+      "claim": "Customer C08106 message: 'I never made this $128.33 purchase. Please check my card.' Refers to 3583227.",
+      "source": "customer",
+      "ref": "trigger:HHG-004",
+      "entity_ids": [
+       "3583227"
+      ]
+     },
+     {
+      "claim": "Case memory: 4 closed case(s) retrieved \u2014 CC-0696 cleared (none); CC-1736 confirmed_fraud (card_not_present_fraud); CC-2121 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0696",
+       "CC-1736",
+       "CC-2121"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0696",
+     "CC-1736",
+     "CC-2121",
+     "CC-3778"
+    ],
+    "summary": "Card not present new device on card C08106-K1: 1 transaction(s), exposure $128.33. Customer denial confirmed the verdict.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "step_up_auth",
+     "asked_after_step": 4,
+     "assumed_response": "Account holder passed step-up on their registered phone and reaffirmed they did not make the purchase and still hold the card"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations while the denial is confirmed"
+     },
+     {
+      "action": "STEP_UP_AUTH",
+      "route": "auto",
+      "reason": "R1: confirm the account holder before further activity"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $128.33 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a: confirmed fraud"
+     }
+    ],
+    "what_changed": "Step-up confirmed the genuine cardholder is the one denying the purchase, which settles unauthorised use; the case moves from hold to block."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
+   "tool_calls": 9,
+   "tokens": 0,
+   "latency_s": 0.001
+  },
+  "deny": {
+   "case_id": "HHG-004",
+   "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.86,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3583227"
+    ],
+    "first_suspicious_txn_id": "3583227",
+    "connected_card_ids": [],
+    "connected_device_profiles": [
+     "firefox 47.0"
+    ],
+    "exposure_usd": 128.33,
+    "evidence": [
+     {
+      "claim": "Online purchase from a device the identity record marks New (firefox 47.0)",
+      "source": "graph",
+      "ref": "query:device_history(card_id=C08106-K1)",
+      "entity_ids": [
+       "3583227"
+      ]
+     },
+     {
+      "claim": "Customer C08106 message: 'I never made this $128.33 purchase. Please check my card.' Refers to 3583227.",
+      "source": "customer",
+      "ref": "trigger:HHG-004",
+      "entity_ids": [
+       "3583227"
+      ]
+     },
+     {
+      "claim": "Case memory: 4 closed case(s) retrieved \u2014 CC-0696 cleared (none); CC-1736 confirmed_fraud (card_not_present_fraud); CC-2121 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0696",
+       "CC-1736",
+       "CC-2121"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0696",
+     "CC-1736",
+     "CC-2121",
+     "CC-3778"
+    ],
+    "summary": "Card not present new device on card C08106-K1: 1 transaction(s), exposure $128.33. Customer denial confirmed the verdict.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "step_up_auth",
+     "asked_after_step": 4,
+     "assumed_response": "Account holder passed step-up on their registered phone and reaffirmed they did not make the purchase and still hold the card"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations while the denial is confirmed"
+     },
+     {
+      "action": "STEP_UP_AUTH",
+      "route": "auto",
+      "reason": "R1: confirm the account holder before further activity"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $128.33 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a: confirmed fraud"
+     }
+    ],
+    "what_changed": "Step-up confirmed the genuine cardholder is the one denying the purchase, which settles unauthorised use; the case moves from hold to block."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
+   "tool_calls": 9,
+   "tokens": 0,
+   "latency_s": 0.001
+  },
+  "confirm": {
+   "case_id": "HHG-004",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.1,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Online purchase from a device the identity record marks New (firefox 47.0)",
+      "source": "graph",
+      "ref": "query:device_history(card_id=C08106-K1)",
+      "entity_ids": [
+       "3583227"
+      ]
+     },
+     {
+      "claim": "Customer C08106 message: 'I never made this $128.33 purchase. Please check my card.' Refers to 3583227.",
+      "source": "customer",
+      "ref": "trigger:HHG-004",
+      "entity_ids": [
+       "3583227"
+      ]
+     },
+     {
+      "claim": "Case memory: 4 closed case(s) retrieved \u2014 CC-0696 cleared (none); CC-1736 confirmed_fraud (card_not_present_fraud); CC-2121 confirmed_fraud (card_not_present_fraud)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0696",
+       "CC-1736",
+       "CC-2121"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0696",
+     "CC-1736",
+     "CC-2121",
+     "CC-3778"
+    ],
+    "summary": "Alert on 3583227 ($128.33) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 4,
+     "assumed_response": "Shown the merchant and time, the customer recognises the purchase (made by a household member) and withdraws the dispute"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations"
+     },
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1: confirm the details of the dispute before any block"
+     }
+    ],
+    "final": [
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "WARN_CUSTOMER",
+      "route": "auto",
+      "reason": "Security tip: card shared within the household"
+     }
+    ],
+    "what_changed": "The customer withdrew the dispute after verification, so the case closes as legitimate instead of blocking (R3)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Verification settled the question (policy 6).",
+   "tool_calls": 9,
+   "tokens": 0,
+   "latency_s": 0.001
+  }
+ }
+}

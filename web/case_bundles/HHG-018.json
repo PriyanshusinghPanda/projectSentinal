@@ -1,0 +1,651 @@
+{
+ "context": {
+  "opened_at": "2016-11-27 14:41:26",
+  "trigger_type": "customer_report",
+  "trigger_text": "Customer C02354 message: 'I never made this $39.08 purchase. Please check my card.' Refers to 3491361.",
+  "flagged_txn_id": "3491361",
+  "card_id": "C02354-K2",
+  "customer_id": "C02354",
+  "risk_score": 0.48,
+  "amount": 39.08,
+  "channel": "in_person",
+  "initial_probability": 0.35,
+  "transactions": [
+   {
+    "id": "3491624",
+    "ts": "11-27 15:24",
+    "amount": 39.08,
+    "product": "W",
+    "channel": "in_person",
+    "region": "325.0",
+    "risk": 0.22,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3491753",
+    "ts": "11-27 16:07",
+    "amount": 58.94,
+    "product": "W",
+    "channel": "in_person",
+    "region": "325.0",
+    "risk": 0.2,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3491759",
+    "ts": "11-27 16:09",
+    "amount": 553.95,
+    "product": "W",
+    "channel": "in_person",
+    "region": "325.0",
+    "risk": 0.25,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3491774",
+    "ts": "11-27 16:13",
+    "amount": 58.96,
+    "product": "W",
+    "channel": "in_person",
+    "region": "325.0",
+    "risk": 0.33,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3491794",
+    "ts": "11-27 16:18",
+    "amount": 50.0,
+    "product": "H",
+    "channel": "online",
+    "region": "330.0",
+    "risk": 0.16,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3491856",
+    "ts": "11-27 16:36",
+    "amount": 49.07,
+    "product": "W",
+    "channel": "in_person",
+    "region": "325.0",
+    "risk": 0.01,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3491872",
+    "ts": "11-27 16:43",
+    "amount": 49.94,
+    "product": "H",
+    "channel": "online",
+    "region": "325.0",
+    "risk": 0.28,
+    "device_new": true,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3492018",
+    "ts": "11-27 17:34",
+    "amount": 58.98,
+    "product": "W",
+    "channel": "in_person",
+    "region": "325.0",
+    "risk": 0.19,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3492105",
+    "ts": "11-27 17:59",
+    "amount": 74.95,
+    "product": "H",
+    "channel": "online",
+    "region": "325.0",
+    "risk": 0.17,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3492168",
+    "ts": "11-27 18:19",
+    "amount": 30.0,
+    "product": "H",
+    "channel": "online",
+    "region": "325.0",
+    "risk": 0.14,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3492221",
+    "ts": "11-27 18:35",
+    "amount": 49.09,
+    "product": "W",
+    "channel": "in_person",
+    "region": "325.0",
+    "risk": 0.16,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3492278",
+    "ts": "11-27 18:53",
+    "amount": 57.87,
+    "product": "W",
+    "channel": "in_person",
+    "region": "325.0",
+    "risk": 0.11,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3492300",
+    "ts": "11-27 18:57",
+    "amount": 225.93,
+    "product": "W",
+    "channel": "in_person",
+    "region": "325.0",
+    "risk": 0.56,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   },
+   {
+    "id": "3492405",
+    "ts": "11-27 19:33",
+    "amount": 29.09,
+    "product": "W",
+    "channel": "in_person",
+    "region": "325.0",
+    "risk": 0.11,
+    "device_new": false,
+    "subject": false,
+    "affected": false
+   }
+  ],
+  "nodes": [
+   {
+    "id": "card:C02354-K2",
+    "kind": "card",
+    "label": "C02354-K2",
+    "subject": true
+   },
+   {
+    "id": "cust:C02354",
+    "kind": "account",
+    "label": "C02354"
+   },
+   {
+    "id": "reg",
+    "kind": "address",
+    "label": "region 126.0"
+   },
+   {
+    "id": "prod",
+    "kind": "merchant",
+    "label": "product W \u00b7 in_person"
+   },
+   {
+    "id": "cc:CC-0255",
+    "kind": "account",
+    "label": "CC-0255 (confirmed fraud)",
+    "flagged": true
+   },
+   {
+    "id": "cc:CC-0405",
+    "kind": "account",
+    "label": "CC-0405 (cleared)",
+    "flagged": false
+   },
+   {
+    "id": "cc:CC-0454",
+    "kind": "account",
+    "label": "CC-0454 (confirmed fraud)",
+    "flagged": true
+   }
+  ],
+  "edges": [
+   {
+    "from": "cust:C02354",
+    "to": "card:C02354-K2",
+    "label": "OWNS"
+   },
+   {
+    "from": "card:C02354-K2",
+    "to": "reg",
+    "label": "BILLED_IN"
+   },
+   {
+    "from": "card:C02354-K2",
+    "to": "prod",
+    "label": "PAID $39.08"
+   },
+   {
+    "from": "cust:C02354",
+    "to": "cc:CC-0255",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "cust:C02354",
+    "to": "cc:CC-0405",
+    "label": "SIMILAR_CASE"
+   },
+   {
+    "from": "cust:C02354",
+    "to": "cc:CC-0454",
+    "label": "SIMILAR_CASE"
+   }
+  ],
+  "similar": [
+   {
+    "id": "CC-0255",
+    "outcome": "confirmed_fraud",
+    "pattern": "account_takeover",
+    "notes": "Case CC-0255: cardholder C02354 reported unrecognized activity on card C02354-K2. 7 transaction(s) between 2016-07-06 and 2016-07-08 totaling $1,167.08 were confirmed fraudulent. Mixed-channel activity inconsistent with "
+   },
+   {
+    "id": "CC-0405",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0405: model scored a $22.30 transaction at 0.94. Cardholder confirmed travel to the billing region in question. Alert cleared."
+   },
+   {
+    "id": "CC-0454",
+    "outcome": "confirmed_fraud",
+    "pattern": "account_takeover",
+    "notes": "Case CC-0454: cardholder C02354 reported unrecognized activity on card C02354-K2. 6 transaction(s) between 2016-07-12 and 2016-07-13 totaling $940.94 were confirmed fraudulent. Mixed-channel activity inconsistent with th"
+   },
+   {
+    "id": "CC-0631",
+    "outcome": "confirmed_fraud",
+    "pattern": "out_of_region_use",
+    "notes": "Case CC-0631: cardholder C02354 reported unrecognized activity on card C02354-K2. 2 transaction(s) between 2016-07-16 and 2016-07-16 totaling $118.17 were confirmed fraudulent. Card-present use in a billing region the ca"
+   },
+   {
+    "id": "CC-1450",
+    "outcome": "confirmed_fraud",
+    "pattern": "account_takeover",
+    "notes": "Case CC-1450: cardholder C02354 reported unrecognized activity on card C02354-K2. 14 transaction(s) between 2016-07-21 and 2016-07-29 totaling $2,351.25 were confirmed fraudulent. Mixed-channel activity inconsistent with"
+   }
+  ]
+ },
+ "variants": {
+  "agent": {
+   "case_id": "HHG-018",
+   "case": {
+    "status": "escalated",
+    "verdict": "uncertain",
+    "fraud_probability": 0.55,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3491361"
+    ],
+    "first_suspicious_txn_id": "3491361",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 39.08,
+    "evidence": [
+     {
+      "claim": "Flagged $39.08 (in_person, product W, region 126.0) fits this card's history: median $84.91, 5720 prior transactions, region seen 540 times",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C02354-K2, before=2016-11-27)",
+      "entity_ids": [
+       "3491361"
+      ]
+     },
+     {
+      "claim": "Customer C02354 message: 'I never made this $39.08 purchase. Please check my card.' Refers to 3491361.",
+      "source": "customer",
+      "ref": "trigger:HHG-018",
+      "entity_ids": [
+       "3491361"
+      ]
+     },
+     {
+      "claim": "Customer has 1 cleared prior alert(s): Case CC-0405: model scored a $22.30 transaction at 0.94. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+      "source": "document",
+      "ref": "closed_case:CC-0405",
+      "entity_ids": [
+       "CC-0405"
+      ]
+     },
+     {
+      "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-0255 confirmed_fraud (account_takeover); CC-0405 cleared (none); CC-0454 confirmed_fraud (account_takeover)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0255",
+       "CC-0405",
+       "CC-0454"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0255",
+     "CC-0405",
+     "CC-0454",
+     "CC-0631",
+     "CC-1450"
+    ],
+    "summary": "Mixed evidence on 3491361; escalated with verification pending.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "step_up_auth",
+     "asked_after_step": 4,
+     "assumed_response": "Account holder passed step-up and reaffirmed they did not make the purchase and still hold the card"
+    },
+    {
+     "type": "analyst_info",
+     "asked_after_step": 6,
+     "assumed_response": "No merchant or device evidence available yet; analyst to review the card-present authorization"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations"
+     },
+     {
+      "action": "STEP_UP_AUTH",
+      "route": "auto",
+      "reason": "R1: confirm the account holder before further activity"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $39.08 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a"
+     },
+     {
+      "action": "ESCALATE_TO_ANALYST",
+      "route": "auto",
+      "reason": "R8: the denial conflicts with graph evidence \u2014 the purchase fits the card's own history"
+     }
+    ],
+    "what_changed": "Step-up confirmed the genuine cardholder is disputing, so the card is blocked under R2; because nothing in the graph corroborates the denial, the case is escalated under R8 rather than closed as fraud."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
+   "tool_calls": 10,
+   "tokens": 0,
+   "latency_s": 0.014
+  },
+  "deny": {
+   "case_id": "HHG-018",
+   "case": {
+    "status": "escalated",
+    "verdict": "uncertain",
+    "fraud_probability": 0.55,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [
+     "3491361"
+    ],
+    "first_suspicious_txn_id": "3491361",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 39.08,
+    "evidence": [
+     {
+      "claim": "Flagged $39.08 (in_person, product W, region 126.0) fits this card's history: median $84.91, 5720 prior transactions, region seen 540 times",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C02354-K2, before=2016-11-27)",
+      "entity_ids": [
+       "3491361"
+      ]
+     },
+     {
+      "claim": "Customer C02354 message: 'I never made this $39.08 purchase. Please check my card.' Refers to 3491361.",
+      "source": "customer",
+      "ref": "trigger:HHG-018",
+      "entity_ids": [
+       "3491361"
+      ]
+     },
+     {
+      "claim": "Customer has 1 cleared prior alert(s): Case CC-0405: model scored a $22.30 transaction at 0.94. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+      "source": "document",
+      "ref": "closed_case:CC-0405",
+      "entity_ids": [
+       "CC-0405"
+      ]
+     },
+     {
+      "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-0255 confirmed_fraud (account_takeover); CC-0405 cleared (none); CC-0454 confirmed_fraud (account_takeover)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0255",
+       "CC-0405",
+       "CC-0454"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0255",
+     "CC-0405",
+     "CC-0454",
+     "CC-0631",
+     "CC-1450"
+    ],
+    "summary": "Mixed evidence on 3491361; escalated with verification pending.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "step_up_auth",
+     "asked_after_step": 4,
+     "assumed_response": "Account holder passed step-up and reaffirmed they did not make the purchase and still hold the card"
+    },
+    {
+     "type": "analyst_info",
+     "asked_after_step": 6,
+     "assumed_response": "No merchant or device evidence available yet; analyst to review the card-present authorization"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations"
+     },
+     {
+      "action": "STEP_UP_AUTH",
+      "route": "auto",
+      "reason": "R1: confirm the account holder before further activity"
+     }
+    ],
+    "final": [
+     {
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $39.08 \u2264 $2,500"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "R2 / 3a"
+     },
+     {
+      "action": "ESCALATE_TO_ANALYST",
+      "route": "auto",
+      "reason": "R8: the denial conflicts with graph evidence \u2014 the purchase fits the card's own history"
+     }
+    ],
+    "what_changed": "Step-up confirmed the genuine cardholder is disputing, so the card is blocked under R2; because nothing in the graph corroborates the denial, the case is escalated under R8 rather than closed as fraud."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
+   "tool_calls": 10,
+   "tokens": 0,
+   "latency_s": 0.016
+  },
+  "confirm": {
+   "case_id": "HHG-018",
+   "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.1,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+     {
+      "claim": "Flagged $39.08 (in_person, product W, region 126.0) fits this card's history: median $84.91, 5720 prior transactions, region seen 540 times",
+      "source": "graph",
+      "ref": "query:card_profile(card_id=C02354-K2, before=2016-11-27)",
+      "entity_ids": [
+       "3491361"
+      ]
+     },
+     {
+      "claim": "Customer C02354 message: 'I never made this $39.08 purchase. Please check my card.' Refers to 3491361.",
+      "source": "customer",
+      "ref": "trigger:HHG-018",
+      "entity_ids": [
+       "3491361"
+      ]
+     },
+     {
+      "claim": "Customer has 1 cleared prior alert(s): Case CC-0405: model scored a $22.30 transaction at 0.94. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+      "source": "document",
+      "ref": "closed_case:CC-0405",
+      "entity_ids": [
+       "CC-0405"
+      ]
+     },
+     {
+      "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-0255 confirmed_fraud (account_takeover); CC-0405 cleared (none); CC-0454 confirmed_fraud (account_takeover)",
+      "source": "document",
+      "ref": "closed_cases_history",
+      "entity_ids": [
+       "CC-0255",
+       "CC-0405",
+       "CC-0454"
+      ]
+     }
+    ],
+    "similar_prior_cases": [
+     "CC-0255",
+     "CC-0405",
+     "CC-0454",
+     "CC-0631",
+     "CC-1450"
+    ],
+    "summary": "Alert on 3491361 ($39.08) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
+    "written_to_graph": false,
+    "graph_case_id": ""
+   },
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 4,
+     "assumed_response": "Shown the merchant and time, the customer recognises the purchase (made by a household member) and withdraws the dispute"
+    }
+   ],
+   "next_best_actions": {
+    "initial": [
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: customer disputes a charge"
+     },
+     {
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "R4/R2: hold pending authorizations"
+     },
+     {
+      "action": "VERIFY_WITH_CUSTOMER",
+      "route": "auto",
+      "reason": "R1: confirm the details of the dispute before any block"
+     }
+    ],
+    "final": [
+     {
+      "action": "CLOSE_NO_FRAUD",
+      "route": "auto",
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "WARN_CUSTOMER",
+      "route": "auto",
+      "reason": "Security tip: card shared within the household"
+     }
+    ],
+    "what_changed": "The customer withdrew the dispute after verification, so the case closes as legitimate instead of blocking (R3)."
+   },
+   "sar": {
+    "file": false,
+    "reason": "3a: verdict is not fraud, no report",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+   },
+   "stop_reason": "Verification settled the question (policy 6).",
+   "tool_calls": 10,
+   "tokens": 0,
+   "latency_s": 0.015
+  }
+ }
+}
