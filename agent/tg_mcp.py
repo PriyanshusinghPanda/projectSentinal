@@ -82,7 +82,8 @@ def write_case(mcp, answer, flagged_txn_id, card_id, opened_at):
     }])
     mcp.link("FLAGGED", "InvestigationCase", "Transaction", [(gid, flagged_txn_id)])
     mcp.link("AFFECTS", "InvestigationCase", "Transaction", [(gid, t) for t in c["affected_txn_ids"]])
-    mcp.link("INV_ON_CARD", "InvestigationCase", "CaseCard", [(gid, card_id)])
+    if "-K" in card_id:  # only dataset case-card IDs (Cxxxxx-Kn); monitoring alerts may only know the customer
+        mcp.link("INV_ON_CARD", "InvestigationCase", "CaseCard", [(gid, card_id)])
     mcp.link("INV_CONNECTED", "InvestigationCase", "CaseCard", [(gid, k) for k in c["connected_card_ids"]])
     mcp.link("INV_DEVICE", "InvestigationCase", "DeviceProfile", [(gid, d) for d in c["connected_device_profiles"]])
     mcp.link("SIMILAR_TO", "InvestigationCase", "ClosedCase", [(gid, k) for k in c["similar_prior_cases"]])

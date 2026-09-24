@@ -1,0 +1,127 @@
+{
+  "case_id": "MON-3585961",
+  "case": {
+    "status": "open",
+    "verdict": "uncertain",
+    "fraud_probability": 0.7,
+    "pattern": "out_of_region_use",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3585961"
+    ],
+    "first_suspicious_txn_id": "3585961",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 953.9,
+    "evidence": [
+      {
+        "claim": "Card-present purchase in billing region 444.0, where this card has no history (home regions 264.0, 272.0, 337.0); in-person activity continued in the home region within 36h",
+        "source": "graph",
+        "ref": "query:region_history(card_id=C11543)",
+        "entity_ids": [
+          "3585961"
+        ]
+      },
+      {
+        "claim": "Bank model risk score 0.85 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+        "source": "graph",
+        "ref": "txn:3585961",
+        "entity_ids": [
+          "3585961"
+        ]
+      },
+      {
+        "claim": "Customer has 1 cleared prior alert(s): Case CC-0966: model scored a $200.06 transaction at 0.89. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+        "source": "document",
+        "ref": "closed_case:CC-0966",
+        "entity_ids": [
+          "CC-0966"
+        ]
+      },
+      {
+        "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-0966 cleared (none); CC-2974 confirmed_fraud (card_not_present_fraud); CC-3259 confirmed_fraud (out_of_region_use)",
+        "source": "document",
+        "ref": "closed_cases_history",
+        "entity_ids": [
+          "CC-0966",
+          "CC-2974",
+          "CC-3259"
+        ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 2 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C11543-P20026|453.0|150.0|visa|226.0|debit, hours=48)",
+        "entity_ids": [
+          "3585961"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-0966",
+      "CC-2974",
+      "CC-3259",
+      "CC-3601",
+      "CC-4631"
+    ],
+    "summary": "Out of region use on card C11543: 1 transaction(s), exposure $953.90. Customer denial confirmed the verdict.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-MON-3585961"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 5,
+      "assumed_response": "Pending \u2014 verification sent by the monitoring agent; no reply yet"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "Hold the flagged authorization while verifying"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1/3b: confirm before blocking"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "final": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "Hold the flagged authorization while verifying"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1/3b: confirm before blocking"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "what_changed": "nothing yet \u2014 awaiting the verification reply"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: pending verification \u2014 no report until fraud is confirmed or strongly suspected",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
+  "tool_calls": 19,
+  "tokens": 0,
+  "latency_s": 0.025
+}

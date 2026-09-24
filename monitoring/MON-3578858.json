@@ -1,0 +1,139 @@
+{
+  "case_id": "MON-3578858",
+  "case": {
+    "status": "open",
+    "verdict": "uncertain",
+    "fraud_probability": 0.65,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3578858"
+    ],
+    "first_suspicious_txn_id": "3578858",
+    "connected_card_ids": [],
+    "connected_device_profiles": [
+      "Trident/7.0 | Windows 7 | ie 11.0 for desktop | 1920x1200"
+    ],
+    "exposure_usd": 25.03,
+    "evidence": [
+      {
+        "claim": "Online purchase from a device never used on this card (Trident/7.0 | Windows 7 | ie 11.0 for desktop | 1920x1200), behind an anonymous proxy",
+        "source": "graph",
+        "ref": "query:device_history(card_id=C02949)",
+        "entity_ids": [
+          "3578858"
+        ]
+      },
+      {
+        "claim": "Bank model risk score 0.24 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+        "source": "graph",
+        "ref": "txn:3578858",
+        "entity_ids": [
+          "3578858"
+        ]
+      },
+      {
+        "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-1204 confirmed_fraud (account_takeover); CC-1284 cleared (none); CC-2708 confirmed_fraud (out_of_region_use)",
+        "source": "document",
+        "ref": "closed_cases_history",
+        "entity_ids": [
+          "CC-1204",
+          "CC-1284",
+          "CC-2708"
+        ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 5 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C02949-P21678|549.0|150.0|visa|226.0|debit, hours=48)",
+        "entity_ids": [
+          "3578858"
+        ]
+      },
+      {
+        "claim": "TigerGraph device_neighbors: device profile used by 10 customers within 31 days; confirmed-fraud closed cases on it: none",
+        "source": "graph",
+        "ref": "mcp:device_neighbors(days=31)",
+        "entity_ids": []
+      },
+      {
+        "claim": "Graph algorithm (connected components over new-device + anonymous/hidden-proxy transactions): this device profile sits in a component of 3 customers and 2 device profile(s) \u2014 4 transactions, $240, 0 confirmed-fraud closed case(s)",
+        "source": "graph",
+        "ref": "mcp:ring_components(2016-07-01..2016-12-31)",
+        "entity_ids": []
+      },
+      {
+        "claim": "Case memory in the graph: 3 earlier Sentinel investigation(s) on this device profile",
+        "source": "graph",
+        "ref": "mcp:case_memory",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-1204",
+      "CC-1284",
+      "CC-2708",
+      "CC-2808",
+      "CC-3070"
+    ],
+    "summary": "Card not present new device on card C02949: 1 transaction(s), exposure $25.03. Customer denial confirmed the verdict.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-MON-3578858"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 5,
+      "assumed_response": "Pending \u2014 verification sent by the monitoring agent; no reply yet"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "Hold the flagged authorization while verifying"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1/3b: confirm before blocking"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "final": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "Hold the flagged authorization while verifying"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1/3b: confirm before blocking"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "what_changed": "nothing yet \u2014 awaiting the verification reply"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: pending verification \u2014 no report until fraud is confirmed or strongly suspected",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
+  "tool_calls": 20,
+  "tokens": 0,
+  "latency_s": 0.016
+}

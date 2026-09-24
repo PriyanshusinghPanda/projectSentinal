@@ -615,6 +615,7 @@ def graph_pass(mcp, case, answers):
         a["case"]["evidence"].extend(extra)
         a["tool_calls"] += calls
     try:
+        from tg_mcp import write_case
         gid = write_case(mcp, answers[0], f.id, case["card_id"], case["opened_at"])
         for a in answers:
             a["case"]["written_to_graph"] = True

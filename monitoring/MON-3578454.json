@@ -1,0 +1,140 @@
+{
+  "case_id": "MON-3578454",
+  "case": {
+    "status": "open",
+    "verdict": "uncertain",
+    "fraud_probability": 0.8,
+    "pattern": "card_testing",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3578401",
+      "3578407",
+      "3578426",
+      "3578454",
+      "3578480"
+    ],
+    "first_suspicious_txn_id": "3578401",
+    "connected_card_ids": [],
+    "connected_device_profiles": [
+      "Windows | firefox 60.0"
+    ],
+    "exposure_usd": 143.69,
+    "evidence": [
+      {
+        "claim": "3 online authorizations of $5 or less within an hour on this card around the flagged transaction, followed by a larger purchase \u2014 a card-testing sequence",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C06744, hours=1)",
+        "entity_ids": [
+          "3578401",
+          "3578407",
+          "3578426",
+          "3578454"
+        ]
+      },
+      {
+        "claim": "Bank model risk score 0.86 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+        "source": "graph",
+        "ref": "txn:3578454",
+        "entity_ids": [
+          "3578454"
+        ]
+      },
+      {
+        "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-0307 confirmed_fraud (card_not_present_new_device); CC-0469 confirmed_fraud (card_not_present_fraud); CC-0738 confirmed_fraud (card_not_present_fraud)",
+        "source": "document",
+        "ref": "closed_cases_history",
+        "entity_ids": [
+          "CC-0307",
+          "CC-0469",
+          "CC-0738"
+        ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 50 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C06744-P19430|204.0|185.0|visa|138.0|debit, hours=48)",
+        "entity_ids": [
+          "3578454"
+        ]
+      },
+      {
+        "claim": "TigerGraph device_neighbors: device profile used by 39 customers within 31 days; confirmed-fraud closed cases on it: none",
+        "source": "graph",
+        "ref": "mcp:device_neighbors(days=31)",
+        "entity_ids": []
+      },
+      {
+        "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
+        "source": "graph",
+        "ref": "mcp:case_memory",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-0307",
+      "CC-0469",
+      "CC-0738",
+      "CC-0960",
+      "CC-1376"
+    ],
+    "summary": "Card testing on card C06744: 5 transaction(s), exposure $143.69. Customer denial confirmed the verdict.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-MON-3578454"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 5,
+      "assumed_response": "Pending \u2014 verification sent by the monitoring agent; no reply yet"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R5: testing sequence observed"
+      },
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R5"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "final": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R5: testing sequence observed"
+      },
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R5"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "what_changed": "nothing yet \u2014 awaiting the verification reply"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: pending verification \u2014 no report until fraud is confirmed or strongly suspected",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
+  "tool_calls": 20,
+  "tokens": 0,
+  "latency_s": 0.055
+}

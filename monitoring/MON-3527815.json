@@ -1,0 +1,134 @@
+{
+  "case_id": "MON-3527815",
+  "case": {
+    "status": "open",
+    "verdict": "uncertain",
+    "fraud_probability": 0.62,
+    "pattern": "account_takeover",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3527815"
+    ],
+    "first_suspicious_txn_id": "3527815",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 28.08,
+    "evidence": [
+      {
+        "claim": "Mixed in-person and online activity within 48h, device never seen on this card, and 1 match-flag anomalies (M4-M6) on the flagged transaction",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C05690, hours=48)",
+        "entity_ids": [
+          "3527815"
+        ]
+      },
+      {
+        "claim": "Bank model risk score 0.90 on the flagged transaction \u2014 treated as a reason to look, not a verdict",
+        "source": "graph",
+        "ref": "txn:3527815",
+        "entity_ids": [
+          "3527815"
+        ]
+      },
+      {
+        "claim": "Case memory: 5 closed case(s) retrieved \u2014 CC-3180 confirmed_fraud (card_not_present_fraud); CC-3375 confirmed_fraud (card_not_present_fraud); CC-3959 confirmed_fraud (card_not_present_fraud)",
+        "source": "document",
+        "ref": "closed_cases_history",
+        "entity_ids": [
+          "CC-3180",
+          "CC-3375",
+          "CC-3959"
+        ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 5 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C05690-P14051|562.0|150.0|mastercard|102.0|credit, hours=48)",
+        "entity_ids": [
+          "3527815"
+        ]
+      },
+      {
+        "claim": "TigerGraph device_neighbors: device profile used by 253 customers within 31 days; confirmed-fraud closed cases on it: none",
+        "source": "graph",
+        "ref": "mcp:device_neighbors(days=31)",
+        "entity_ids": []
+      },
+      {
+        "claim": "Graph algorithm (connected components over new-device + anonymous/hidden-proxy transactions): this device profile sits in a component of 5 customers and 3 device profile(s) \u2014 9 transactions, $382, 2 confirmed-fraud closed case(s)",
+        "source": "graph",
+        "ref": "mcp:ring_components(2016-07-01..2016-12-31)",
+        "entity_ids": [
+          "CC-3960",
+          "CC-4033"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-3180",
+      "CC-3375",
+      "CC-3959",
+      "CC-4123",
+      "CC-4852"
+    ],
+    "summary": "Account takeover on card C05690: 1 transaction(s), exposure $28.08. Customer denial confirmed the verdict.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-MON-3527815"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 5,
+      "assumed_response": "Pending \u2014 verification sent by the monitoring agent; no reply yet"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "Hold the flagged authorization while verifying"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1/3b: confirm before blocking"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "final": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "Hold the flagged authorization while verifying"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1/3b: confirm before blocking"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability at or above 0.30 and evidence requested"
+      }
+    ],
+    "what_changed": "nothing yet \u2014 awaiting the verification reply"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: pending verification \u2014 no report until fraud is confirmed or strongly suspected",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "Monitoring: investigation paused at the verification step until the reply arrives (policy 5).",
+  "tool_calls": 20,
+  "tokens": 0,
+  "latency_s": 0.016
+}
