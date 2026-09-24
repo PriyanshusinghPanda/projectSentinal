@@ -302,31 +302,43 @@
     "id": "CC-0031",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_new_device",
-    "notes": "Case CC-0031: cardholder C11923 reported unrecognized activity on card C11923-K2. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $20.36 were confirmed fraudulent. Online purchases from a device not previousl"
+    "notes": "Case CC-0031: cardholder C11923 reported unrecognized activity on card C11923-K2. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $20.36 were confirmed fraudulent. Online purchases from a device not previousl",
+    "why": "Same customer"
    },
    {
     "id": "CC-0290",
     "outcome": "confirmed_fraud",
     "pattern": "card_testing",
-    "notes": "Case CC-0290: cardholder C11923 reported unrecognized activity on card C11923-K2. 8 transaction(s) between 2016-07-05 and 2016-07-08 totaling $144.56 were confirmed fraudulent. A run of very small online authorizations f"
+    "notes": "Case CC-0290: cardholder C11923 reported unrecognized activity on card C11923-K2. 8 transaction(s) between 2016-07-05 and 2016-07-08 totaling $144.56 were confirmed fraudulent. A run of very small online authorizations f",
+    "why": "Same customer"
    },
    {
     "id": "CC-1056",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_new_device",
-    "notes": "Case CC-1056: cardholder C11923 reported unrecognized activity on card C11923-K2. 28 transaction(s) between 2016-07-11 and 2016-07-22 totaling $1,557.95 were confirmed fraudulent. Online purchases from a device not previ"
+    "notes": "Case CC-1056: cardholder C11923 reported unrecognized activity on card C11923-K2. 28 transaction(s) between 2016-07-11 and 2016-07-22 totaling $1,557.95 were confirmed fraudulent. Online purchases from a device not previ",
+    "why": "Same customer"
    },
    {
     "id": "CC-2247",
     "outcome": "confirmed_fraud",
     "pattern": "card_testing",
-    "notes": "Case CC-2247: cardholder C11923 reported unrecognized activity on card C11923-K2. 71 transaction(s) between 2016-07-25 and 2016-08-16 totaling $4,886.18 were confirmed fraudulent. A run of very small online authorization"
+    "notes": "Case CC-2247: cardholder C11923 reported unrecognized activity on card C11923-K2. 71 transaction(s) between 2016-07-25 and 2016-08-16 totaling $4,886.18 were confirmed fraudulent. A run of very small online authorization",
+    "why": "Same customer"
    },
    {
     "id": "CC-2673",
     "outcome": "confirmed_fraud",
     "pattern": "card_testing",
-    "notes": "Case CC-2673: cardholder C11923 reported unrecognized activity on card C11923-K2. 33 transaction(s) between 2016-08-18 and 2016-08-27 totaling $1,334.96 were confirmed fraudulent. A run of very small online authorization"
+    "notes": "Case CC-2673: cardholder C11923 reported unrecognized activity on card C11923-K2. 33 transaction(s) between 2016-08-18 and 2016-08-27 totaling $1,334.96 were confirmed fraudulent. A run of very small online authorization",
+    "why": "Same customer"
+   },
+   {
+    "id": "CC-0245",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-0245: cardholder C01175 reported unrecognized activity on card C01175-K1. 1 transaction(s) between 2016-07-08 and 2016-07-08 totaling $50.04 were confirmed fraudulent. Online purchases from a device not previousl",
+    "why": "Similar analyst notes \u00b7 0.52"
    }
   ]
  },
@@ -468,7 +480,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 21,
    "tokens": 0,
-   "latency_s": 3.622
+   "latency_s": 3.444
   },
   "deny": {
    "case_id": "HHG-011",
@@ -607,7 +619,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 14,
    "tokens": 0,
-   "latency_s": 3.622
+   "latency_s": 3.444
   },
   "confirm": {
    "case_id": "HHG-011",
@@ -742,7 +754,7 @@
    "stop_reason": "Verification settled the question (policy 6).",
    "tool_calls": 14,
    "tokens": 0,
-   "latency_s": 3.622
+   "latency_s": 3.444
   }
  }
 }

@@ -1,4 +1,4 @@
-import { Shell } from "@/components/Shell";
+import { PageHeader, Shell } from "@/components/Shell";
 import { Card, Label, PanelHeader } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { insight } from "@/lib/insights";
@@ -22,12 +22,9 @@ export default function Evaluation() {
   ];
   return (
     <Shell source="Backtest · 5,565 closed cases" crumbs={<span>Evaluation</span>}>
-      <div className="mb-6 border-b border-border pb-5">
-        <h1 className="font-serif text-[34px] leading-tight">Evaluation</h1>
-        <p className="mt-1 max-w-3xl text-[13px] text-muted-foreground">
-          The agent was replayed on every closed investigation from July to October — whose outcomes are known — with case memory cut off at each case&apos;s open time, so an alert can never retrieve itself. Every answer file is also audited against Fraud Policy v1.0.
-        </p>
-      </div>
+      <PageHeader eyebrow="Governance" title="Evaluation">
+        The agent was replayed on every closed investigation from July to October — whose outcomes are known — with case memory cut off at each case&apos;s open time, so an alert can never retrieve itself. Every answer file is also audited against Fraud Policy v1.0.
+      </PageHeader>
       <div className="mb-4 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {[
           ["Closed cases replayed", b ? b.cases.toLocaleString("en-US") : "—"],

@@ -109,16 +109,39 @@
   ],
   "similar": [
    {
-    "id": "CC-0009",
-    "outcome": "cleared",
-    "pattern": "none",
-    "notes": "Case CC-0009: model scored a $149.98 transaction at 0.84. Cardholder confirmed the purchase from a new phone. Device added to profile. Alert cleared."
-   },
-   {
     "id": "CC-0873",
     "outcome": "cleared",
     "pattern": "none",
-    "notes": "Case CC-0873: model scored a $50.05 transaction at 0.93. Cardholder confirmed travel to the billing region in question. Alert cleared."
+    "notes": "Case CC-0873: model scored a $50.05 transaction at 0.93. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Same customer"
+   },
+   {
+    "id": "CC-0009",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0009: model scored a $149.98 transaction at 0.84. Cardholder confirmed the purchase from a new phone. Device added to profile. Alert cleared.",
+    "why": "Same pattern (none)"
+   },
+   {
+    "id": "CC-0249",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-0249: cardholder C01909 reported unrecognized activity on card C01909-K2. 3 transaction(s) between 2016-07-08 and 2016-07-08 totaling $74.92 were confirmed fraudulent. Online purchases from a device not previousl",
+    "why": "Similar analyst notes \u00b7 0.44"
+   },
+   {
+    "id": "CC-0502",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-0502: cardholder C02882 reported unrecognized activity on card C02882-K1. 1 transaction(s) between 2016-07-14 and 2016-07-14 totaling $449.97 were confirmed fraudulent. Online purchases from a device not previous",
+    "why": "Similar analyst notes \u00b7 0.44"
+   },
+   {
+    "id": "CC-0660",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-0660: cardholder C04072 reported unrecognized activity on card C04072-K2. 4 transaction(s) between 2016-07-16 and 2016-07-16 totaling $899.97 were confirmed fraudulent. Online purchases from a device not previous",
+    "why": "Similar analyst notes \u00b7 0.44"
    }
   ]
  },
@@ -256,7 +279,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 18,
    "tokens": 0,
-   "latency_s": 2.664
+   "latency_s": 2.84
   },
   "deny": {
    "case_id": "HHG-010",
@@ -409,7 +432,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 12,
    "tokens": 0,
-   "latency_s": 2.664
+   "latency_s": 2.84
   },
   "confirm": {
    "case_id": "HHG-010",
@@ -544,7 +567,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 11,
    "tokens": 0,
-   "latency_s": 2.664
+   "latency_s": 2.84
   }
  }
 }

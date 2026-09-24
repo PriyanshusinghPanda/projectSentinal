@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Check, ShieldCheck, User, X } from "lucide-react";
-import { Shell } from "@/components/Shell";
-import { Card, PanelHeader, RouteBadge, cn, fmtUsd } from "@/components/ui";
+import { PageHeader, Shell } from "@/components/Shell";
+import { Card, PanelHeader, RouteBadge, actionLabel, cn, fmtUsd } from "@/components/ui";
 
 type Item = {
   caseId: string; action: string; route: "L1" | "L2"; reason: string; exposure: number; verdict: string; pattern: string;
@@ -32,13 +32,7 @@ export default function Approvals() {
 
   return (
     <Shell source="HHGOA_IEEE · 20 exam cases" crumbs={<span>Approvals</span>}>
-      <div className="mb-6 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-5">
-        <div>
-          <h1 className="font-serif text-[34px] leading-tight">Approvals</h1>
-          <p className="mt-1 max-w-2xl text-[13px] text-muted-foreground">
-            The agent may only execute actions on the <span className="font-mono">auto</span> route. Everything below waits for a person, as Fraud Policy v1.0 §2 requires: declines and blocks up to $2,500 go to a team lead (L1); larger blocks, blocking all cards, and regulatory reports go to a fraud manager (L2).
-          </p>
-        </div>
+      <PageHeader eyebrow="Investigate" title="Approvals" actions={
         <div className="flex gap-2">
           {(["pending", "decided", "all"] as const).map((f) => (
             <button key={f} onClick={() => setFilter(f)} className={cn("h-8 rounded-md border border-border px-3 text-xs capitalize text-muted-foreground hover:bg-elevated", filter === f && "bg-elevated text-foreground")}>
@@ -47,7 +41,9 @@ export default function Approvals() {
             </button>
           ))}
         </div>
-      </div>
+      }>
+        The agent may only execute actions on the <span className="font-mono">auto</span> route. Everything below waits for a person, as Fraud Policy v1.0 §2 requires: declines and blocks up to $2,500 go to a team lead (L1); larger blocks, blocking all cards, and regulatory reports go to a fraud manager (L2).
+      </PageHeader>
 
       <div className="mb-5 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {[
@@ -78,7 +74,8 @@ export default function Approvals() {
               {it.caseId}
             </Link>
             <div>
-              <div className="font-mono text-[13px] font-medium">{it.action}</div>
+              <div className="text-[13.5px] font-medium">{actionLabel(it.action)}</div>
+              <div className="font-mono text-[10.5px] text-subtle">{it.action}</div>
               <div className="mt-1">
                 <RouteBadge route={it.route} />
               </div>

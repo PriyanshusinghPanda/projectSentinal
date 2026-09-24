@@ -5,7 +5,7 @@ import type { Assessment } from "@/lib/types";
 import { riskColor } from "./ui";
 
 /** 180° risk arc with inner confidence arc. Animates from previous to new value when evidence arrives. */
-export function Gauge({ a, prev }: { a: Assessment | null; prev?: Assessment | null }) {
+export function Gauge({ a, prev, showConfidence = true }: { a: Assessment | null; prev?: Assessment | null; showConfidence?: boolean }) {
   const risk = a?.riskScore ?? 0;
   const conf = a?.confidence ?? 0;
   const mv = useMotionValue(prev?.riskScore ?? 0);
@@ -24,8 +24,8 @@ export function Gauge({ a, prev }: { a: Assessment | null; prev?: Assessment | n
       <svg viewBox="0 0 180 100" className="w-[200px]">
         <path d={arc(76)} fill="none" stroke="hsl(var(--muted))" strokeWidth={10} strokeLinecap="round" />
         <motion.path d={arc(76)} fill="none" stroke={color} strokeWidth={10} strokeLinecap="round" initial={{ pathLength: prev?.riskScore ?? 0 }} animate={{ pathLength: Math.max(0.001, risk) }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} />
-        <path d={arc(60)} fill="none" stroke="hsl(var(--muted))" strokeWidth={3} strokeLinecap="round" />
-        <motion.path d={arc(60)} fill="none" stroke="hsl(var(--confidence))" strokeWidth={3} strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: Math.max(0.001, conf) }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} />
+        {showConfidence && <path d={arc(60)} fill="none" stroke="hsl(var(--muted))" strokeWidth={3} strokeLinecap="round" />}
+        {showConfidence && <motion.path d={arc(60)} fill="none" stroke="hsl(var(--confidence))" strokeWidth={3} strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: Math.max(0.001, conf) }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} />}
       </svg>
       <div className="-mt-12 flex items-baseline gap-1">
         <motion.span className="font-mono text-5xl font-semibold tabular-nums tracking-[-0.04em]" style={{ color }}>
@@ -38,10 +38,10 @@ export function Gauge({ a, prev }: { a: Assessment | null; prev?: Assessment | n
         )}
       </div>
       <div className="mt-1 flex gap-4 text-xs text-muted-foreground">
-        <span>Fraud risk</span>
-        <span className="flex items-center gap-1">
+        <span>Fraud probability</span>
+        {showConfidence && <span className="flex items-center gap-1">
           <span className="size-1.5 rounded-full bg-confidence" /> Confidence <span className="font-mono tabular-nums text-foreground">{a ? Math.round(conf * 100) + "%" : "—"}</span>
-        </span>
+        </span>}
       </div>
     </div>
   );

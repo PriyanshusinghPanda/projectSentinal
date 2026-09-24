@@ -110,3 +110,13 @@ export const riskColor = (band: Assessment["band"]) =>
 export const fmtUsd = (n: number) => "$" + n.toLocaleString("en-US", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
 
 export const TRIGGER_LABEL = { risk_score: "Risk score", customer_report: "Customer report", analyst_request: "Analyst request" } as const;
+
+/** Policy action id → readable label (the exact id stays in the answer files and tooltips). */
+export const actionLabel = (a: string) => a.charAt(0) + a.slice(1).toLowerCase().replace(/_/g, " ");
+
+/** Compact approval-route chip for dense tables. */
+export function RouteChip({ route }: { route: ApprovalRoute }) {
+  const cls = route === "L2" || route === "senior_compliance" ? "bg-route-senior/12 text-route-senior" : route === "L1" || route === "analyst" ? "bg-route-analyst/12 text-route-analyst" : "bg-route-auto/12 text-route-auto";
+  const label = route === "senior_compliance" ? "L2" : route === "analyst" ? "L1" : route;
+  return <span className={cn("shrink-0 rounded px-1.5 py-0.5 font-mono text-[10.5px] font-semibold", cls)}>{label}</span>;
+}

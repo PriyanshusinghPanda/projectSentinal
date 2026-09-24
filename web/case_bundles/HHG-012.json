@@ -233,13 +233,29 @@
     "id": "CC-0003",
     "outcome": "cleared",
     "pattern": "none",
-    "notes": "Case CC-0003: model scored a $442.92 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared."
+    "notes": "Case CC-0003: model scored a $442.92 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Same customer"
    },
    {
     "id": "CC-2370",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_fraud",
-    "notes": "Case CC-2370: cardholder C05876 reported unrecognized activity on card C05876-K2. 2 transaction(s) between 2016-08-19 and 2016-08-19 totaling $149.99 were confirmed fraudulent. Online purchases inconsistent with the card"
+    "notes": "Case CC-2370: cardholder C05876 reported unrecognized activity on card C05876-K2. 2 transaction(s) between 2016-08-19 and 2016-08-19 totaling $149.99 were confirmed fraudulent. Online purchases inconsistent with the card",
+    "why": "Same customer"
+   },
+   {
+    "id": "CC-0021",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0021: model scored a $50.09 transaction at 0.86. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Similar analyst notes \u00b7 0.77"
+   },
+   {
+    "id": "CC-0023",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0023: model scored a $24.91 transaction at 0.94. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Similar analyst notes \u00b7 0.77"
    }
   ]
  },
@@ -378,7 +394,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 17,
    "tokens": 0,
-   "latency_s": 2.399
+   "latency_s": 2.312
   },
   "deny": {
    "case_id": "HHG-012",
@@ -516,7 +532,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 10,
    "tokens": 0,
-   "latency_s": 2.399
+   "latency_s": 2.312
   },
   "confirm": {
    "case_id": "HHG-012",
@@ -652,7 +668,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 10,
    "tokens": 0,
-   "latency_s": 2.399
+   "latency_s": 2.312
   }
  }
 }

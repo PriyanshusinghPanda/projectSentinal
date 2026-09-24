@@ -167,25 +167,43 @@
     "id": "CC-2011",
     "outcome": "confirmed_fraud",
     "pattern": "out_of_region_use",
-    "notes": "Case CC-2011: cardholder C07987 reported unrecognized activity on card C07987-K2. 5 transaction(s) between 2016-08-10 and 2016-08-11 totaling $3,059.89 were confirmed fraudulent. Card-present use in a billing region the "
+    "notes": "Case CC-2011: cardholder C07987 reported unrecognized activity on card C07987-K2. 5 transaction(s) between 2016-08-10 and 2016-08-11 totaling $3,059.89 were confirmed fraudulent. Card-present use in a billing region the ",
+    "why": "Same customer"
    },
    {
     "id": "CC-2087",
     "outcome": "cleared",
     "pattern": "none",
-    "notes": "Case CC-2087: model scored a $150.00 transaction at 0.94. Cardholder confirmed travel to the billing region in question. Alert cleared."
+    "notes": "Case CC-2087: model scored a $150.00 transaction at 0.94. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Same customer"
    },
    {
     "id": "CC-2860",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_fraud",
-    "notes": "Case CC-2860: cardholder C07987 reported unrecognized activity on card C07987-K2. 1 transaction(s) between 2016-08-31 and 2016-08-31 totaling $149.92 were confirmed fraudulent. Online purchases inconsistent with the card"
+    "notes": "Case CC-2860: cardholder C07987 reported unrecognized activity on card C07987-K2. 1 transaction(s) between 2016-08-31 and 2016-08-31 totaling $149.92 were confirmed fraudulent. Online purchases inconsistent with the card",
+    "why": "Same customer"
    },
    {
     "id": "CC-5026",
     "outcome": "confirmed_fraud",
     "pattern": "out_of_region_use",
-    "notes": "Case CC-5026: cardholder C07987 reported unrecognized activity on card C07987-K2. 3 transaction(s) between 2016-10-18 and 2016-10-18 totaling $309.86 were confirmed fraudulent. Card-present use in a billing region the ca"
+    "notes": "Case CC-5026: cardholder C07987 reported unrecognized activity on card C07987-K2. 3 transaction(s) between 2016-10-18 and 2016-10-18 totaling $309.86 were confirmed fraudulent. Card-present use in a billing region the ca",
+    "why": "Same customer"
+   },
+   {
+    "id": "CC-3409",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-3409: cardholder C00594 reported unrecognized activity on card C00594-K1. 1 transaction(s) between 2016-09-12 and 2016-09-12 totaling $200.09 were confirmed fraudulent. Online purchases inconsistent with the card",
+    "why": "Similar analyst notes \u00b7 0.42"
+   },
+   {
+    "id": "CC-2757",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-2757: cardholder C05958 reported unrecognized activity on card C05958-K1. 1 transaction(s) between 2016-08-28 and 2016-08-28 totaling $200.02 were confirmed fraudulent. Online purchases from a device not previous",
+    "why": "Similar analyst notes \u00b7 0.39"
    }
   ]
  },
@@ -312,7 +330,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 2.835
+   "latency_s": 2.846
   },
   "deny": {
    "case_id": "HHG-019",
@@ -440,7 +458,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 2.835
+   "latency_s": 2.846
   },
   "confirm": {
    "case_id": "HHG-019",
@@ -564,7 +582,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 2.835
+   "latency_s": 2.846
   }
  }
 }

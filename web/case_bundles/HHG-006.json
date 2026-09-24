@@ -195,19 +195,22 @@
     "id": "CC-3748",
     "outcome": "confirmed_fraud",
     "pattern": "undocumented",
-    "notes": "Case CC-3748: cardholder C12267 reported four online purchases within forty minutes, each just under $500, none of which they made. Amounts appear chosen to stay under a $500 authorization threshold. Pattern not matched "
+    "notes": "Case CC-3748: cardholder C12267 reported four online purchases within forty minutes, each just under $500, none of which they made. Amounts appear chosen to stay under a $500 authorization threshold. Pattern not matched ",
+    "why": "Similar analyst notes \u00b7 0.40"
    },
    {
     "id": "CC-3841",
     "outcome": "confirmed_fraud",
     "pattern": "undocumented",
-    "notes": "Case CC-3841: cardholder C01099 reported four online purchases within forty minutes, each just under $500, none of which they made. Amounts appear chosen to stay under a $500 authorization threshold. Pattern not matched "
+    "notes": "Case CC-3841: cardholder C01099 reported four online purchases within forty minutes, each just under $500, none of which they made. Amounts appear chosen to stay under a $500 authorization threshold. Pattern not matched ",
+    "why": "Similar analyst notes \u00b7 0.40"
    },
    {
     "id": "CC-3907",
     "outcome": "confirmed_fraud",
     "pattern": "undocumented",
-    "notes": "Case CC-3907: cardholder C03060 reported four online purchases within forty minutes, each just under $500, none of which they made. Amounts appear chosen to stay under a $500 authorization threshold. Pattern not matched "
+    "notes": "Case CC-3907: cardholder C03060 reported four online purchases within forty minutes, each just under $500, none of which they made. Amounts appear chosen to stay under a $500 authorization threshold. Pattern not matched ",
+    "why": "Similar analyst notes \u00b7 0.40"
    }
   ]
  },
@@ -370,7 +373,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 19,
    "tokens": 0,
-   "latency_s": 2.92
+   "latency_s": 3.152
   },
   "deny": {
    "case_id": "HHG-006",
@@ -530,7 +533,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 12,
    "tokens": 0,
-   "latency_s": 2.92
+   "latency_s": 3.152
   },
   "confirm": {
    "case_id": "HHG-006",
@@ -669,7 +672,7 @@
    "stop_reason": "Verification settled the question (policy 6).",
    "tool_calls": 12,
    "tokens": 0,
-   "latency_s": 2.92
+   "latency_s": 3.152
   }
  }
 }

@@ -9,7 +9,9 @@ import type { FraudCase, AgentId, DecisionLogEntry, Dispute, Finding, Investigat
 import { Shell } from "@/components/Shell";
 import { EntityGraph } from "@/components/EntityGraph";
 import { Gauge } from "@/components/Gauge";
-import { AGENTS, AgentAvatar, Card, Label, PanelHeader, RiskBadge, RouteBadge, StatusBadge, TRIGGER_LABEL, cn, fmtUsd } from "@/components/ui";
+import { AGENTS, AgentAvatar, Card, Label, PanelHeader, RiskBadge, RouteBadge, StatusBadge, TRIGGER_LABEL, actionLabel, cn, fmtUsd } from "@/components/ui";
+
+const pretty = (l: string) => (/^[A-Z_]+$/.test(l) ? actionLabel(l) : l);
 
 type TimelineItem =
   | { k: "status"; phase: string; message: string }
@@ -281,13 +283,18 @@ export default function CasePage() {
             <PanelHeader title="Transactions" right={<span className="font-mono text-xs font-normal text-muted-foreground">{c.transactions.length}</span>} />
             <div>
               {c.transactions.map((t) => (
-                <div key={t.id} className={cn("flex h-10 items-center gap-3 border-b border-border/60 px-4 last:border-0", t.subject && "bg-elevated")}>
-                  <span className="w-14 font-mono text-[11px] text-subtle">{t.ts}</span>
-                  <span className="min-w-0 flex-1 truncate text-xs">{t.merchant}</span>
-                  <span className="font-mono text-xs tabular-nums">{fmtUsd(t.amount)}</span>
-                  <span className={cn("w-8 text-right font-mono text-[11px] tabular-nums", t.riskScore >= 0.7 ? "text-risk-critical" : t.riskScore >= 0.5 ? "text-risk-high" : "text-muted-foreground")}>
-                    {t.riskScore.toFixed(2)}
-                  </span>
+                <div key={t.id} className={cn("border-b border-border/60 px-4 py-2 last:border-0", t.subject && "bg-accent/5")}>
+                  <div className="flex items-center gap-3">
+                    <span className="w-[74px] shrink-0 font-mono text-[11px] text-subtle">{t.ts}</span>
+                    <span className="min-w-0 flex-1 truncate text-[12.5px]">{t.channel ? (t.channel === "online" ? "Online" : "In person") : t.merchant}</span>
+                    <span className="font-mono text-[12.5px] tabular-nums">{fmtUsd(t.amount)}</span>
+                  </div>
+                  <div className="mt-1.5 flex flex-wrap items-center gap-1.5 whitespace-nowrap text-[10.5px]">
+                    {t.subject && <span className="rounded bg-accent/15 px-1.5 py-px font-medium text-accent">flagged</span>}
+                    {t.region && <span className="rounded bg-muted px-1.5 py-px text-muted-foreground">region {t.region}</span>}
+                    {t.deviceNew && <span className="rounded bg-risk-medium/15 px-1.5 py-px text-risk-medium">new device</span>}
+                    <span className={cn("ml-auto font-mono tabular-nums", t.riskScore >= 0.7 ? "text-risk-critical" : t.riskScore >= 0.5 ? "text-risk-high" : "text-subtle")}>model {t.riskScore.toFixed(2)}</span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -312,7 +319,7 @@ export default function CasePage() {
 
           <Card className="flex flex-col">
             <div className="flex h-11 items-center gap-1 border-b border-border px-2">
-              {((mode === "dataset" ? ["timeline", "evidence", "file", "sar", "log"] : ["timeline", "evidence", "sar", "log"]) as Tab[]).map((t) => (
+              {((mode === "dataset" ? ["timeline", "file", "sar", "log"] : ["timeline", "evidence", "sar", "log"]) as Tab[]).map((t) => (
                 <button key={t} onClick={() => setTab(t)} className={cn("h-7 rounded-md px-3 text-[13px] capitalize text-muted-foreground hover:text-foreground", tab === t && "bg-elevated text-foreground")}>
                   {t === "sar" ? "SAR" : t === "timeline" ? "Agent timeline" : t === "evidence" ? `Findings (${findings.length})` : t === "file" ? "Case file" : `Decision log (${log.length})`}
                 </button>
@@ -336,7 +343,13 @@ export default function CasePage() {
         {/* RIGHT */}
         <div className="space-y-4 xl:col-span-3">
           <Card className={cn("py-5", current?.assessment.band === "critical" && "border-risk-critical/40")}>
-            <Gauge a={current?.assessment ?? null} prev={post ? pre?.assessment : null} />
+            <Gauge a={current?.assessment ?? null} prev={post ? pre?.assessment : null} showConfidence={mode !== "dataset"} />
+            {mode === "dataset" && pre && (
+              <div className="mt-3 flex justify-center gap-4 text-[11.5px] text-muted-foreground">
+                <span>Before evidence <span className="font-mono text-foreground">{pre.assessment.riskScore.toFixed(2)}</span></span>
+                {post && <span>After <span className="font-mono text-foreground">{post.assessment.riskScore.toFixed(2)}</span></span>}
+              </div>
+            )}
             {current && (
               <div className="mt-4 flex justify-center">
                 <span className={cn("rounded-md px-2 py-1 text-[11px] font-medium", current.assessment.enoughEvidence ? "bg-risk-low/10 text-risk-low" : "bg-risk-medium/10 text-risk-medium")}>
@@ -362,7 +375,10 @@ export default function CasePage() {
                     className={cn("rounded-xl border border-border bg-card p-3", i === 0 && "border-accent/50 bg-accent/5")}
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <div className="text-[13px] font-medium">{a.label}</div>
+                      <div>
+                        <div className="text-[13.5px] font-medium">{pretty(a.label)}</div>
+                        {pretty(a.label) !== a.label && <div className="font-mono text-[10.5px] text-subtle">{a.label}</div>}
+                      </div>
                       <RouteBadge route={a.approval} />
                     </div>
                     <div className="mt-1 text-xs text-muted-foreground">{a.rationale}</div>
@@ -381,7 +397,7 @@ export default function CasePage() {
                   <summary className="cursor-pointer">Before evidence ({pre.actions.length} actions)</summary>
                   <ul className="mt-2 space-y-1">
                     {pre.actions.map((a) => (
-                      <li key={a.id} className="flex justify-between gap-2"><span>{a.label}</span><RouteBadge route={a.approval} /></li>
+                      <li key={a.id} className="flex justify-between gap-2"><span>{pretty(a.label)}</span><RouteBadge route={a.approval} /></li>
                     ))}
                   </ul>
                 </details>
@@ -391,7 +407,7 @@ export default function CasePage() {
 
           {current && (
             <Card>
-              <PanelHeader title="Why" right={<span className="text-[11px] font-normal text-muted-foreground">{narr[current.stage] ? "Claude · grounded" : "Deterministic"}</span>} />
+              <PanelHeader title="Rationale" right={<span className="text-[11px] font-normal text-muted-foreground">{narr[current.stage] ? "Claude · grounded in the evidence" : "Fraud Policy v1.0"}</span>} />
               <p className="p-4 text-[13px] leading-5 text-foreground/90">{narr[current.stage] ?? current.explanation}</p>
             </Card>
           )}
@@ -406,10 +422,11 @@ export default function CasePage() {
                     <span className="font-mono text-xs">{s.id}</span>
                     <span className="flex items-center gap-2">
                       <span className={cn("text-[11px]", s.outcome === "confirmed_fraud" ? "text-risk-critical" : "text-risk-low")}>{s.outcome.replace("_", " ")}</span>
-                      <span className="font-mono text-xs tabular-nums text-confidence">{Math.round(s.similarity * 100)}%</span>
+                      {!s.why && <span className="font-mono text-xs tabular-nums text-confidence">{Math.round(s.similarity * 100)}%</span>}
                     </span>
                   </div>
-                  <div className="mt-1 text-xs text-muted-foreground">{s.summary}</div>
+                  {s.why && <div className="mt-1 text-[11px] font-medium text-accent">{s.why}</div>}
+                  <div className="mt-1 line-clamp-3 text-xs text-muted-foreground">{s.summary}</div>
                 </div>
               ))}
             </div>
@@ -490,7 +507,7 @@ function FindingCard({ f }: { f: Finding }) {
       <div className="flex items-start justify-between gap-3">
         <div className="text-[13px] font-medium">{f.title}</div>
         <span className={cn("shrink-0 font-mono text-[11px] tabular-nums", dir === "up" ? "text-risk-critical" : dir === "down" ? "text-risk-low" : "text-muted-foreground")}>
-          {dir === "up" ? "▲" : dir === "down" ? "▼" : "●"} {f.logOdds > 0 ? "+" : ""}{f.logOdds.toFixed(2)}
+          {dir === "up" ? "supports fraud" : dir === "down" ? "supports legitimate" : "context"}
         </span>
       </div>
       <div className="mt-0.5 text-xs text-muted-foreground">{f.detail}</div>
@@ -503,7 +520,7 @@ function EvidencePanel({ pre, post, running, outcomes, chosen, onChoose }: { pre
   const req = pre?.evidenceRequest;
   return (
     <Card className={cn(req && !post && !running && "border-risk-medium/40")}>
-      <PanelHeader title="Additional evidence" right={req && <span className="font-mono text-[11px] font-normal text-muted-foreground">gain {req.expectedGain.toFixed(2)}</span>} />
+      <PanelHeader title="Additional evidence" />
       <div className="p-4">
         {!pre && <div className="text-xs text-muted-foreground">Waiting for assessment…</div>}
         {pre && !req && (
@@ -516,7 +533,8 @@ function EvidencePanel({ pre, post, running, outcomes, chosen, onChoose }: { pre
           <>
             <div className="mb-1 text-[13px] font-medium">{req.label}</div>
             <div className="mb-3 text-xs text-muted-foreground">{req.why}</div>
-            <Label className="mb-2">{post ? "Evidence received" : "Simulate response"}</Label>
+            <Label className="mb-2">{post ? "Evidence received" : "Simulate the reply"}</Label>
+            {!post && <p className="-mt-1 mb-2 text-[11.5px] leading-4 text-subtle">Replies aren&apos;t in the dataset (policy §5) — pick one to see the recommendation change.</p>}
             <div className="space-y-1.5">
               {outcomes.map((o) => (
                 <button

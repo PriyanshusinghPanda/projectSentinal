@@ -201,31 +201,43 @@
     "id": "CC-0497",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_fraud",
-    "notes": "Case CC-0497: cardholder C09791 reported unrecognized activity on card C09791-K1. 2 transaction(s) between 2016-07-13 and 2016-07-13 totaling $123.30 were confirmed fraudulent. Online purchases inconsistent with the card"
+    "notes": "Case CC-0497: cardholder C09791 reported unrecognized activity on card C09791-K1. 2 transaction(s) between 2016-07-13 and 2016-07-13 totaling $123.30 were confirmed fraudulent. Online purchases inconsistent with the card",
+    "why": "Same device profile"
    },
    {
     "id": "CC-2540",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_new_device",
-    "notes": "Case CC-2540: cardholder C03095 reported unrecognized activity on card C03095-K2. 1 transaction(s) between 2016-08-23 and 2016-08-23 totaling $7.22 were confirmed fraudulent. Online purchases from a device not previously"
+    "notes": "Case CC-2540: cardholder C03095 reported unrecognized activity on card C03095-K2. 1 transaction(s) between 2016-08-23 and 2016-08-23 totaling $7.22 were confirmed fraudulent. Online purchases from a device not previously",
+    "why": "Same device profile"
    },
    {
     "id": "CC-2675",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_new_device",
-    "notes": "Case CC-2675: cardholder C09791 reported unrecognized activity on card C09791-K1. 1 transaction(s) between 2016-08-27 and 2016-08-27 totaling $87.85 were confirmed fraudulent. Online purchases from a device not previousl"
+    "notes": "Case CC-2675: cardholder C09791 reported unrecognized activity on card C09791-K1. 1 transaction(s) between 2016-08-27 and 2016-08-27 totaling $87.85 were confirmed fraudulent. Online purchases from a device not previousl",
+    "why": "Same device profile"
    },
    {
     "id": "CC-2694",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_new_device",
-    "notes": "Case CC-2694: cardholder C01521 reported unrecognized activity on card C01521-K2. 11 transaction(s) between 2016-08-19 and 2016-08-26 totaling $574.52 were confirmed fraudulent. Online purchases from a device not previou"
+    "notes": "Case CC-2694: cardholder C01521 reported unrecognized activity on card C01521-K2. 11 transaction(s) between 2016-08-19 and 2016-08-26 totaling $574.52 were confirmed fraudulent. Online purchases from a device not previou",
+    "why": "Same device profile"
    },
    {
     "id": "CC-2732",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_new_device",
-    "notes": "Case CC-2732: cardholder C06899 reported unrecognized activity on card C06899-K1. 2 transaction(s) between 2016-08-27 and 2016-08-28 totaling $110.90 were confirmed fraudulent. Online purchases from a device not previous"
+    "notes": "Case CC-2732: cardholder C06899 reported unrecognized activity on card C06899-K1. 2 transaction(s) between 2016-08-27 and 2016-08-28 totaling $110.90 were confirmed fraudulent. Online purchases from a device not previous",
+    "why": "Same device profile"
+   },
+   {
+    "id": "CC-0249",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-0249: cardholder C01909 reported unrecognized activity on card C01909-K2. 3 transaction(s) between 2016-07-08 and 2016-07-08 totaling $74.92 were confirmed fraudulent. Online purchases from a device not previousl",
+    "why": "Similar analyst notes \u00b7 0.56"
    }
   ]
  },
@@ -367,7 +379,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 21,
    "tokens": 0,
-   "latency_s": 3.353
+   "latency_s": 3.141
   },
   "deny": {
    "case_id": "HHG-016",
@@ -506,7 +518,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 14,
    "tokens": 0,
-   "latency_s": 3.353
+   "latency_s": 3.141
   },
   "confirm": {
    "case_id": "HHG-016",
@@ -641,7 +653,7 @@
    "stop_reason": "Verification settled the question (policy 6).",
    "tool_calls": 14,
    "tokens": 0,
-   "latency_s": 3.353
+   "latency_s": 3.141
   }
  }
 }

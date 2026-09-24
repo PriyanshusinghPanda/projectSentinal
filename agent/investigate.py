@@ -17,7 +17,7 @@ the assumption in evidence_requests.
   python3 slim.py            # once: caches the needed columns (~10s)
   python3 investigate.py     # writes ../cases/*.json
 """
-import csv, json, os, pickle, statistics, sys, time
+import csv, json, os, pickle, re, statistics, sys, time
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta
 
@@ -85,6 +85,7 @@ for v in BY_DEV.values():
 DEV_CUSTS = {p: len({x.cust for x in v}) for p, v in BY_DEV.items()}
 
 CLOSED = list(csv.DictReader(open(os.path.join(DATA, "closed_cases_history.csv"))))
+CLOSED_BY_ID = {c["case_id"]: c for c in CLOSED}
 CC_BY_TXN = defaultdict(list)
 CC_BY_CUST = defaultdict(list)
 for c in CLOSED:
@@ -655,7 +656,34 @@ def run_case(case, mcp=None):
         graph_pass(mcp, case, [a, variants["deny"], variants["confirm"]])
     for v in variants.values():
         v["latency_s"] = round(time.time() - t0, 3)
+    ui["similar"] = similar_with_reasons(case, a)
     return a, {"context": ui, "variants": variants}
+
+
+def similar_with_reasons(case, answer):
+    """Why each retrieved precedent is similar — shown in the console instead of a bare score."""
+    f = TX[case["flagged_txn_id"]]
+    vec = {}
+    for e in answer["case"]["evidence"]:
+        if e["ref"].startswith("mcp:similar_notes"):
+            for cid, sim in re.findall(r"(CC-\d+) — [^;]*?\(similarity ([0-9.]+)\)", e["claim"]):
+                vec[cid] = float(sim)
+    dev_cases = {c["case_id"] for x in BY_DEV.get(f.dev, []) for c in CC_BY_TXN.get(x.id, [])} if f.dev else set()
+    out = []
+    for cid in answer["case"]["similar_prior_cases"]:
+        c = CLOSED_BY_ID.get(cid)
+        if not c:
+            continue
+        if c["customer_id"] == case["customer_id"]:
+            why = "Same customer"
+        elif cid in dev_cases:
+            why = "Same device profile"
+        elif cid in vec:
+            why = f"Similar analyst notes · {vec[cid]:.2f}"
+        else:
+            why = f"Same pattern ({c['pattern'].replace('_', ' ')})"
+        out.append({"id": cid, "outcome": c["outcome"], "pattern": c["pattern"], "notes": c["analyst_notes"][:220], "why": why})
+    return out
 
 
 def write_bundle(case_id, bundle):

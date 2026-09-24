@@ -102,19 +102,29 @@
     "id": "CC-0001",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_fraud",
-    "notes": "Case CC-0001: cardholder C00259 reported unrecognized activity on card C00259-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $155.43 were confirmed fraudulent. Online purchases inconsistent with the card"
+    "notes": "Case CC-0001: cardholder C00259 reported unrecognized activity on card C00259-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $155.43 were confirmed fraudulent. Online purchases inconsistent with the card",
+    "why": "Similar analyst notes \u00b7 0.46"
    },
    {
     "id": "CC-0007",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_fraud",
-    "notes": "Case CC-0007: cardholder C00732 reported unrecognized activity on card C00732-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $99.91 were confirmed fraudulent. Online purchases inconsistent with the cardh"
+    "notes": "Case CC-0007: cardholder C00732 reported unrecognized activity on card C00732-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $99.91 were confirmed fraudulent. Online purchases inconsistent with the cardh",
+    "why": "Same pattern (card not present fraud)"
    },
    {
     "id": "CC-0012",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_fraud",
-    "notes": "Case CC-0012: cardholder C07220 reported unrecognized activity on card C07220-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $123.52 were confirmed fraudulent. Online purchases inconsistent with the card"
+    "notes": "Case CC-0012: cardholder C07220 reported unrecognized activity on card C07220-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $123.52 were confirmed fraudulent. Online purchases inconsistent with the card",
+    "why": "Similar analyst notes \u00b7 0.46"
+   },
+   {
+    "id": "CC-0052",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-0052: cardholder C11595 reported unrecognized activity on card C11595-K1. 1 transaction(s) between 2016-07-03 and 2016-07-03 totaling $52.36 were confirmed fraudulent. Online purchases inconsistent with the cardh",
+    "why": "Similar analyst notes \u00b7 0.46"
    }
   ]
  },
@@ -250,7 +260,7 @@
    "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
    "tool_calls": 18,
    "tokens": 0,
-   "latency_s": 2.62
+   "latency_s": 2.619
   },
   "deny": {
    "case_id": "HHG-009",
@@ -383,7 +393,7 @@
    "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
    "tool_calls": 11,
    "tokens": 0,
-   "latency_s": 2.62
+   "latency_s": 2.619
   },
   "confirm": {
    "case_id": "HHG-009",
@@ -504,7 +514,7 @@
    "stop_reason": "Verification settled the question (policy 6).",
    "tool_calls": 10,
    "tokens": 0,
-   "latency_s": 2.62
+   "latency_s": 2.619
   }
  }
 }

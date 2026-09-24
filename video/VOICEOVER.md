@@ -22,7 +22,7 @@ Record one take per block (or one continuous take with a short pause between blo
 > The landing page explains the method. The console holds the twenty exam cases, sorted by assessed fraud probability. Let's open HHG-005 — a hundred-dollar online purchase the model scored at point five four.
 
 **6 · HHG-005 — 1:15–1:45** (~70 words)
-> The specialists query the graph: the card's history fits, but the device is new — and three closed cases on that device profile were confirmed fraud. The Challenger pushes back: people buy new phones. On one weak signal, the probability is point three five, so policy rule R1 says verify before blocking. The customer denies the purchase. Probability jumps to point eight eight, and the action becomes block the card — routed to a team lead, who approves it. Every step is on the record.
+> The specialists query the graph: the card's history fits, but the device is new — and this customer has three earlier cases confirmed as fraud. The Challenger pushes back: people buy new phones. On one weak signal, the probability is point three five, so policy rule R1 says verify before blocking. The customer denies the purchase. Probability jumps to point eight eight, and the action becomes block the card — routed to a team lead, who approves it. Every step is on the record.
 
 **7 · HHG-014 — 1:45–2:10** (~58 words)
 > HHG-014 came from an analyst. The same Samsung device profile, behind an anonymous proxy, was used on twenty-eight other customers' cards in a month. It fits none of the five documented patterns, so the agent describes it in its own words. The result: block, monitor every connected card, and file a suspicious activity report — which needs a fraud manager's approval.

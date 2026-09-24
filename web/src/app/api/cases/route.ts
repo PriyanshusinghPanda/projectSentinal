@@ -1,5 +1,5 @@
 import { quickAssess } from "@/lib/engine";
-import { caseIds, datasetAvailable, datasetMemory, summary } from "@/lib/dataset";
+import { caseIds, datasetAvailable, datasetMemory, memoryStats, summary } from "@/lib/dataset";
 import { listCases, memory, mode, sourceLabel } from "@/lib/source";
 import { caseState, store } from "@/lib/store";
 
@@ -13,6 +13,7 @@ export async function GET(req: Request) {
       source: "HHGOA_IEEE · 20 exam cases",
       cases: caseIds().map((id) => ({ ...summary(id), status: caseState(id).status === "new" ? summary(id).status : caseState(id).status })),
       memory: [...store.closed, ...datasetMemory()],
+      memoryStats: memoryStats(),
     });
   }
   const cases = await listCases();

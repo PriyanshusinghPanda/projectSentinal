@@ -11,7 +11,7 @@ import { cn } from "@/components/ui";
 const EVIDENCE = [
   ["Card history", "Amount and product code fit C02923-K1's history; no burst or test authorizations."],
   ["Identity record", "Device marked New for the account — iOS 9.3.5, Mobile Safari."],
-  ["Case memory", "CC-2400, CC-2717 and CC-2857 on the same device profile — all confirmed fraud."],
+  ["Case memory", "This customer's earlier cases CC-2400, CC-2717 and CC-2857 were all confirmed fraud."],
   ["Challenger", "A single new device is weak evidence on its own; people replace phones."],
 ];
 

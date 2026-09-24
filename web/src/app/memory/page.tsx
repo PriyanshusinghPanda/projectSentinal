@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import type { PastCase } from "@/lib/types";
 import { FRAUD_PATTERNS } from "@/lib/data";
-import { Shell } from "@/components/Shell";
+import { PageHeader, Shell } from "@/components/Shell";
 import { Card, Label, cn } from "@/components/ui";
 import { SemanticSearch } from "@/components/SemanticSearch";
 
@@ -19,30 +19,26 @@ export default function Memory() {
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<"all" | PastCase["outcome"]>("all");
   const [source, setSource] = useState("");
-  useEffect(() => { fetch("/api/cases").then((r) => r.json()).then((d) => { setMemory(d.memory); setSource(d.source); }); }, []);
+  const [stats, setStats] = useState<{ total: number; fraud: number; byPattern: Record<string, number> } | null>(null);
+  useEffect(() => { fetch("/api/cases").then((r) => r.json()).then((d) => { setMemory(d.memory); setSource(d.source); setStats(d.memoryStats ?? null); }); }, []);
   const shown = memory.filter((m) => (filter === "all" || m.outcome === filter) && (m.summary + m.id + m.analystDecision).toLowerCase().includes(q.toLowerCase()));
   return (
     <Shell source={source} crumbs={<span>Case memory</span>}>
-      <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="font-serif text-[34px] leading-tight">Case memory</h1>
-          <p className="text-xs text-muted-foreground">Closed investigations, decisions and outcomes ({memory.length} most recent shown). Retrieved as precedent for every new case.</p>
-        </div>
-        <div className="flex gap-2">
+      <PageHeader eyebrow="Intelligence" title="Case memory" actions={<div className="flex gap-2">
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search memory…" className="h-8 w-56 rounded-md border border-border bg-card px-2.5 text-[13px] outline-none focus:border-accent/60" />
           {(["all", "confirmed_fraud", "cleared"] as const).map((f) => (
             <button key={f} onClick={() => setFilter(f)} className={cn("h-8 rounded-md border border-border px-3 text-xs capitalize text-muted-foreground hover:bg-elevated", filter === f && "bg-elevated text-foreground")}>{f.replace("_", " ")}</button>
           ))}
-        </div>
-      </div>
+        </div>}>
+        {stats ? `${stats.total.toLocaleString("en-US")} closed investigations, ${stats.fraud.toLocaleString("en-US")} confirmed fraud` : "Closed investigations"}, July–October 2016 — the only place the truth is written down. The agent retrieves them as precedent for every new alert; below, ask them in plain words.
+      </PageHeader>
       <SemanticSearch />
       <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-5">
         {(memory.some((m) => m.pattern in DATASET_PATTERNS) ? Object.entries(DATASET_PATTERNS).map(([id, [name, description]]) => ({ id, name, description })) : FRAUD_PATTERNS).map((p) => {
-          const cases = memory.filter((m) => m.pattern === p.id);
+          const cases = { length: stats?.byPattern[p.id] ?? memory.filter((m) => m.pattern === p.id).length };
           return (
             <Card key={p.id} className="p-3">
-              <div className="flex justify-between"><span className="text-[11px] text-muted-foreground">{p.id.replace(/_/g, " ")}</span><span className="font-mono text-[11px]">{cases.length}</span></div>
-              <div className="mt-1 text-[13px] font-medium">{p.name}</div>
+              <div className="flex items-baseline justify-between gap-2"><span className="text-[13px] font-medium">{p.name}</span><span className="font-mono text-[12px] tabular-nums text-muted-foreground">{cases.length.toLocaleString("en-US")}</span></div>
               <div className="mt-1 line-clamp-2 text-[11px] text-muted-foreground">{p.description}</div>
             </Card>
           );

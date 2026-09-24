@@ -321,31 +321,43 @@
     "id": "CC-0056",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_new_device",
-    "notes": "Case CC-0056: cardholder C13171 reported unrecognized activity on card C13171-K2. 1 transaction(s) between 2016-07-03 and 2016-07-03 totaling $40.21 were confirmed fraudulent. Online purchases from a device not previousl"
+    "notes": "Case CC-0056: cardholder C13171 reported unrecognized activity on card C13171-K2. 1 transaction(s) between 2016-07-03 and 2016-07-03 totaling $40.21 were confirmed fraudulent. Online purchases from a device not previousl",
+    "why": "Same customer"
    },
    {
     "id": "CC-0467",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_new_device",
-    "notes": "Case CC-0467: cardholder C13171 reported unrecognized activity on card C13171-K2. 8 transaction(s) between 2016-07-06 and 2016-07-12 totaling $649.77 were confirmed fraudulent. Online purchases from a device not previous"
+    "notes": "Case CC-0467: cardholder C13171 reported unrecognized activity on card C13171-K2. 8 transaction(s) between 2016-07-06 and 2016-07-12 totaling $649.77 were confirmed fraudulent. Online purchases from a device not previous",
+    "why": "Same customer"
    },
    {
     "id": "CC-0772",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_new_device",
-    "notes": "Case CC-0772: cardholder C13171 reported unrecognized activity on card C13171-K2. 3 transaction(s) between 2016-07-15 and 2016-07-19 totaling $183.27 were confirmed fraudulent. Online purchases from a device not previous"
+    "notes": "Case CC-0772: cardholder C13171 reported unrecognized activity on card C13171-K2. 3 transaction(s) between 2016-07-15 and 2016-07-19 totaling $183.27 were confirmed fraudulent. Online purchases from a device not previous",
+    "why": "Same customer"
    },
    {
     "id": "CC-1293",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_fraud",
-    "notes": "Case CC-1293: cardholder C13171 reported unrecognized activity on card C13171-K2. 10 transaction(s) between 2016-07-22 and 2016-07-27 totaling $419.34 were confirmed fraudulent. Online purchases inconsistent with the car"
+    "notes": "Case CC-1293: cardholder C13171 reported unrecognized activity on card C13171-K2. 10 transaction(s) between 2016-07-22 and 2016-07-27 totaling $419.34 were confirmed fraudulent. Online purchases inconsistent with the car",
+    "why": "Same customer"
    },
    {
     "id": "CC-1715",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_new_device",
-    "notes": "Case CC-1715: cardholder C13171 reported unrecognized activity on card C13171-K2. 8 transaction(s) between 2016-07-29 and 2016-08-05 totaling $553.72 were confirmed fraudulent. Online purchases from a device not previous"
+    "notes": "Case CC-1715: cardholder C13171 reported unrecognized activity on card C13171-K2. 8 transaction(s) between 2016-07-29 and 2016-08-05 totaling $553.72 were confirmed fraudulent. Online purchases from a device not previous",
+    "why": "Same customer"
+   },
+   {
+    "id": "CC-0009",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0009: model scored a $149.98 transaction at 0.84. Cardholder confirmed the purchase from a new phone. Device added to profile. Alert cleared.",
+    "why": "Similar analyst notes \u00b7 0.68"
    }
   ]
  },
@@ -491,7 +503,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 21,
    "tokens": 0,
-   "latency_s": 3.137
+   "latency_s": 3.234
   },
   "deny": {
    "case_id": "HHG-008",
@@ -634,7 +646,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 14,
    "tokens": 0,
-   "latency_s": 3.137
+   "latency_s": 3.234
   },
   "confirm": {
    "case_id": "HHG-008",
@@ -773,7 +785,7 @@
    "stop_reason": "Verification settled the question (policy 6).",
    "tool_calls": 14,
    "tokens": 0,
-   "latency_s": 3.137
+   "latency_s": 3.234
   }
  }
 }

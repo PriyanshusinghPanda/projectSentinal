@@ -235,25 +235,29 @@
     "id": "CC-2649",
     "outcome": "confirmed_fraud",
     "pattern": "undocumented",
-    "notes": "Case CC-2649: cardholder C03528 reported 3 online purchase(s) they did not make. The purchases came from a Samsung SM-G935F on Chrome for Android behind an anonymous proxy, a device never seen on this account. Two other "
+    "notes": "Case CC-2649: cardholder C03528 reported 3 online purchase(s) they did not make. The purchases came from a Samsung SM-G935F on Chrome for Android behind an anonymous proxy, a device never seen on this account. Two other ",
+    "why": "Same device profile"
    },
    {
     "id": "CC-2971",
     "outcome": "confirmed_fraud",
     "pattern": "undocumented",
-    "notes": "Case CC-2971: cardholder C09998 reported 2 online purchase(s) they did not make. The purchases came from a Samsung SM-G935F on Chrome for Android behind an anonymous proxy, a device never seen on this account. Two other "
+    "notes": "Case CC-2971: cardholder C09998 reported 2 online purchase(s) they did not make. The purchases came from a Samsung SM-G935F on Chrome for Android behind an anonymous proxy, a device never seen on this account. Two other ",
+    "why": "Same device profile"
    },
    {
     "id": "CC-2985",
     "outcome": "confirmed_fraud",
     "pattern": "undocumented",
-    "notes": "Case CC-2985: cardholder C06617 reported 3 online purchase(s) they did not make. The purchases came from a Samsung SM-G935F on Chrome for Android behind an anonymous proxy, a device never seen on this account. Two other "
+    "notes": "Case CC-2985: cardholder C06617 reported 3 online purchase(s) they did not make. The purchases came from a Samsung SM-G935F on Chrome for Android behind an anonymous proxy, a device never seen on this account. Two other ",
+    "why": "Same device profile"
    },
    {
     "id": "CC-3035",
     "outcome": "confirmed_fraud",
     "pattern": "undocumented",
-    "notes": "Case CC-3035: cardholder C09733 reported 2 online purchase(s) they did not make. The purchases came from a Samsung SM-G935F on Chrome for Android behind an anonymous proxy, a device never seen on this account. Two other "
+    "notes": "Case CC-3035: cardholder C09733 reported 2 online purchase(s) they did not make. The purchases came from a Samsung SM-G935F on Chrome for Android behind an anonymous proxy, a device never seen on this account. Two other ",
+    "why": "Same device profile"
    }
   ]
  },
@@ -474,7 +478,7 @@
    "stop_reason": "Probability at or above 0.85 with at least two independent pieces of evidence (policy 6); customer denial confirmed the block.",
    "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 3.234
+   "latency_s": 3.134
   },
   "deny": {
    "case_id": "HHG-014",
@@ -692,7 +696,7 @@
    "stop_reason": "Probability at or above 0.85 with at least two independent pieces of evidence (policy 6); customer denial confirmed the block.",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 3.234
+   "latency_s": 3.134
   },
   "confirm": {
    "case_id": "HHG-014",
@@ -888,7 +892,7 @@
    "stop_reason": "Probability at or above 0.85 with at least two independent pieces of evidence (policy 6); customer denial confirmed the block.",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 3.234
+   "latency_s": 3.134
   }
  }
 }

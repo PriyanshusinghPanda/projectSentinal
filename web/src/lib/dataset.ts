@@ -48,7 +48,7 @@ interface Bundle {
     transactions: { id: string; ts: string; amount: number; product: string; channel: string; region: string; risk: number; device_new: boolean; subject: boolean; affected: boolean }[];
     nodes: FraudCase["nodes"];
     edges: FraudCase["edges"];
-    similar: { id: string; outcome: string; pattern: string; notes: string }[];
+    similar: { id: string; outcome: string; pattern: string; notes: string; why?: string }[];
   };
   variants: Record<"agent" | "deny" | "confirm", Answer>;
 }
@@ -96,6 +96,16 @@ function assessment(a: Answer, p: number, settled: boolean): Assessment {
 const actions = (list: Act[], stage: string): Action[] =>
   list.map((x, i) => ({ id: `${stage}-${i}`, kind: x.action, label: x.action, approval: x.route, rationale: x.reason, policyRef: (x.reason.match(/R\d+|3a|3b|policy \d/g) ?? []).join(", ") || "Fraud Policy v1.0" }));
 
+/** A readable title instead of the raw trigger text. */
+export function titleOf(c: Bundle["context"]) {
+  const amt = "$" + c.amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const ch = c.channel === "online" ? "online purchase" : "in-person purchase";
+  const region = c.transactions.find((t) => t.subject)?.region;
+  if (c.trigger_type === "customer_report") return `Customer dispute · ${amt} ${ch}`;
+  if (c.trigger_type === "analyst_request") return `Analyst request · shared device across several cards`;
+  return `Model alert · score ${c.risk_score.toFixed(2)} on a ${amt} ${ch}${c.channel !== "online" && region ? ` in region ${region.replace(".0", "")}` : ""}`;
+}
+
 export function toCase(id: string): FraudCase {
   const b = bundle(id);
   const c = b.context;
@@ -109,13 +119,13 @@ export function toCase(id: string): FraudCase {
     : [];
   return {
     id,
-    title: c.trigger_text.length > 110 ? c.trigger_text.slice(0, 107) + "…" : c.trigger_text,
+    title: titleOf(c),
     trigger: c.trigger_type,
     triggerDetail: c.trigger_text,
     openedAt: c.opened_at,
     customer: { id: c.customer_id, name: c.card_id, tenureMonths: 0, segment: c.card_id },
     subjectTxnId: c.flagged_txn_id,
-    transactions: c.transactions.map((t) => ({ id: t.id, ts: t.ts, amount: t.amount, productCD: t.product as FraudCase["transactions"][number]["productCD"], merchant: `${t.product} · ${t.channel === "online" ? "online" : "in person"}${t.region ? " · r" + t.region.replace(".0", "") : ""}${t.device_new ? " · new device" : ""}`, riskScore: t.risk, subject: t.subject })),
+    transactions: c.transactions.map((t) => ({ id: t.id, ts: t.ts, amount: t.amount, productCD: t.product as FraudCase["transactions"][number]["productCD"], merchant: `Product ${t.product}`, riskScore: t.risk, subject: t.subject, channel: t.channel as "online" | "in_person", region: t.region ? t.region.replace(".0", "") : "", deviceNew: t.device_new })),
     nodes: c.nodes,
     edges: c.edges,
     signals: { velocity1h: 0, smallAuthsBeforeLarge: 0, amountZ: 0, newDevice: false, deviceAgeDays: 0, cardsOnDevice: 0, cardsOnIp: 0, emailDomainMismatch: false, addrChanged7d: false, hopsToConfirmedFraud: null, communitySize: 0 },
@@ -126,9 +136,22 @@ export function toCase(id: string): FraudCase {
 export function summary(id: string) {
   const b = bundle(id);
   const a = b.variants.agent;
+  const final = a.next_best_actions.final;
+  const lead = final.find((x) => x.route === "L2") ?? final.find((x) => x.route === "L1") ?? final[0];
+  const ctx = b.context;
+  const region = ctx.transactions.find((t) => t.subject)?.region?.replace(".0", "");
+  const where = ctx.channel === "online" ? "online purchase" : `in-person purchase${region ? `, region ${region}` : ""}`;
+  const place = where.charAt(0).toUpperCase() + where.slice(1);
+  const short = ctx.trigger_type === "analyst_request" ? "Shared device across several cards" : ctx.trigger_type === "risk_score" ? `${place} · model ${ctx.risk_score.toFixed(2)}` : place;
   return {
     id,
-    title: toCase(id).title,
+    title: titleOf(b.context),
+    short,
+    pattern: PATTERN_NAMES[a.case.pattern] ?? a.case.pattern,
+    nextAction: lead ? { action: lead.action, route: lead.route } : null,
+    pendingApprovals: final.filter((x) => x.route !== "auto").length,
+    probability: a.case.fraud_probability,
+    triggerText: b.context.trigger_text,
     trigger: b.context.trigger_type,
     customer: { id: b.context.customer_id, segment: b.context.card_id },
     amount: b.context.amount,
@@ -188,7 +211,7 @@ export function* replay(id: string, reply?: "agent" | "deny" | "confirm"): Gener
         finding: { id: fid(who[0].toUpperCase()), agent: who, title: e.claim.length > 120 ? e.claim.slice(0, 117) + "…" : e.claim, detail: e.entity_ids.length ? `Entities: ${e.entity_ids.slice(0, 8).join(", ")}${e.entity_ids.length > 8 ? "…" : ""}` : "", logOdds: neg ? -1 : who === "memory" ? 0 : 1, confidence: 0.8, source: `${e.source} · ${e.ref}` },
       };
     }
-    if (who === "memory") yield { type: "similar_cases", cases: c.similar.map((s) => ({ id: s.id, closedAt: "", pattern: s.pattern, outcome: s.outcome as PastCase["outcome"], summary: s.notes, features: {}, analystDecision: "", similarity: 1 })) };
+    if (who === "memory") yield { type: "similar_cases", cases: c.similar.map((s) => ({ id: s.id, closedAt: "", pattern: s.pattern, outcome: s.outcome as PastCase["outcome"], summary: s.notes, features: {}, analystDecision: "", why: s.why, similarity: Number(s.why?.match(/([0-9.]+)$/)?.[1] ?? 0) })) };
   }
 
   yield { type: "agent_start", agent: "policy", task: "Apply Fraud Policy v1.0 (R1–R10, approval routes)" };
@@ -250,6 +273,14 @@ export function* replay(id: string, reply?: "agent" | "deny" | "confirm"): Gener
 
 export function answerFile(id: string, reply: "agent" | "deny" | "confirm" = "agent") {
   return bundle(id).variants[reply];
+}
+
+export function memoryStats() {
+  datasetMemory(1);
+  const all = mem ?? [];
+  const byPattern: Record<string, number> = {};
+  all.forEach((m) => (byPattern[m.pattern] = (byPattern[m.pattern] ?? 0) + 1));
+  return { total: all.length, fraud: all.filter((m) => m.outcome === "confirmed_fraud").length, byPattern };
 }
 
 /** Closed-case memory from the dataset (most recent first, capped for the UI). */

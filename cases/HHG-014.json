@@ -214,5 +214,5 @@
   "stop_reason": "Probability at or above 0.85 with at least two independent pieces of evidence (policy 6); customer denial confirmed the block.",
   "tool_calls": 20,
   "tokens": 0,
-  "latency_s": 3.234
+  "latency_s": 3.134
 }

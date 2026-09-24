@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Shell } from "@/components/Shell";
+import { PageHeader, Shell } from "@/components/Shell";
 import { Card, PanelHeader } from "@/components/ui";
 import { insight } from "@/lib/insights";
 
@@ -29,10 +29,9 @@ export default function Policy() {
   const used = insight<Record<string, Record<string, string[]>>>("rules", {});
   return (
     <Shell source="Fraud Policy v1.0" crumbs={<span>Policy</span>}>
-      <div className="mb-6 border-b border-border pb-5">
-        <h1 className="font-serif text-[34px] leading-tight">Fraud Policy v1.0</h1>
-        <p className="mt-1 max-w-3xl text-[13px] text-muted-foreground">The rules the agent operates under, from the HHGOA_IEEE brief. Every recommended action cites one of them; the cases beside each rule are where the agent applied it in the 20 exam cases.</p>
-      </div>
+      <PageHeader eyebrow="Governance" title="Fraud Policy v1.0">
+        The rules the agent operates under, from the HHGOA_IEEE brief. Every recommended action cites one of them; the cases beside each rule are where the agent applied it in the 20 exam cases.
+      </PageHeader>
       <Card className="mb-4">
         <PanelHeader title="Approval routes (§2)" />
         {ROUTES.map(([r, a]) => (

@@ -35,6 +35,9 @@ export interface Transaction {
   ip?: string;
   riskScore: number; // bank model score 0..1
   subject?: boolean;
+  channel?: "online" | "in_person";
+  region?: string;
+  deviceNew?: boolean;
 }
 
 /** Raw signals the specialist agents read. In production these come from GSQL queries via TigerGraph MCP. */
@@ -134,6 +137,7 @@ export interface PastCase {
   summary: string;
   features: Partial<CaseSignals>;
   analystDecision: string;
+  why?: string; // why it was retrieved for the current case
 }
 
 export interface DecisionLogEntry {

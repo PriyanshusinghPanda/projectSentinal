@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Shell } from "@/components/Shell";
+import { PageHeader, Shell } from "@/components/Shell";
 import { EntityGraph } from "@/components/EntityGraph";
 import { Card, Label, PanelHeader, cn, fmtUsd } from "@/components/ui";
 import type { GraphEdge, GraphNode } from "@/lib/types";
@@ -34,12 +34,9 @@ export function RingsView({ meta, components }: { meta: { iterations: number; su
   const g = c ? graphOf(c) : null;
   return (
     <Shell source="TigerGraph · ring_components" crumbs={<span>Fraud rings</span>}>
-      <div className="mb-6 border-b border-border pb-5">
-        <h1 className="font-serif text-[34px] leading-tight">Fraud rings</h1>
-        <p className="mt-1 max-w-3xl text-[13px] text-muted-foreground">
-          A connected-components algorithm runs inside TigerGraph (<span className="font-mono">ring_components</span>, GSQL) over every transaction made from a device new to the account and behind an anonymous or hidden proxy — {meta.suspicious_txns.toLocaleString("en-US")} transactions across six months, converged in {meta.iterations} iterations. Customers joined by such devices collapse into one component. No alert has to point at a ring for it to be found.
-        </p>
-      </div>
+      <PageHeader eyebrow="Intelligence" title="Fraud rings">
+        A connected-components algorithm runs inside TigerGraph (<span className="font-mono">ring_components</span>, GSQL) over every transaction made from a device new to the account and behind an anonymous or hidden proxy — {meta.suspicious_txns.toLocaleString("en-US")} transactions across six months, converged in {meta.iterations} iterations. Customers joined by such devices collapse into one component. No alert has to point at a ring for it to be found.
+      </PageHeader>
       {!c && <div className="text-[13px] text-muted-foreground">No ring data — run agent/export_insights.py with TigerGraph configured.</div>}
       {c && g && (
         <div className="grid grid-cols-1 gap-4 xl:grid-cols-12">

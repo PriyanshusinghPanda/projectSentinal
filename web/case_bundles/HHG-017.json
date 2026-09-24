@@ -144,22 +144,46 @@
   ],
   "similar": [
    {
+    "id": "CC-1383",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-1383: model scored a $99.98 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Same customer"
+   },
+   {
     "id": "CC-0001",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_fraud",
-    "notes": "Case CC-0001: cardholder C00259 reported unrecognized activity on card C00259-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $155.43 were confirmed fraudulent. Online purchases inconsistent with the card"
+    "notes": "Case CC-0001: cardholder C00259 reported unrecognized activity on card C00259-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $155.43 were confirmed fraudulent. Online purchases inconsistent with the card",
+    "why": "Same pattern (card not present fraud)"
    },
    {
     "id": "CC-0007",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_fraud",
-    "notes": "Case CC-0007: cardholder C00732 reported unrecognized activity on card C00732-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $99.91 were confirmed fraudulent. Online purchases inconsistent with the cardh"
+    "notes": "Case CC-0007: cardholder C00732 reported unrecognized activity on card C00732-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $99.91 were confirmed fraudulent. Online purchases inconsistent with the cardh",
+    "why": "Same pattern (card not present fraud)"
    },
    {
-    "id": "CC-1383",
+    "id": "CC-0003",
     "outcome": "cleared",
     "pattern": "none",
-    "notes": "Case CC-1383: model scored a $99.98 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared."
+    "notes": "Case CC-0003: model scored a $442.92 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Similar analyst notes \u00b7 0.60"
+   },
+   {
+    "id": "CC-0021",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0021: model scored a $50.09 transaction at 0.86. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Similar analyst notes \u00b7 0.60"
+   },
+   {
+    "id": "CC-0023",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0023: model scored a $24.91 transaction at 0.94. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Similar analyst notes \u00b7 0.60"
    }
   ]
  },
@@ -317,7 +341,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 19,
    "tokens": 0,
-   "latency_s": 2.841
+   "latency_s": 2.92
   },
   "deny": {
    "case_id": "HHG-017",
@@ -472,7 +496,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 12,
    "tokens": 0,
-   "latency_s": 2.841
+   "latency_s": 2.92
   },
   "confirm": {
    "case_id": "HHG-017",
@@ -621,7 +645,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 11,
    "tokens": 0,
-   "latency_s": 2.841
+   "latency_s": 2.92
   }
  }
 }

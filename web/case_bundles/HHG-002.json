@@ -88,16 +88,39 @@
   ],
   "similar": [
    {
-    "id": "CC-0009",
-    "outcome": "cleared",
-    "pattern": "none",
-    "notes": "Case CC-0009: model scored a $149.98 transaction at 0.84. Cardholder confirmed the purchase from a new phone. Device added to profile. Alert cleared."
-   },
-   {
     "id": "CC-4160",
     "outcome": "confirmed_fraud",
     "pattern": "card_not_present_fraud",
-    "notes": "Case CC-4160: cardholder C11891 reported unrecognized activity on card C11891-K1. 1 transaction(s) between 2016-09-29 and 2016-09-29 totaling $90.54 were confirmed fraudulent. Online purchases inconsistent with the cardh"
+    "notes": "Case CC-4160: cardholder C11891 reported unrecognized activity on card C11891-K1. 1 transaction(s) between 2016-09-29 and 2016-09-29 totaling $90.54 were confirmed fraudulent. Online purchases inconsistent with the cardh",
+    "why": "Same customer"
+   },
+   {
+    "id": "CC-0009",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0009: model scored a $149.98 transaction at 0.84. Cardholder confirmed the purchase from a new phone. Device added to profile. Alert cleared.",
+    "why": "Same pattern (none)"
+   },
+   {
+    "id": "CC-2396",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_fraud",
+    "notes": "Case CC-2396: cardholder C02147 reported unrecognized activity on card C02147-K2. 1 transaction(s) between 2016-08-19 and 2016-08-19 totaling $4.11 were confirmed fraudulent. Online purchases inconsistent with the cardho",
+    "why": "Similar analyst notes \u00b7 0.37"
+   },
+   {
+    "id": "CC-3748",
+    "outcome": "confirmed_fraud",
+    "pattern": "undocumented",
+    "notes": "Case CC-3748: cardholder C12267 reported four online purchases within forty minutes, each just under $500, none of which they made. Amounts appear chosen to stay under a $500 authorization threshold. Pattern not matched ",
+    "why": "Similar analyst notes \u00b7 0.35"
+   },
+   {
+    "id": "CC-3841",
+    "outcome": "confirmed_fraud",
+    "pattern": "undocumented",
+    "notes": "Case CC-3841: cardholder C01099 reported four online purchases within forty minutes, each just under $500, none of which they made. Amounts appear chosen to stay under a $500 authorization threshold. Pattern not matched ",
+    "why": "Similar analyst notes \u00b7 0.35"
    }
   ]
  },
@@ -216,7 +239,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 17,
    "tokens": 0,
-   "latency_s": 2.142
+   "latency_s": 2.312
   },
   "deny": {
    "case_id": "HHG-002",
@@ -336,7 +359,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 11,
    "tokens": 0,
-   "latency_s": 2.142
+   "latency_s": 2.312
   },
   "confirm": {
    "case_id": "HHG-002",
@@ -452,7 +475,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 10,
    "tokens": 0,
-   "latency_s": 2.142
+   "latency_s": 2.312
   }
  }
 }

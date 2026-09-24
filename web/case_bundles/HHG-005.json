@@ -164,28 +164,46 @@
   ],
   "similar": [
    {
-    "id": "CC-1672",
-    "outcome": "confirmed_fraud",
-    "pattern": "card_not_present_new_device",
-    "notes": "Case CC-1672: cardholder C05551 reported unrecognized activity on card C05551-K2. 1 transaction(s) between 2016-08-03 and 2016-08-03 totaling $174.92 were confirmed fraudulent. Online purchases from a device not previous"
-   },
-   {
     "id": "CC-2400",
     "outcome": "confirmed_fraud",
     "pattern": "account_takeover",
-    "notes": "Case CC-2400: cardholder C02923 reported unrecognized activity on card C02923-K1. 3 transaction(s) between 2016-08-18 and 2016-08-19 totaling $350.99 were confirmed fraudulent. Mixed-channel activity inconsistent with th"
+    "notes": "Case CC-2400: cardholder C02923 reported unrecognized activity on card C02923-K1. 3 transaction(s) between 2016-08-18 and 2016-08-19 totaling $350.99 were confirmed fraudulent. Mixed-channel activity inconsistent with th",
+    "why": "Same customer"
    },
    {
     "id": "CC-2717",
     "outcome": "confirmed_fraud",
     "pattern": "account_takeover",
-    "notes": "Case CC-2717: cardholder C02923 reported unrecognized activity on card C02923-K1. 6 transaction(s) between 2016-08-25 and 2016-08-27 totaling $896.08 were confirmed fraudulent. Mixed-channel activity inconsistent with th"
+    "notes": "Case CC-2717: cardholder C02923 reported unrecognized activity on card C02923-K1. 6 transaction(s) between 2016-08-25 and 2016-08-27 totaling $896.08 were confirmed fraudulent. Mixed-channel activity inconsistent with th",
+    "why": "Same customer"
    },
    {
     "id": "CC-2857",
     "outcome": "confirmed_fraud",
     "pattern": "account_takeover",
-    "notes": "Case CC-2857: cardholder C02923 reported unrecognized activity on card C02923-K1. 2 transaction(s) between 2016-08-30 and 2016-08-30 totaling $539.97 were confirmed fraudulent. Mixed-channel activity inconsistent with th"
+    "notes": "Case CC-2857: cardholder C02923 reported unrecognized activity on card C02923-K1. 2 transaction(s) between 2016-08-30 and 2016-08-30 totaling $539.97 were confirmed fraudulent. Mixed-channel activity inconsistent with th",
+    "why": "Same customer"
+   },
+   {
+    "id": "CC-1672",
+    "outcome": "confirmed_fraud",
+    "pattern": "card_not_present_new_device",
+    "notes": "Case CC-1672: cardholder C05551 reported unrecognized activity on card C05551-K2. 1 transaction(s) between 2016-08-03 and 2016-08-03 totaling $174.92 were confirmed fraudulent. Online purchases from a device not previous",
+    "why": "Same device profile"
+   },
+   {
+    "id": "CC-0033",
+    "outcome": "confirmed_fraud",
+    "pattern": "account_takeover",
+    "notes": "Case CC-0033: cardholder C05704 reported unrecognized activity on card C05704-K2. 3 transaction(s) between 2016-07-02 and 2016-07-02 totaling $374.83 were confirmed fraudulent. Mixed-channel activity inconsistent with th",
+    "why": "Similar analyst notes \u00b7 0.56"
+   },
+   {
+    "id": "CC-0145",
+    "outcome": "confirmed_fraud",
+    "pattern": "account_takeover",
+    "notes": "Case CC-0145: cardholder C06224 reported unrecognized activity on card C06224-K2. 5 transaction(s) between 2016-07-04 and 2016-07-06 totaling $853.12 were confirmed fraudulent. Mixed-channel activity inconsistent with th",
+    "why": "Similar analyst notes \u00b7 0.56"
    }
   ]
  },
@@ -312,7 +330,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 2.84
+   "latency_s": 2.617
   },
   "deny": {
    "case_id": "HHG-005",
@@ -440,7 +458,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 2.84
+   "latency_s": 2.617
   },
   "confirm": {
    "case_id": "HHG-005",
@@ -564,7 +582,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 2.84
+   "latency_s": 2.617
   }
  }
 }

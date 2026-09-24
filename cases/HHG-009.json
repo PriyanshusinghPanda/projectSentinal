@@ -129,5 +129,5 @@
   "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
   "tool_calls": 18,
   "tokens": 0,
-  "latency_s": 2.62
+  "latency_s": 2.619
 }

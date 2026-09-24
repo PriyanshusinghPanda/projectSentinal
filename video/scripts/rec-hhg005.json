@@ -26,7 +26,7 @@
   {
    "action": "wait",
    "ms": 3800,
-   "label": "Case memory: three closed cases on this device profile \u2014 all confirmed fraud"
+   "label": "Case memory: this customer's three earlier cases were all confirmed fraud"
   },
   {
    "action": "wait",
@@ -37,19 +37,19 @@
    "action": "move",
    "selector": "text=Before evidence",
    "ms": 2600,
-   "label": "p = 0.35 on one weak signal \u2192 verify before any block (R1)"
+   "label": "p = 0.35 on one weak signal → verify before any block (R1)"
   },
   {
    "action": "hover",
    "selector": "button:has-text('Customer denies')",
    "ms": 1400,
-   "label": "Replies aren't in the data \u2014 the agent simulates one and records it"
+   "label": "Replies aren't in the data — the agent simulates one and records it"
   },
   {
    "action": "click",
    "selector": "button:has-text('Customer denies')",
    "ms": 5200,
-   "label": "The customer denies \u2192 p = 0.88 \u2192 BLOCK_CARD, routed to a team lead (L1)"
+   "label": "The customer denies → p = 0.88 → BLOCK_CARD, routed to a team lead (L1)"
   },
   {
    "action": "hover",
@@ -66,7 +66,7 @@
    "action": "click",
    "selector": "button:has-text('Decision log')",
    "ms": 3200,
-   "label": "Every step is on the record \u2014 initial and final actions, and why"
+   "label": "Every step is on the record — initial and final actions, and why"
   }
  ]
 }

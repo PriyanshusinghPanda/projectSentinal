@@ -258,31 +258,43 @@
     "id": "CC-0255",
     "outcome": "confirmed_fraud",
     "pattern": "account_takeover",
-    "notes": "Case CC-0255: cardholder C02354 reported unrecognized activity on card C02354-K2. 7 transaction(s) between 2016-07-06 and 2016-07-08 totaling $1,167.08 were confirmed fraudulent. Mixed-channel activity inconsistent with "
+    "notes": "Case CC-0255: cardholder C02354 reported unrecognized activity on card C02354-K2. 7 transaction(s) between 2016-07-06 and 2016-07-08 totaling $1,167.08 were confirmed fraudulent. Mixed-channel activity inconsistent with ",
+    "why": "Same customer"
    },
    {
     "id": "CC-0405",
     "outcome": "cleared",
     "pattern": "none",
-    "notes": "Case CC-0405: model scored a $22.30 transaction at 0.94. Cardholder confirmed travel to the billing region in question. Alert cleared."
+    "notes": "Case CC-0405: model scored a $22.30 transaction at 0.94. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Same customer"
    },
    {
     "id": "CC-0454",
     "outcome": "confirmed_fraud",
     "pattern": "account_takeover",
-    "notes": "Case CC-0454: cardholder C02354 reported unrecognized activity on card C02354-K2. 6 transaction(s) between 2016-07-12 and 2016-07-13 totaling $940.94 were confirmed fraudulent. Mixed-channel activity inconsistent with th"
+    "notes": "Case CC-0454: cardholder C02354 reported unrecognized activity on card C02354-K2. 6 transaction(s) between 2016-07-12 and 2016-07-13 totaling $940.94 were confirmed fraudulent. Mixed-channel activity inconsistent with th",
+    "why": "Same customer"
    },
    {
     "id": "CC-0631",
     "outcome": "confirmed_fraud",
     "pattern": "out_of_region_use",
-    "notes": "Case CC-0631: cardholder C02354 reported unrecognized activity on card C02354-K2. 2 transaction(s) between 2016-07-16 and 2016-07-16 totaling $118.17 were confirmed fraudulent. Card-present use in a billing region the ca"
+    "notes": "Case CC-0631: cardholder C02354 reported unrecognized activity on card C02354-K2. 2 transaction(s) between 2016-07-16 and 2016-07-16 totaling $118.17 were confirmed fraudulent. Card-present use in a billing region the ca",
+    "why": "Same customer"
    },
    {
     "id": "CC-1450",
     "outcome": "confirmed_fraud",
     "pattern": "account_takeover",
-    "notes": "Case CC-1450: cardholder C02354 reported unrecognized activity on card C02354-K2. 14 transaction(s) between 2016-07-21 and 2016-07-29 totaling $2,351.25 were confirmed fraudulent. Mixed-channel activity inconsistent with"
+    "notes": "Case CC-1450: cardholder C02354 reported unrecognized activity on card C02354-K2. 14 transaction(s) between 2016-07-21 and 2016-07-29 totaling $2,351.25 were confirmed fraudulent. Mixed-channel activity inconsistent with",
+    "why": "Same customer"
+   },
+   {
+    "id": "CC-0003",
+    "outcome": "cleared",
+    "pattern": "none",
+    "notes": "Case CC-0003: model scored a $442.92 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+    "why": "Similar analyst notes \u00b7 0.65"
    }
   ]
  },
@@ -426,7 +438,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 2.708
+   "latency_s": 2.616
   },
   "deny": {
    "case_id": "HHG-018",
@@ -567,7 +579,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 2.708
+   "latency_s": 2.616
   },
   "confirm": {
    "case_id": "HHG-018",
@@ -706,7 +718,7 @@
    "stop_reason": "Verification settled the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 2.708
+   "latency_s": 2.616
   }
  }
 }

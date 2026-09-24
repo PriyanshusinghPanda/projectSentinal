@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { Shell } from "@/components/Shell";
+import { PageHeader, Shell } from "@/components/Shell";
 import { Card, Label, PanelHeader, cn, fmtUsd } from "@/components/ui";
 import type { MonitoringSummary } from "@/lib/insights";
 
@@ -33,12 +33,9 @@ export function MonitoringView({ s }: { s: MonitoringSummary | null }) {
   ];
   return (
     <Shell source="Autonomous monitoring" crumbs={<span>Monitoring</span>}>
-      <div className="mb-6 border-b border-border pb-5">
-        <h1 className="font-serif text-[34px] leading-tight">Autonomous monitoring</h1>
-        <p className="mt-1 max-w-3xl text-[13px] text-muted-foreground">
-          Beyond the 20 case-pack alerts, the agent watched the exam period on its own: it raised alerts from the bank&apos;s risk scores and from TigerGraph&apos;s ring components, triaged every one with its own pre-evidence probability, and opened full investigations for the most serious. These cases are open — verification has been requested and no reply has come back.
-        </p>
-      </div>
+      <PageHeader eyebrow="Investigate" title="Autonomous monitoring">
+        Beyond the 20 case-pack alerts, the agent watched the exam period on its own: it raised alerts from the bank&apos;s risk scores and from TigerGraph&apos;s ring components, triaged every one with its own pre-evidence probability, and opened full investigations for the most serious. These cases are open — verification has been requested and no reply has come back.
+      </PageHeader>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-12">
         <Card className="xl:col-span-5">
