@@ -560,7 +560,7 @@ function SarView({ sar }: { sar: { required: boolean; draft?: string } | null })
     return <div className="flex items-center gap-2 text-[13px] text-muted-foreground"><Check size={14} className="text-risk-low" /> SAR not required under Fraud Policy §6.2 for this outcome.</div>;
   return (
     <div>
-      <div className="mb-3 flex items-center gap-2 text-[13px] text-route-senior"><FileWarning size={14} /> SAR required — routed to senior compliance for approval</div>
+      <div className="mb-3 flex items-center gap-2 text-[13px] text-route-senior"><FileWarning size={14} /> SAR required — needs fraud-manager (L2) approval before filing</div>
       <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted/40 p-4 font-mono text-[12px] leading-5 text-foreground/90">{sar.draft}</pre>
     </div>
   );

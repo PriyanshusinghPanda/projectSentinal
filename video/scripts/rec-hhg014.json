@@ -1,0 +1,50 @@
+{
+ "url": "http://localhost:3200/cases",
+ "viewport": {
+  "width": 1920,
+  "height": 1080
+ },
+ "fps": 60,
+ "outDir": "public/rec/hhg014",
+ "warm": [
+  "http://localhost:3200/case/HHG-002"
+ ],
+ "navMs": 900,
+ "startLabel": "HHG-014: an analyst asks about an unusual device across several cards",
+ "steps": [
+  {
+   "action": "click",
+   "selector": "a[href='/case/HHG-014']",
+   "ms": 1200,
+   "label": "HHG-014: an analyst asks about an unusual device across several cards"
+  },
+  {
+   "action": "wait",
+   "ms": 3800,
+   "label": "Graph: the same Samsung SM-G935F profile, behind an anonymous proxy"
+  },
+  {
+   "action": "move",
+   "selector": "text=linked to confirmed fraud",
+   "ms": 3600,
+   "label": "Used on 28 other customers' cards within a month \u2014 confirmed-fraud cases on it"
+  },
+  {
+   "action": "wait",
+   "ms": 3800,
+   "label": "Fits none of the five documented patterns \u2014 described in plain words (R9)"
+  },
+  {
+   "action": "click",
+   "selector": "button:has-text(\"Agent's assumption\")",
+   "ms": 5000,
+   "label": "Block, report to the regulator (L2), monitor every connected card (R6)"
+  },
+  {
+   "action": "click",
+   "selector": "button:has-text('SAR')",
+   "ms": 5600,
+   "label": "A suspicious activity report written to stand on its own"
+  }
+ ]
+}

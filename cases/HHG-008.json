@@ -128,5 +128,5 @@
   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
   "tool_calls": 20,
   "tokens": 0,
-  "latency_s": 0.021
+  "latency_s": 0.031
 }

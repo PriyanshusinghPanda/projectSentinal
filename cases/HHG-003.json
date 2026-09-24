@@ -1,10 +1,10 @@
 {
   "case_id": "HHG-003",
   "case": {
-    "status": "escalated",
-    "verdict": "uncertain",
-    "fraud_probability": 0.55,
-    "pattern": "none",
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.86,
+    "pattern": "out_of_region_use",
     "pattern_description": "",
     "affected_txn_ids": [
       "3530164"
@@ -15,9 +15,17 @@
     "exposure_usd": 49.0,
     "evidence": [
       {
-        "claim": "Flagged $49.00 (in_person, product W, region 330.0) fits this card's history: median $67.91, 959 prior transactions, region seen 38 times",
+        "claim": "Card-present purchase with name/address match anomalies (M4=M0, M5=F, M6=T) \u2014 Vesta's unnamed match features; mismatches appear on most confirmed takeover / out-of-region cases and rarely on cleared alerts",
         "source": "graph",
-        "ref": "query:card_profile(card_id=C08623-K2, before=2016-12-10)",
+        "ref": "txn:3530164",
+        "entity_ids": [
+          "3530164"
+        ]
+      },
+      {
+        "claim": "Billing region 330.0 accounts for 4% of this card's history",
+        "source": "graph",
+        "ref": "query:region_history(card_id=C08623-K2)",
         "entity_ids": [
           "3530164"
         ]
@@ -64,7 +72,7 @@
       "CC-3327",
       "CC-3682"
     ],
-    "summary": "Mixed evidence on 3530164; escalated with verification pending.",
+    "summary": "Out of region use on card C08623-K2: 1 transaction(s), exposure $49.00. Customer denial confirmed the verdict.",
     "written_to_graph": true,
     "graph_case_id": "CASE-HHG-003"
   },
@@ -72,12 +80,7 @@
     {
       "type": "step_up_auth",
       "asked_after_step": 4,
-      "assumed_response": "Account holder passed step-up and reaffirmed they did not make the purchase and still hold the card"
-    },
-    {
-      "type": "analyst_info",
-      "asked_after_step": 6,
-      "assumed_response": "No merchant or device evidence available yet; analyst to review the card-present authorization"
+      "assumed_response": "Account holder passed step-up on their registered phone and reaffirmed they did not make the purchase and still hold the card"
     }
   ],
   "next_best_actions": {
@@ -90,7 +93,7 @@
       {
         "action": "DECLINE_TRANSACTION",
         "route": "L1",
-        "reason": "R4/R2: hold pending authorizations"
+        "reason": "R4/R2: hold pending authorizations while the denial is confirmed"
       },
       {
         "action": "STEP_UP_AUTH",
@@ -107,26 +110,21 @@
       {
         "action": "CREATE_CASE",
         "route": "auto",
-        "reason": "R2 / 3a"
-      },
-      {
-        "action": "ESCALATE_TO_ANALYST",
-        "route": "auto",
-        "reason": "R8: the denial conflicts with graph evidence \u2014 the purchase fits the card's own history"
+        "reason": "R2 / 3a: confirmed fraud"
       }
     ],
-    "what_changed": "Step-up confirmed the genuine cardholder is disputing, so the card is blocked under R2; because nothing in the graph corroborates the denial, the case is escalated under R8 rather than closed as fraud."
+    "what_changed": "Step-up confirmed the genuine cardholder is the one denying the purchase, which settles unauthorised use; the case moves from hold to block."
   },
   "sar": {
     "file": false,
-    "reason": "3a: verdict is not fraud, no report",
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
     "narrative": "",
     "subjects": [],
     "total_amount_usd": 0,
     "activity_dates": []
   },
-  "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
+  "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
   "tool_calls": 19,
   "tokens": 0,
-  "latency_s": 0.033
+  "latency_s": 0.02
 }

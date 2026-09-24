@@ -9,7 +9,7 @@
   "risk_score": 0.61,
   "amount": 77.07,
   "channel": "in_person",
-  "initial_probability": 0.12,
+  "initial_probability": 0.45,
   "transactions": [
    {
     "id": "3510115",
@@ -226,7 +226,7 @@
    "case": {
     "status": "closed_legitimate",
     "verdict": "legitimate",
-    "fraud_probability": 0.12,
+    "fraud_probability": 0.08,
     "pattern": "none",
     "pattern_description": "",
     "affected_txn_ids": [],
@@ -236,9 +236,17 @@
     "exposure_usd": 0.0,
     "evidence": [
      {
-      "claim": "Flagged $77.07 (in_person, product W, region 444.0) fits this card's history: median $84.00, 351 prior transactions, region seen 10 times",
+      "claim": "Card-present purchase with name/address match anomalies (M4=M0, M5=F, M6=T) \u2014 Vesta's unnamed match features; mismatches appear on most confirmed takeover / out-of-region cases and rarely on cleared alerts",
       "source": "graph",
-      "ref": "query:card_profile(card_id=C12382-K1, before=2016-12-04)",
+      "ref": "txn:3514030",
+      "entity_ids": [
+       "3514030"
+      ]
+     },
+     {
+      "claim": "Billing region 444.0 accounts for 3% of this card's history",
+      "source": "graph",
+      "ref": "query:region_history(card_id=C12382-K1)",
       "entity_ids": [
        "3514030"
       ]
@@ -276,37 +284,48 @@
      "CC-2964",
      "CC-3587"
     ],
-    "summary": "Alert on 3514030 ($77.07) is consistent with the cardholder's own activity. Closed without customer impact.",
+    "summary": "Alert on 3514030 ($77.07) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
     "graph_case_id": "CASE-HHG-001"
    },
-   "evidence_requests": [],
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer confirms they made the purchase"
+    }
+   ],
    "next_best_actions": {
     "initial": [
      {
-      "action": "ALLOW_TRANSACTION",
-      "route": "auto",
-      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "Hold the flagged authorization while verifying"
      },
      {
-      "action": "CLOSE_NO_FRAUD",
+      "action": "VERIFY_WITH_CUSTOMER",
       "route": "auto",
-      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+      "reason": "R1/3b: confirm before blocking"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
      }
     ],
     "final": [
      {
-      "action": "ALLOW_TRANSACTION",
-      "route": "auto",
-      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
-     },
-     {
       "action": "CLOSE_NO_FRAUD",
       "route": "auto",
-      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "R3"
      }
     ],
-    "what_changed": "nothing"
+    "what_changed": "Customer confirmation lowered probability from 0.45 to 0.08; the alert closes as legitimate (R3)."
    },
    "sar": {
     "file": false,
@@ -316,29 +335,39 @@
     "total_amount_usd": 0,
     "activity_dates": []
    },
-   "stop_reason": "Fraud probability at or below 0.15 supported by card history and region/device consistency (policy 6).",
+   "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 18,
    "tokens": 0,
-   "latency_s": 0.006
+   "latency_s": 0.005
   },
   "deny": {
    "case_id": "HHG-001",
    "case": {
-    "status": "closed_legitimate",
-    "verdict": "legitimate",
-    "fraud_probability": 0.12,
-    "pattern": "none",
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.88,
+    "pattern": "out_of_region_use",
     "pattern_description": "",
-    "affected_txn_ids": [],
-    "first_suspicious_txn_id": "",
+    "affected_txn_ids": [
+     "3514030"
+    ],
+    "first_suspicious_txn_id": "3514030",
     "connected_card_ids": [],
     "connected_device_profiles": [],
-    "exposure_usd": 0.0,
+    "exposure_usd": 77.07,
     "evidence": [
      {
-      "claim": "Flagged $77.07 (in_person, product W, region 444.0) fits this card's history: median $84.00, 351 prior transactions, region seen 10 times",
+      "claim": "Card-present purchase with name/address match anomalies (M4=M0, M5=F, M6=T) \u2014 Vesta's unnamed match features; mismatches appear on most confirmed takeover / out-of-region cases and rarely on cleared alerts",
       "source": "graph",
-      "ref": "query:card_profile(card_id=C12382-K1, before=2016-12-04)",
+      "ref": "txn:3514030",
+      "entity_ids": [
+       "3514030"
+      ]
+     },
+     {
+      "claim": "Billing region 444.0 accounts for 3% of this card's history",
+      "source": "graph",
+      "ref": "query:region_history(card_id=C12382-K1)",
       "entity_ids": [
        "3514030"
       ]
@@ -376,47 +405,58 @@
      "CC-2964",
      "CC-3587"
     ],
-    "summary": "Alert on 3514030 ($77.07) is consistent with the cardholder's own activity. Closed without customer impact.",
+    "summary": "Out of region use on card C12382-K1: 1 transaction(s), exposure $77.07. Customer denial confirmed the verdict.",
     "written_to_graph": true,
     "graph_case_id": "CASE-HHG-001"
    },
-   "evidence_requests": [],
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer states they did not make the purchase and still holds the card"
+    }
+   ],
    "next_best_actions": {
     "initial": [
      {
-      "action": "ALLOW_TRANSACTION",
-      "route": "auto",
-      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "Hold the flagged authorization while verifying"
      },
      {
-      "action": "CLOSE_NO_FRAUD",
+      "action": "VERIFY_WITH_CUSTOMER",
       "route": "auto",
-      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+      "reason": "R1/3b: confirm before blocking"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
      }
     ],
     "final": [
      {
-      "action": "ALLOW_TRANSACTION",
-      "route": "auto",
-      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
+      "action": "BLOCK_CARD",
+      "route": "L1",
+      "reason": "R2: customer denied the transaction; exposure $77.07 \u2264 $2,500"
      },
      {
-      "action": "CLOSE_NO_FRAUD",
+      "action": "CREATE_CASE",
       "route": "auto",
-      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+      "reason": "R2 / 3a: confirmed fraud"
      }
     ],
-    "what_changed": "nothing"
+    "what_changed": "Customer denial raised probability from 0.45 to 0.88; the recommendation moves from verification to block (R2)."
    },
    "sar": {
     "file": false,
-    "reason": "3a: verdict is not fraud, no report",
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
     "narrative": "",
     "subjects": [],
     "total_amount_usd": 0,
     "activity_dates": []
    },
-   "stop_reason": "Fraud probability at or below 0.15 supported by card history and region/device consistency (policy 6).",
+   "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 11,
    "tokens": 0,
    "latency_s": 0.001
@@ -426,7 +466,7 @@
    "case": {
     "status": "closed_legitimate",
     "verdict": "legitimate",
-    "fraud_probability": 0.12,
+    "fraud_probability": 0.08,
     "pattern": "none",
     "pattern_description": "",
     "affected_txn_ids": [],
@@ -436,9 +476,17 @@
     "exposure_usd": 0.0,
     "evidence": [
      {
-      "claim": "Flagged $77.07 (in_person, product W, region 444.0) fits this card's history: median $84.00, 351 prior transactions, region seen 10 times",
+      "claim": "Card-present purchase with name/address match anomalies (M4=M0, M5=F, M6=T) \u2014 Vesta's unnamed match features; mismatches appear on most confirmed takeover / out-of-region cases and rarely on cleared alerts",
       "source": "graph",
-      "ref": "query:card_profile(card_id=C12382-K1, before=2016-12-04)",
+      "ref": "txn:3514030",
+      "entity_ids": [
+       "3514030"
+      ]
+     },
+     {
+      "claim": "Billing region 444.0 accounts for 3% of this card's history",
+      "source": "graph",
+      "ref": "query:region_history(card_id=C12382-K1)",
       "entity_ids": [
        "3514030"
       ]
@@ -476,37 +524,48 @@
      "CC-2964",
      "CC-3587"
     ],
-    "summary": "Alert on 3514030 ($77.07) is consistent with the cardholder's own activity. Closed without customer impact.",
+    "summary": "Alert on 3514030 ($77.07) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
     "graph_case_id": "CASE-HHG-001"
    },
-   "evidence_requests": [],
+   "evidence_requests": [
+    {
+     "type": "customer_validation",
+     "asked_after_step": 5,
+     "assumed_response": "Customer confirms they made the purchase"
+    }
+   ],
    "next_best_actions": {
     "initial": [
      {
-      "action": "ALLOW_TRANSACTION",
-      "route": "auto",
-      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
+      "action": "DECLINE_TRANSACTION",
+      "route": "L1",
+      "reason": "Hold the flagged authorization while verifying"
      },
      {
-      "action": "CLOSE_NO_FRAUD",
+      "action": "VERIFY_WITH_CUSTOMER",
       "route": "auto",
-      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+      "reason": "R1/3b: confirm before blocking"
+     },
+     {
+      "action": "CREATE_CASE",
+      "route": "auto",
+      "reason": "3a: probability at or above 0.30 and evidence requested"
      }
     ],
     "final": [
      {
-      "action": "ALLOW_TRANSACTION",
-      "route": "auto",
-      "reason": "Evidence shows the activity fits the card's history; risk score alone is not a verdict (policy 0)"
-     },
-     {
       "action": "CLOSE_NO_FRAUD",
       "route": "auto",
-      "reason": "Fraud probability at or below 0.15 with two independent pieces of evidence"
+      "reason": "R3: customer confirmed the transaction"
+     },
+     {
+      "action": "ALLOW_TRANSACTION",
+      "route": "auto",
+      "reason": "R3"
      }
     ],
-    "what_changed": "nothing"
+    "what_changed": "Customer confirmation lowered probability from 0.45 to 0.08; the alert closes as legitimate (R3)."
    },
    "sar": {
     "file": false,
@@ -516,7 +575,7 @@
     "total_amount_usd": 0,
     "activity_dates": []
    },
-   "stop_reason": "Fraud probability at or below 0.15 supported by card history and region/device consistency (policy 6).",
+   "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 11,
    "tokens": 0,
    "latency_s": 0.001

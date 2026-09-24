@@ -1,0 +1,61 @@
+{
+  "fps": 60,
+  "video": "rec/console/recording.mp4",
+  "size": {
+    "width": 1920,
+    "height": 1080
+  },
+  "steps": [
+    {
+      "startMs": 0,
+      "durationMs": 2611,
+      "action": "navigate",
+      "label": "Sentinel — an analyst's console for card-fraud alerts"
+    },
+    {
+      "startMs": 2611,
+      "action": "scroll",
+      "label": "A model score starts an investigation. It never ends one.",
+      "durationMs": 2609
+    },
+    {
+      "startMs": 5220,
+      "action": "scroll",
+      "label": null,
+      "durationMs": 1141
+    },
+    {
+      "startMs": 6361,
+      "action": "hover",
+      "x": 1438,
+      "y": 69,
+      "label": "Open the console",
+      "durationMs": 1149
+    },
+    {
+      "startMs": 7510,
+      "action": "click",
+      "x": 1438,
+      "y": 69,
+      "label": "The 20 exam cases from the HHGOA_IEEE case pack",
+      "durationMs": 2866
+    },
+    {
+      "startMs": 10376,
+      "action": "hover",
+      "x": 725,
+      "y": 845,
+      "label": "HHG-005 — a $100 online purchase the model scored 0.54",
+      "durationMs": 2049
+    },
+    {
+      "startMs": 12425,
+      "action": "click",
+      "x": 725,
+      "y": 845,
+      "label": null,
+      "durationMs": 809
+    }
+  ],
+  "durationMs": 13234
+}

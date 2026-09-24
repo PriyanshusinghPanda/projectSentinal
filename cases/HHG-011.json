@@ -55,6 +55,12 @@
         "source": "graph",
         "ref": "mcp:device_neighbors(days=31)",
         "entity_ids": []
+      },
+      {
+        "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
+        "source": "graph",
+        "ref": "mcp:case_memory",
+        "entity_ids": []
       }
     ],
     "similar_prior_cases": [
@@ -118,5 +124,5 @@
   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
   "tool_calls": 20,
   "tokens": 0,
-  "latency_s": 0.084
+  "latency_s": 0.091
 }

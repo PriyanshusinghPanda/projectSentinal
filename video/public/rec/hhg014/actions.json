@@ -1,0 +1,61 @@
+{
+  "fps": 60,
+  "video": "rec/hhg014/recording.mp4",
+  "size": {
+    "width": 1920,
+    "height": 1080
+  },
+  "steps": [
+    {
+      "startMs": 0,
+      "durationMs": 949,
+      "action": "navigate",
+      "label": "HHG-014: an analyst asks about an unusual device across several cards"
+    },
+    {
+      "startMs": 949,
+      "action": "click",
+      "x": 725,
+      "y": 910,
+      "label": "HHG-014: an analyst asks about an unusual device across several cards",
+      "durationMs": 1412
+    },
+    {
+      "startMs": 2361,
+      "action": "wait",
+      "label": "Graph: the same Samsung SM-G935F profile, behind an anonymous proxy",
+      "durationMs": 3837
+    },
+    {
+      "startMs": 6198,
+      "action": "move",
+      "x": 1050,
+      "y": 517,
+      "label": "Used on 28 other customers' cards within a month — confirmed-fraud cases on it",
+      "durationMs": 3767
+    },
+    {
+      "startMs": 9965,
+      "action": "wait",
+      "label": "Fits none of the five documented patterns — described in plain words (R9)",
+      "durationMs": 3832
+    },
+    {
+      "startMs": 13797,
+      "action": "click",
+      "x": 397,
+      "y": 708,
+      "label": "Block, report to the regulator (L2), monitor every connected card (R6)",
+      "durationMs": 5266
+    },
+    {
+      "startMs": 19063,
+      "action": "click",
+      "x": 850,
+      "y": 579,
+      "label": "A suspicious activity report written to stand on its own",
+      "durationMs": 5806
+    }
+  ],
+  "durationMs": 24869
+}

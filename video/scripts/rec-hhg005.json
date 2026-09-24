@@ -1,0 +1,72 @@
+{
+ "url": "http://localhost:3200/cases",
+ "viewport": {
+  "width": 1920,
+  "height": 1080
+ },
+ "fps": 60,
+ "outDir": "public/rec/hhg005",
+ "warm": [
+  "http://localhost:3200/case/HHG-001"
+ ],
+ "navMs": 900,
+ "startLabel": "HHG-005 opens: model score 0.54 on transaction 3523199",
+ "steps": [
+  {
+   "action": "click",
+   "selector": "a[href='/case/HHG-005']",
+   "ms": 1200,
+   "label": "HHG-005 opens: model score 0.54 on transaction 3523199"
+  },
+  {
+   "action": "wait",
+   "ms": 3800,
+   "label": "Specialists query TigerGraph over MCP: the card's window, device, and region"
+  },
+  {
+   "action": "wait",
+   "ms": 3800,
+   "label": "Case memory: three closed cases on this device profile \u2014 all confirmed fraud"
+  },
+  {
+   "action": "wait",
+   "ms": 3800,
+   "label": "The Challenger argues the innocent story: people replace phones"
+  },
+  {
+   "action": "move",
+   "selector": "text=Before evidence",
+   "ms": 2600,
+   "label": "p = 0.35 on one weak signal \u2192 verify before any block (R1)"
+  },
+  {
+   "action": "hover",
+   "selector": "button:has-text('Customer denies')",
+   "ms": 1400,
+   "label": "Replies aren't in the data \u2014 the agent simulates one and records it"
+  },
+  {
+   "action": "click",
+   "selector": "button:has-text('Customer denies')",
+   "ms": 5200,
+   "label": "The customer denies \u2192 p = 0.88 \u2192 BLOCK_CARD, routed to a team lead (L1)"
+  },
+  {
+   "action": "hover",
+   "selector": "button:has-text('Approve')",
+   "ms": 1200,
+   "label": "Only auto actions run on their own. A person approves the block."
+  },
+  {
+   "action": "click",
+   "selector": "button:has-text('Approve')",
+   "ms": 1800
+  },
+  {
+   "action": "click",
+   "selector": "button:has-text('Decision log')",
+   "ms": 3200,
+   "label": "Every step is on the record \u2014 initial and final actions, and why"
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+  "fps": 60,
+  "video": "rec/hhg005/recording.mp4",
+  "size": {
+    "width": 1920,
+    "height": 1080
+  },
+  "steps": [
+    {
+      "startMs": 0,
+      "durationMs": 947,
+      "action": "navigate",
+      "label": "HHG-005 opens: model score 0.54 on transaction 3523199"
+    },
+    {
+      "startMs": 947,
+      "action": "click",
+      "x": 725,
+      "y": 845,
+      "label": "HHG-005 opens: model score 0.54 on transaction 3523199",
+      "durationMs": 1416
+    },
+    {
+      "startMs": 2363,
+      "action": "wait",
+      "label": "Specialists query TigerGraph over MCP: the card's window, device, and region",
+      "durationMs": 3800
+    },
+    {
+      "startMs": 6163,
+      "action": "wait",
+      "label": "Case memory: three closed cases on this device profile — all confirmed fraud",
+      "durationMs": 3800
+    },
+    {
+      "startMs": 9963,
+      "action": "wait",
+      "label": "The Challenger argues the innocent story: people replace phones",
+      "durationMs": 3835
+    },
+    {
+      "startMs": 13798,
+      "action": "move",
+      "x": 1700,
+      "y": 416,
+      "label": "p = 0.35 on one weak signal → verify before any block (R1)",
+      "durationMs": 2799
+    },
+    {
+      "startMs": 16597,
+      "action": "hover",
+      "x": 397,
+      "y": 662,
+      "label": "Replies aren't in the data — the agent simulates one and records it",
+      "durationMs": 1649
+    },
+    {
+      "startMs": 18246,
+      "action": "click",
+      "x": 397,
+      "y": 662,
+      "label": "The customer denies → p = 0.88 → BLOCK_CARD, routed to a team lead (L1)",
+      "durationMs": 5451
+    },
+    {
+      "startMs": 23697,
+      "action": "hover",
+      "x": 1457,
+      "y": 573,
+      "label": "Only auto actions run on their own. A person approves the block.",
+      "durationMs": 1450
+    },
+    {
+      "startMs": 25147,
+      "action": "click",
+      "x": 1457,
+      "y": 573,
+      "label": null,
+      "durationMs": 2049
+    },
+    {
+      "startMs": 27196,
+      "action": "click",
+      "x": 938,
+      "y": 579,
+      "label": "Every step is on the record — initial and final actions, and why",
+      "durationMs": 3407
+    }
+  ],
+  "durationMs": 30603
+}

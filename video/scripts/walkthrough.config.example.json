@@ -1,0 +1,21 @@
+{
+  "url": "https://example.com",
+  "startLabel": "Open the dashboard",
+  "viewport": { "width": 1920, "height": 1080 },
+  "fps": 30,
+  "outDir": "public/walkthrough",
+  "headless": true,
+  "channel": null,
+  "steps": [
+    { "action": "wait", "ms": 1000, "label": "Here's the landing page" },
+    { "action": "move", "selector": "a[href='/pricing']", "label": "Find the pricing link" },
+    { "action": "click", "selector": "a[href='/pricing']", "label": "Open pricing" },
+    { "action": "wait", "ms": 1200 },
+    { "action": "scroll", "to": 700, "label": "Scroll the plans" },
+    { "action": "hover", "selector": ".plan--pro", "label": "Hover the Pro plan" },
+    { "action": "click", "selector": ".plan--pro button", "label": "Choose Pro" },
+    { "action": "type", "selector": "#email", "text": "demo@acme.com", "clear": true, "label": "Enter your email" },
+    { "action": "click", "selector": "button[type='submit']", "label": "Continue" },
+    { "action": "wait", "ms": 1400, "label": "And you're in" }
+  ]
+}

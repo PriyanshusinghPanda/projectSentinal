@@ -9,7 +9,7 @@
   "risk_score": 0.37,
   "amount": 59.67,
   "channel": "online",
-  "initial_probability": 0.85,
+  "initial_probability": 0.35,
   "transactions": [
    {
     "id": "3534820",
@@ -40,7 +40,7 @@
     "id": "dev",
     "kind": "device",
     "label": "Windows | edge 16.0",
-    "flagged": true
+    "flagged": false
    },
    {
     "id": "oc:C00045",
@@ -236,8 +236,8 @@
     "status": "closed_fraud",
     "verdict": "fraud",
     "fraud_probability": 0.86,
-    "pattern": "undocumented",
-    "pattern_description": "Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardholders \u2014 a shared-device ring that none of the five documented patterns describes.",
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
     "affected_txn_ids": [
      "3534820"
     ],
@@ -249,24 +249,11 @@
     "exposure_usd": 59.67,
     "evidence": [
      {
-      "claim": "Device profile shared with 70 other customers within 31 days; linked to confirmed closed cases CC-0497, CC-2540, CC-2675, CC-2694",
+      "claim": "Online purchase from a device the identity record marks New for this account (Windows | edge 16.0); amount and product fit the card's history, so this is a single weak signal (people buy new phones)",
       "source": "graph",
-      "ref": "query:device_neighbors(device_profile='Windows | edge 16.0', days=31)",
+      "ref": "query:device_history(card_id=C09988-K1)",
       "entity_ids": [
-       "C00045",
-       "C00294",
-       "C00854",
-       "C01002",
-       "C01109",
-       "C01351",
-       "C01521",
-       "C01525",
-       "C02181",
-       "C02545",
-       "CC-0497",
-       "CC-2540",
-       "CC-2675",
-       "CC-2694"
+       "3534820"
       ]
      },
      {
@@ -300,6 +287,12 @@
       "source": "graph",
       "ref": "mcp:device_neighbors(days=31)",
       "entity_ids": []
+     },
+     {
+      "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
+      "source": "graph",
+      "ref": "mcp:case_memory",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -309,7 +302,7 @@
      "CC-2694",
      "CC-2732"
     ],
-    "summary": "Undocumented on card C09988-K1: 1 transaction(s), exposure $59.67. Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardhol Customer denial confirmed the verdict.",
+    "summary": "Card not present new device on card C09988-K1: 1 transaction(s), exposure $59.67. Customer denial confirmed the verdict.",
     "written_to_graph": true,
     "graph_case_id": "CASE-HHG-016"
    },
@@ -348,44 +341,22 @@
       "action": "CREATE_CASE",
       "route": "auto",
       "reason": "R2 / 3a: confirmed fraud"
-     },
-     {
-      "action": "FILE_REPORT",
-      "route": "L2",
-      "reason": "3a: coordinated / undocumented pattern (R9)"
-     },
-     {
-      "action": "MONITOR_CONNECTED_CARDS",
-      "route": "auto",
-      "reason": "R6: cards sharing device profile 'Windows | edge 16.0'"
-     },
-     {
-      "action": "ESCALATE_TO_ANALYST",
-      "route": "auto",
-      "reason": "R9: undocumented coordinated pattern"
      }
     ],
-    "what_changed": "Step-up confirmed the genuine cardholder is the one denying the purchase, which settles unauthorised use; the case moves from hold to block and a regulatory report."
+    "what_changed": "Step-up confirmed the genuine cardholder is the one denying the purchase, which settles unauthorised use; the case moves from hold to block."
    },
    "sar": {
-    "file": true,
-    "reason": "3a: coordinated / undocumented pattern (R9)",
-    "narrative": "Between 2016-12-11 and 2016-12-11, card C09988-K1 held by customer C09988 was used for 1 transaction(s) totaling $59.67 that the bank assesses as unauthorized. The transactions were: 3534820 ($59.67, 2016-12-11 22:39, online, product C). The activity was identified through a customer report on transaction 3534820 opened 2016-12-12 01:39:08. The activity shows Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardholders \u2014 a shared-device ring that none of the five documented patterns describes.. The same device profile (Windows | edge 16.0) was used on the cards of 70 other customers within the same month, including cards not individually identified, and appears on confirmed-fraud closed cases CC-0497, CC-2540, CC-2675, CC-2694. The cardholder reported that they did not make the purchase(s) and remains in possession of the card; identity was confirmed through the bank's verification step. Channel: online; billing region code(s): not recorded. The activity is suspicious because it departs from the cardholder's established history (median transaction $37.75) and matches a coordinated scheme across multiple cardholders. The card has been recommended for blocking and reissue and a case has been opened; connected cards are under monitoring where applicable.",
-    "subjects": [
-     "C09988",
-     "C09988-K1",
-     "Windows | edge 16.0"
-    ],
-    "total_amount_usd": 59.67,
-    "activity_dates": [
-     "2016-12-11",
-     "2016-12-11"
-    ]
+    "file": false,
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
    },
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 0.016
+   "latency_s": 0.007
   },
   "deny": {
    "case_id": "HHG-016",
@@ -393,8 +364,8 @@
     "status": "closed_fraud",
     "verdict": "fraud",
     "fraud_probability": 0.86,
-    "pattern": "undocumented",
-    "pattern_description": "Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardholders \u2014 a shared-device ring that none of the five documented patterns describes.",
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
     "affected_txn_ids": [
      "3534820"
     ],
@@ -406,24 +377,11 @@
     "exposure_usd": 59.67,
     "evidence": [
      {
-      "claim": "Device profile shared with 70 other customers within 31 days; linked to confirmed closed cases CC-0497, CC-2540, CC-2675, CC-2694",
+      "claim": "Online purchase from a device the identity record marks New for this account (Windows | edge 16.0); amount and product fit the card's history, so this is a single weak signal (people buy new phones)",
       "source": "graph",
-      "ref": "query:device_neighbors(device_profile='Windows | edge 16.0', days=31)",
+      "ref": "query:device_history(card_id=C09988-K1)",
       "entity_ids": [
-       "C00045",
-       "C00294",
-       "C00854",
-       "C01002",
-       "C01109",
-       "C01351",
-       "C01521",
-       "C01525",
-       "C02181",
-       "C02545",
-       "CC-0497",
-       "CC-2540",
-       "CC-2675",
-       "CC-2694"
+       "3534820"
       ]
      },
      {
@@ -457,6 +415,12 @@
       "source": "graph",
       "ref": "mcp:device_neighbors(days=31)",
       "entity_ids": []
+     },
+     {
+      "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
+      "source": "graph",
+      "ref": "mcp:case_memory",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -466,7 +430,7 @@
      "CC-2694",
      "CC-2732"
     ],
-    "summary": "Undocumented on card C09988-K1: 1 transaction(s), exposure $59.67. Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardhol Customer denial confirmed the verdict.",
+    "summary": "Card not present new device on card C09988-K1: 1 transaction(s), exposure $59.67. Customer denial confirmed the verdict.",
     "written_to_graph": true,
     "graph_case_id": "CASE-HHG-016"
    },
@@ -505,44 +469,22 @@
       "action": "CREATE_CASE",
       "route": "auto",
       "reason": "R2 / 3a: confirmed fraud"
-     },
-     {
-      "action": "FILE_REPORT",
-      "route": "L2",
-      "reason": "3a: coordinated / undocumented pattern (R9)"
-     },
-     {
-      "action": "MONITOR_CONNECTED_CARDS",
-      "route": "auto",
-      "reason": "R6: cards sharing device profile 'Windows | edge 16.0'"
-     },
-     {
-      "action": "ESCALATE_TO_ANALYST",
-      "route": "auto",
-      "reason": "R9: undocumented coordinated pattern"
      }
     ],
-    "what_changed": "Step-up confirmed the genuine cardholder is the one denying the purchase, which settles unauthorised use; the case moves from hold to block and a regulatory report."
+    "what_changed": "Step-up confirmed the genuine cardholder is the one denying the purchase, which settles unauthorised use; the case moves from hold to block."
    },
    "sar": {
-    "file": true,
-    "reason": "3a: coordinated / undocumented pattern (R9)",
-    "narrative": "Between 2016-12-11 and 2016-12-11, card C09988-K1 held by customer C09988 was used for 1 transaction(s) totaling $59.67 that the bank assesses as unauthorized. The transactions were: 3534820 ($59.67, 2016-12-11 22:39, online, product C). The activity was identified through a customer report on transaction 3534820 opened 2016-12-12 01:39:08. The activity shows Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardholders \u2014 a shared-device ring that none of the five documented patterns describes.. The same device profile (Windows | edge 16.0) was used on the cards of 70 other customers within the same month, including cards not individually identified, and appears on confirmed-fraud closed cases CC-0497, CC-2540, CC-2675, CC-2694. The cardholder reported that they did not make the purchase(s) and remains in possession of the card; identity was confirmed through the bank's verification step. Channel: online; billing region code(s): not recorded. The activity is suspicious because it departs from the cardholder's established history (median transaction $37.75) and matches a coordinated scheme across multiple cardholders. The card has been recommended for blocking and reissue and a case has been opened; connected cards are under monitoring where applicable.",
-    "subjects": [
-     "C09988",
-     "C09988-K1",
-     "Windows | edge 16.0"
-    ],
-    "total_amount_usd": 59.67,
-    "activity_dates": [
-     "2016-12-11",
-     "2016-12-11"
-    ]
+    "file": false,
+    "reason": "3a: fraud confirmed but exposure \u2264 $1,000 with no shared device, region cluster, or coordinated pattern \u2014 case only",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
    },
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.002
+   "latency_s": 0.003
   },
   "confirm": {
    "case_id": "HHG-016",
@@ -559,24 +501,11 @@
     "exposure_usd": 0.0,
     "evidence": [
      {
-      "claim": "Device profile shared with 70 other customers within 31 days; linked to confirmed closed cases CC-0497, CC-2540, CC-2675, CC-2694",
+      "claim": "Online purchase from a device the identity record marks New for this account (Windows | edge 16.0); amount and product fit the card's history, so this is a single weak signal (people buy new phones)",
       "source": "graph",
-      "ref": "query:device_neighbors(device_profile='Windows | edge 16.0', days=31)",
+      "ref": "query:device_history(card_id=C09988-K1)",
       "entity_ids": [
-       "C00045",
-       "C00294",
-       "C00854",
-       "C01002",
-       "C01109",
-       "C01351",
-       "C01521",
-       "C01525",
-       "C02181",
-       "C02545",
-       "CC-0497",
-       "CC-2540",
-       "CC-2675",
-       "CC-2694"
+       "3534820"
       ]
      },
      {
@@ -609,6 +538,12 @@
       "claim": "TigerGraph device_neighbors: device profile used by 71 customers within 31 days; confirmed-fraud closed cases on it: none",
       "source": "graph",
       "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
+     },
+     {
+      "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
+      "source": "graph",
+      "ref": "mcp:case_memory",
       "entity_ids": []
      }
     ],
@@ -673,7 +608,7 @@
    "stop_reason": "Verification settled the question (policy 6).",
    "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.003
+   "latency_s": 0.002
   }
  }
 }

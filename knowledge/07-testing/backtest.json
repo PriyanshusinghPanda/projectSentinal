@@ -1,0 +1,121 @@
+{
+ "cases": 5565,
+ "by_trigger": {
+  "customer_report": 4665,
+  "risk_score": 900
+ },
+ "fraud_rate_by_trigger": {
+  "risk_score": 0.0,
+  "customer_report": 1.0,
+  "analyst_request": 0.0
+ },
+ "pattern_accuracy_on_confirmed_fraud": 0.628,
+ "pattern_recall": {
+  "account_takeover": {
+   "n": 1205,
+   "correct": 257,
+   "recall": 0.213,
+   "top_confusions": [
+    [
+     "out_of_region_use",
+     533
+    ],
+    [
+     "none",
+     311
+    ],
+    [
+     "account_takeover",
+     257
+    ]
+   ]
+  },
+  "card_not_present_fraud": {
+   "n": 1404,
+   "correct": 1290,
+   "recall": 0.919,
+   "top_confusions": [
+    [
+     "card_not_present_fraud",
+     1290
+    ],
+    [
+     "card_not_present_new_device",
+     94
+    ],
+    [
+     "account_takeover",
+     18
+    ]
+   ]
+  },
+  "card_not_present_new_device": {
+   "n": 1076,
+   "correct": 718,
+   "recall": 0.667,
+   "top_confusions": [
+    [
+     "card_not_present_new_device",
+     718
+    ],
+    [
+     "card_not_present_fraud",
+     342
+    ],
+    [
+     "account_takeover",
+     10
+    ]
+   ]
+  },
+  "card_testing": {
+   "n": 16,
+   "correct": 2,
+   "recall": 0.125,
+   "top_confusions": [
+    [
+     "card_not_present_fraud",
+     13
+    ],
+    [
+     "card_testing",
+     2
+    ],
+    [
+     "card_not_present_new_device",
+     1
+    ]
+   ]
+  },
+  "out_of_region_use": {
+   "n": 955,
+   "correct": 652,
+   "recall": 0.683,
+   "top_confusions": [
+    [
+     "out_of_region_use",
+     652
+    ],
+    [
+     "none",
+     201
+    ],
+    [
+     "account_takeover",
+     102
+    ]
+   ]
+  },
+  "undocumented": {
+   "n": 9,
+   "correct": 9,
+   "recall": 1.0,
+   "top_confusions": [
+    [
+     "undocumented",
+     9
+    ]
+   ]
+  }
+ }
+}

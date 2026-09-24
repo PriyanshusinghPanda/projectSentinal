@@ -244,6 +244,12 @@
       "source": "graph",
       "ref": "mcp:device_neighbors(days=31)",
       "entity_ids": []
+     },
+     {
+      "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
+      "source": "graph",
+      "ref": "mcp:case_memory",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -305,7 +311,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 18,
    "tokens": 0,
-   "latency_s": 0.004
+   "latency_s": 0.003
   },
   "deny": {
    "case_id": "HHG-015",
@@ -363,6 +369,12 @@
       "claim": "TigerGraph device_neighbors: device profile used by 2 customers within 31 days; confirmed-fraud closed cases on it: none",
       "source": "graph",
       "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
+     },
+     {
+      "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
+      "source": "graph",
+      "ref": "mcp:case_memory",
       "entity_ids": []
      }
     ],
@@ -425,7 +437,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 11,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 0.002
   },
   "confirm": {
    "case_id": "HHG-015",
@@ -479,6 +491,12 @@
       "claim": "TigerGraph device_neighbors: device profile used by 2 customers within 31 days; confirmed-fraud closed cases on it: none",
       "source": "graph",
       "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
+     },
+     {
+      "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
+      "source": "graph",
+      "ref": "mcp:case_memory",
       "entity_ids": []
      }
     ],

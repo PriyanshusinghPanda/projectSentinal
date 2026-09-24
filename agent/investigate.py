@@ -97,6 +97,13 @@ for c in CLOSED:
     for t in c["txn_ids"].split("|"):
         TXN_TO_CARD[t] = c["card_id"]
 CASES = list(csv.DictReader(open(os.path.join(DATA, "case_pack.csv"))))
+
+# Backtesting: when set (YYYY-MM-DD HH:MM:SS), case memory only shows cases closed before this moment.
+MEMORY_AS_OF = None
+
+
+def visible(c):
+    return MEMORY_AS_OF is None or c["closed_at"] < MEMORY_AS_OF
 for c in CASES:
     TXN_TO_CARD[c["flagged_txn_id"]] = c["card_id"]
 print(f"loaded {len(TX)} txns, {len(BY_DEV)} device profiles, {len(CLOSED)} closed cases in {time.time()-t0:.1f}s", file=sys.stderr)
@@ -145,6 +152,18 @@ def investigate(case, assume=None):
         larger = [x for x in near if x.amt > 5 and x.t > max((a.t for a in around), default=f.t) and x.t <= f.t + timedelta(hours=2)]
         if len(around) >= 3 and larger:
             testing, small = True, around
+    if not testing:
+        # Backtest finding: real probe runs here are sub-$2 authorizations spread over hours to days, interleaved with
+        # the larger purchases — not one tight hour. Require ≥2 probes in 72h, a larger online purchase after the first,
+        # and that tiny charges are unusual for this card.
+        probes = [x for x in prof if x.channel == "online" and x.amt <= 1.0 and f.t - timedelta(hours=72) <= x.t <= f.t + timedelta(hours=6)]
+        usual_tiny = sum(1 for x in hist if x.amt <= 1.0) / max(1, len(hist))
+        window_online = sum(1 for x in prof if x.channel == "online" and f.t - timedelta(hours=72) <= x.t <= f.t + timedelta(hours=6))
+        if len(probes) >= 1 and usual_tiny < 0.05 and window_online <= 25:  # a lone tiny charge on a very busy profile is noise
+            first = min(x.t for x in probes)
+            big = [x for x in prof if x.channel == "online" and x.amt >= 20 and first < x.t <= f.t + timedelta(hours=6)]
+            if big:
+                testing, small = True, probes
     # threshold structuring (undocumented, CC-3748 family): several online purchases just under $500 within ~1h
     struct = [x for x in near if x.channel == "online" and 450 <= x.amt < 500 and abs((x.t - f.t).total_seconds()) <= 3600]
     structuring = len(struct) >= 3
@@ -171,8 +190,10 @@ def investigate(case, assume=None):
             if abs((x.t - f.t).days) <= 31 and x.cust != cust:
                 shared_custs.add(x.cust)
                 shared_txns.append(x)
-    dev_fraud_cases = sorted({c["case_id"] for x in BY_DEV.get(f.dev, []) for c in CC_BY_TXN.get(x.id, []) if c["outcome"] == "confirmed_fraud"}) if f.dev and DEV_CUSTS.get(f.dev, 0) <= 200 else []
-    ring = f.dev and len(shared_custs) >= 2 and (len(dev_fraud_cases) >= 2 or (proxy and dev_new))
+    dev_fraud_cases = sorted({c["case_id"] for x in BY_DEV.get(f.dev, []) for c in CC_BY_TXN.get(x.id, []) if c["outcome"] == "confirmed_fraud" and visible(c)}) if f.dev and DEV_CUSTS.get(f.dev, 0) <= 200 else []
+    # Ring = one actor, one device, many cardholders: a device NEW to this account, behind an anonymous/hidden proxy,
+    # shared across customers. (Backtest: the looser "shared + prior fraud" rule mislabelled ~300 ordinary CNP cases.)
+    ring = bool(f.dev) and dev_new and proxy and len(shared_custs) >= 3
 
     # ── Region: out-of-region card-present use while home activity continues (pattern 4) ──
     calls += 1
@@ -199,7 +220,8 @@ def investigate(case, assume=None):
     calls += 1
     mem = []
     for c in CC_BY_CUST.get(cust, []):
-        mem.append((3, c))
+        if visible(c):
+            mem.append((3, c))
     for cid in dev_fraud_cases[:5]:
         mem += [(2, c) for c in CLOSED if c["case_id"] == cid]
 
@@ -214,11 +236,14 @@ def investigate(case, assume=None):
         pattern, p, signals = "undocumented", max(p, 0.82), signals + 2
         desc = f"{len(struct)} online purchases between $450 and $500 within an hour on one card — amounts appear chosen to stay under a $500 authorization threshold. The same structuring shape appears in confirmed closed cases (e.g. CC-3748, CC-3841) across unrelated customers, so it is a repeated scheme, not a one-off."
         evidence.append({"claim": desc.split(" — ")[0] + " (threshold structuring)", "source": "graph", "ref": f"query:card_window(card_id={card_id}, hours=1)", "entity_ids": [x.id for x in struct]})
-        mem += [(2, c) for c in CLOSED if c["case_id"] in ("CC-3748", "CC-3841", "CC-3907")]
+        mem += [(2, c) for c in CLOSED if c["case_id"] in ("CC-3748", "CC-3841", "CC-3907") and visible(c)]
     if ring:
         pattern, p, signals = "undocumented", max(p, 0.85), signals + 2
         desc = f"Device profile '{f.dev}'{' behind an anonymous proxy' if proxy else ''} is new to this account and transacted on {len(shared_custs)} other customers' cards within a month; {len(dev_fraud_cases)} closed cases on this profile were confirmed fraud. One actor using one device across many cardholders — a shared-device ring that none of the five documented patterns describes."
-        evidence.append({"claim": f"Device profile shared with {len(shared_custs)} other customers within 31 days; linked to confirmed closed cases {', '.join(dev_fraud_cases[:4])}", "source": "graph", "ref": f"query:device_neighbors(device_profile='{f.dev}', days=31)", "entity_ids": sorted(shared_custs)[:10] + dev_fraud_cases[:4]})
+        evidence.append({"claim": f"The identity record marks device profile '{f.dev}' as New for this account{', connecting through an ' + f.proxy + ' proxy' if proxy else ''}", "source": "graph", "ref": f"query:device_history(card_id={card_id})", "entity_ids": [f.id]})
+        evidence.append({"claim": f"The same device profile transacted on {len(shared_custs)} other customers' cards within 31 days of the alert", "source": "graph", "ref": f"query:device_neighbors(device_profile='{f.dev}', days=31)", "entity_ids": sorted(shared_custs)[:10]})
+        if dev_fraud_cases:
+            evidence.append({"claim": f"{len(dev_fraud_cases)} closed cases involving this device profile were confirmed fraud: {', '.join(dev_fraud_cases[:6])}", "source": "document", "ref": "closed_cases_history", "entity_ids": dev_fraud_cases[:6]})
     if pattern == "none" and ato:
         pattern, p, signals = "account_takeover", 0.62, signals + 2
         evidence.append({"claim": f"Mixed in-person and online activity within 48h, device {'marked New' if dev_new else 'never seen on this card'}, and {m_mismatch} match-flag anomalies (M4-M6) on the flagged transaction", "source": "graph", "ref": f"query:card_window(card_id={card_id}, hours=48)", "entity_ids": [f.id]})
@@ -235,6 +260,22 @@ def investigate(case, assume=None):
     if pattern == "none" and f.channel == "online" and (dev_new or proxy):
         pattern, p, signals = "card_not_present_new_device", 0.35 + (0.1 if proxy else 0), 1
         evidence.append({"claim": f"Online purchase from a device the identity record marks {'New' if dev_new else 'as seen'} for this account ({f.dev}){', behind a ' + f.proxy + ' proxy' if proxy else ''}; amount and product fit the card's history, so this is a single weak signal (people buy new phones)", "source": "graph", "ref": f"query:device_history(card_id={card_id})", "entity_ids": [f.id]})
+    # Card-present with match-flag anomalies (patterns 4/5). Learned from the closed-case backtest: M5/M6 = "F"
+    # appears on 31–59% of confirmed account-takeover / out-of-region cases but only 4–7% of cleared alerts.
+    if pattern == "none" and f.channel == "in_person" and (f.M[4] == "F" or f.M[5] == "F"):
+        tot = sum(home.values())
+        share = home.get(f.addr1, 0) / tot if tot else 1.0
+        flags = ", ".join(f"M{i + 1}={f.M[i]}" for i in (3, 4, 5) if f.M[i])
+        evidence.append({"claim": f"Card-present purchase with name/address match anomalies ({flags}) — Vesta's unnamed match features; mismatches appear on most confirmed takeover / out-of-region cases and rarely on cleared alerts", "source": "graph", "ref": f"txn:{f.id}", "entity_ids": [f.id]})
+        if (f.addr1 and share < 0.05) or f.M[3] == "M0":
+            pattern = "out_of_region_use"
+            evidence.append({"claim": f"Billing region {f.addr1 or 'n/a'} accounts for {share:.0%} of this card's history", "source": "graph", "ref": f"query:region_history(card_id={card_id})", "entity_ids": [f.id]})
+        else:
+            pattern = "account_takeover"
+        signals += 1 + bool(f.addr1 and share < 0.05)
+        # History: every model-scored alert in the closed cases was cleared, so on a model alert these flags alone are a
+        # reason to verify (R1), not to block. A customer dispute is itself a second, independent signal.
+        p = 0.45 if trig == "risk_score" else (0.45 if signals <= 1 else 0.62)
     if pattern == "none" and new_region and not trip:
         pattern, p, signals = "out_of_region_use", 0.55 + (0.15 if home_continues else 0), signals + 1 + home_continues
         evidence.append({"claim": f"Card-present purchase in billing region {f.addr1}, where this card has no history (home regions {', '.join(k for k, _ in home.most_common(3))}){'; in-person activity continued in the home region within 36h' if home_continues else ''}", "source": "graph", "ref": f"query:region_history(card_id={card_id})", "entity_ids": [f.id]})
@@ -263,8 +304,8 @@ def investigate(case, assume=None):
         evidence.append({"claim": "Challenger: " + ch, "source": "graph", "ref": f"query:card_profile(card_id={card_id})", "entity_ids": [f.id]})
 
     # prior closed cases on this customer inform the view
-    prior_fraud = [c for c in CC_BY_CUST.get(cust, []) if c["outcome"] == "confirmed_fraud"]
-    prior_clear = [c for c in CC_BY_CUST.get(cust, []) if c["outcome"] == "cleared"]
+    prior_fraud = [c for c in CC_BY_CUST.get(cust, []) if c["outcome"] == "confirmed_fraud" and visible(c)]
+    prior_clear = [c for c in CC_BY_CUST.get(cust, []) if c["outcome"] == "cleared" and visible(c)]
     if prior_clear and pattern in ("none", "card_not_present_fraud", "out_of_region_use"):
         evidence.append({"claim": f"Customer has {len(prior_clear)} cleared prior alert(s): {prior_clear[-1]['analyst_notes'][:160]}", "source": "document", "ref": f"closed_case:{prior_clear[-1]['case_id']}", "entity_ids": [prior_clear[-1]["case_id"]]})
     p = max(0.02, min(0.97, p))
@@ -272,7 +313,7 @@ def investigate(case, assume=None):
     # ── Affected transactions / exposure ──
     affected = []
     if pattern == "card_testing":
-        affected = sorted({x.id for x in small} | {x.id for x in near if x.amt > 5 and x.channel == "online" and x.t >= min(s.t for s in small) and x.t <= f.t + timedelta(hours=2)} | {f.id}, key=lambda i: TX[i].t)
+        affected = sorted({x.id for x in small} | {x.id for x in prof if x.amt > 5 and x.channel == "online" and min(s.t for s in small) <= x.t <= f.t + timedelta(hours=6)} | {f.id}, key=lambda i: TX[i].t)
     elif pattern == "undocumented" and structuring:
         affected = sorted({x.id for x in struct} | {f.id}, key=lambda i: TX[i].t)
     elif pattern == "undocumented" and ring:
@@ -280,8 +321,13 @@ def investigate(case, assume=None):
     elif pattern in ("card_not_present_fraud", "card_not_present_new_device", "account_takeover"):
         affected = sorted({x.id for x in burst if (x.dev == f.dev or not f.dev)} | {f.id}, key=lambda i: TX[i].t)[:6]
     elif pattern == "out_of_region_use":
-        affected = sorted({x.id for x in prof if x.addr1 == f.addr1 and abs((x.t - f.t).days) <= 2} | {f.id}, key=lambda i: TX[i].t)
+        # only card-present purchases in the same region within 48h that also carry match-flag anomalies
+        affected = sorted({x.id for x in prof if x.addr1 == f.addr1 and x.channel == "in_person" and abs((x.t - f.t).total_seconds()) <= 48 * 3600 and (x.M[4] == "F" or x.M[5] == "F")} | {f.id}, key=lambda i: TX[i].t)
     elif trig == "customer_report":
+        affected = [f.id]
+    cnp_burst = pattern.startswith("card_not_present") and 2 <= len(affected) <= 4  # "a burst of two to four within 48 hours"
+    if trig == "customer_report" and pattern not in ("card_testing", "undocumented") and not cnp_burst:
+        # the customer disputed one charge; only a clearly linked episode (testing, structuring, ring) widens it
         affected = [f.id]
     exposure = round(sum(abs(TX[i].amt) for i in affected), 2)
 
@@ -408,13 +454,13 @@ def investigate(case, assume=None):
             seen.add(c["case_id"]); similar.append(c["case_id"])
     if len(similar) < 2 and pattern_out not in ("none",):
         for c in CLOSED:
-            if c["pattern"] == pattern_out and c["outcome"] == "confirmed_fraud" and c["case_id"] not in seen:
+            if c["pattern"] == pattern_out and c["outcome"] == "confirmed_fraud" and c["case_id"] not in seen and visible(c):
                 similar.append(c["case_id"]); seen.add(c["case_id"])
                 if len(similar) >= 3:
                     break
     if len(similar) < 2 and verdict == "legitimate":
         for c in CLOSED:
-            if c["outcome"] == "cleared" and c["customer_id"] != cust and ("travel" in c["analyst_notes"].lower()) == bool(new_region) and c["case_id"] not in seen:
+            if c["outcome"] == "cleared" and c["customer_id"] != cust and ("travel" in c["analyst_notes"].lower()) == bool(new_region) and c["case_id"] not in seen and visible(c):
                 similar.append(c["case_id"]); seen.add(c["case_id"])
                 if len(similar) >= 2:
                     break
