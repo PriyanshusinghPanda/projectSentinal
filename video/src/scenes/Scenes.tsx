@@ -246,11 +246,11 @@ export const TigerGraphScene: React.FC = () => {
 /* ── 8. Results ───────────────────────────────────────────────────────────── */
 
 export const ResultsScene: React.FC = () => {
-  const kpis: [number, string, string, number][] = [
-    [17, "", "asked for evidence before acting", 6],
-    [16, "", "changed their recommendation after it", 7],
-    [3, "", "suspicious activity reports filed", 8],
-    [3521, "$", "fraud exposure identified", 9],
+  const kpis: [number, string, string, number, number?, string?][] = [
+    [20, "", "asked for evidence before acting", 6],
+    [19, "", "changed their recommendation after it", 7],
+    [2, "", "suspicious activity reports filed", 8],
+    [62.8, "", "pattern accuracy — backtest on 5,565 closed cases", 9, 1, "%"],
   ];
   return (
     <Scene>
@@ -267,17 +267,17 @@ export const ResultsScene: React.FC = () => {
             step={s(0.4)}
             width={760}
             barHeight={58}
-            max={10}
+            max={12}
             data={[
-              { label: "Fraud — blocked / reported", value: 9, color: C.danger },
+              { label: "Fraud — blocked / reported", value: 11, color: C.danger },
               { label: "Legitimate — closed, no impact", value: 8, color: C.accent2 },
-              { label: "Uncertain — escalated (R8)", value: 3, color: C.warn },
+              { label: "Uncertain — escalated (R8)", value: 1, color: C.warn },
             ]}
           />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "36px 48px" }}>
-            {kpis.map(([n, pre, l, dl]) => (
+            {kpis.map(([n, pre, l, dl, dec, suf]) => (
               <div key={l} style={{ borderTop: `1.5px solid ${C.border}`, paddingTop: 16 }}>
-                <Counter to={n} prefix={pre} delay={s(dl)} duration={s(1.4)} color={C.fg} size={62} align="left" />
+                <Counter to={n} prefix={pre} suffix={suf ?? ""} decimals={dec ?? 0} delay={s(dl)} duration={s(1.4)} color={C.fg} size={62} align="left" />
                 <Line delay={s(dl + 0.2)} size={24} color={C.muted}>
                   {l}
                 </Line>
@@ -287,7 +287,7 @@ export const ResultsScene: React.FC = () => {
         </div>
         <div style={{ marginTop: 50 }}>
           <Line delay={s(12)} size={34} color={C.fg}>
-            <span style={{ color: C.danger }}>2 undocumented schemes</span> found across 3 cases: a shared-device ring behind an anonymous proxy, and purchases sized just under a $500 threshold.
+            <span style={{ color: C.danger }}>2 undocumented schemes</span> found: a shared-device ring behind an anonymous proxy, and online purchases sized just under a $500 threshold.
           </Line>
         </div>
       </div>

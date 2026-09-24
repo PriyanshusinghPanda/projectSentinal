@@ -51,13 +51,25 @@
         "source": "graph",
         "ref": "mcp:device_neighbors(days=31)",
         "entity_ids": []
+      },
+      {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3409 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.42); CC-2757 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.39); CC-5145 \u2014 confirmed fraud, out_of_region_use (similarity 0.38)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-3409",
+          "CC-2757",
+          "CC-5145"
+        ]
       }
     ],
     "similar_prior_cases": [
       "CC-2011",
       "CC-2087",
       "CC-2860",
-      "CC-5026"
+      "CC-5026",
+      "CC-3409",
+      "CC-2757"
     ],
     "summary": "Alert on 3503878 ($99.92) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -106,7 +118,7 @@
     "activity_dates": []
   },
   "stop_reason": "The verification response settles the question (policy 6).",
-  "tool_calls": 19,
+  "tool_calls": 20,
   "tokens": 0,
-  "latency_s": 0.003
+  "latency_s": 0.005
 }

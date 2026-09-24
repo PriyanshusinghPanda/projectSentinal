@@ -96,7 +96,17 @@
         ]
       },
       {
-        "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3035 \u2014 confirmed fraud, undocumented (similarity 0.58); CC-2649 \u2014 confirmed fraud, undocumented (similarity 0.58); CC-2985 \u2014 confirmed fraud, undocumented (similarity 0.58)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-3035",
+          "CC-2649",
+          "CC-2985"
+        ]
+      },
+      {
+        "claim": "Case memory in the graph: 3 earlier Sentinel investigation(s) on this device profile",
         "source": "graph",
         "ref": "mcp:case_memory",
         "entity_ids": []
@@ -202,7 +212,7 @@
     ]
   },
   "stop_reason": "Probability at or above 0.85 with at least two independent pieces of evidence (policy 6); customer denial confirmed the block.",
-  "tool_calls": 19,
+  "tool_calls": 20,
   "tokens": 0,
-  "latency_s": 0.003
+  "latency_s": 0.006
 }

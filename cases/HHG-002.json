@@ -44,11 +44,24 @@
         "entity_ids": [
           "3478782"
         ]
+      },
+      {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-2396 \u2014 confirmed fraud, card_not_present_fraud (similarity 0.37); CC-4124 \u2014 confirmed fraud, undocumented (similarity 0.35); CC-4086 \u2014 confirmed fraud, undocumented (similarity 0.35)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-2396",
+          "CC-4124",
+          "CC-4086"
+        ]
       }
     ],
     "similar_prior_cases": [
       "CC-4160",
-      "CC-0009"
+      "CC-0009",
+      "CC-2396",
+      "CC-4124",
+      "CC-4086"
     ],
     "summary": "Alert on 3478782 ($292.36) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -97,7 +110,7 @@
     "activity_dates": []
   },
   "stop_reason": "The verification response settles the question (policy 6).",
-  "tool_calls": 16,
+  "tool_calls": 17,
   "tokens": 0,
-  "latency_s": 0.003
+  "latency_s": 0.002
 }

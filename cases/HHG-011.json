@@ -57,6 +57,16 @@
         "entity_ids": []
       },
       {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-1413 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.52); CC-3977 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.52); CC-5378 \u2014 confirmed fraud, card_not_present_new_device (similarity 0.52)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-1413",
+          "CC-3977",
+          "CC-5378"
+        ]
+      },
+      {
         "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
         "source": "graph",
         "ref": "mcp:case_memory",
@@ -68,7 +78,8 @@
       "CC-0290",
       "CC-1056",
       "CC-2247",
-      "CC-2673"
+      "CC-2673",
+      "CC-1413"
     ],
     "summary": "Card not present new device on card C11923-K2: 1 transaction(s), exposure $131.30. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -122,7 +133,7 @@
     "activity_dates": []
   },
   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
-  "tool_calls": 20,
+  "tool_calls": 21,
   "tokens": 0,
-  "latency_s": 0.103
+  "latency_s": 0.107
 }

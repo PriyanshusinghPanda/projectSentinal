@@ -417,6 +417,16 @@
       "source": "graph",
       "ref": "mcp:device_neighbors(days=31)",
       "entity_ids": []
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5262 \u2014 cleared, none (similarity 0.68); CC-4249 \u2014 cleared, none (similarity 0.68); CC-1887 \u2014 cleared, none (similarity 0.68)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-5262",
+       "CC-4249",
+       "CC-1887"
+      ]
      }
     ],
     "similar_prior_cases": [
@@ -424,7 +434,8 @@
      "CC-0467",
      "CC-0772",
      "CC-1293",
-     "CC-1715"
+     "CC-1715",
+     "CC-5262"
     ],
     "summary": "Card not present fraud on card C13171-K2: 3 transaction(s), exposure $166.97. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -478,9 +489,9 @@
     "activity_dates": []
    },
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
-   "tool_calls": 20,
+   "tool_calls": 21,
    "tokens": 0,
-   "latency_s": 0.022
+   "latency_s": 0.042
   },
   "deny": {
    "case_id": "HHG-008",
@@ -549,6 +560,16 @@
       "source": "graph",
       "ref": "mcp:device_neighbors(days=31)",
       "entity_ids": []
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5262 \u2014 cleared, none (similarity 0.68); CC-4249 \u2014 cleared, none (similarity 0.68); CC-1887 \u2014 cleared, none (similarity 0.68)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-5262",
+       "CC-4249",
+       "CC-1887"
+      ]
      }
     ],
     "similar_prior_cases": [
@@ -556,7 +577,8 @@
      "CC-0467",
      "CC-0772",
      "CC-1293",
-     "CC-1715"
+     "CC-1715",
+     "CC-5262"
     ],
     "summary": "Card not present fraud on card C13171-K2: 3 transaction(s), exposure $166.97. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -610,9 +632,9 @@
     "activity_dates": []
    },
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
-   "tool_calls": 13,
+   "tool_calls": 14,
    "tokens": 0,
-   "latency_s": 0.005
+   "latency_s": 0.003
   },
   "confirm": {
    "case_id": "HHG-008",
@@ -677,6 +699,16 @@
       "source": "graph",
       "ref": "mcp:device_neighbors(days=31)",
       "entity_ids": []
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5262 \u2014 cleared, none (similarity 0.68); CC-4249 \u2014 cleared, none (similarity 0.68); CC-1887 \u2014 cleared, none (similarity 0.68)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-5262",
+       "CC-4249",
+       "CC-1887"
+      ]
      }
     ],
     "similar_prior_cases": [
@@ -684,7 +716,8 @@
      "CC-0467",
      "CC-0772",
      "CC-1293",
-     "CC-1715"
+     "CC-1715",
+     "CC-5262"
     ],
     "summary": "Alert on 3558054 ($55.68) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -738,9 +771,9 @@
     "activity_dates": []
    },
    "stop_reason": "Verification settled the question (policy 6).",
-   "tool_calls": 13,
+   "tool_calls": 14,
    "tokens": 0,
-   "latency_s": 0.003
+   "latency_s": 0.002
   }
  }
 }

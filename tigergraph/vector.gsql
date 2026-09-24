@@ -1,0 +1,26 @@
+// GraphRAG vector store: closed-case analyst notes embedded into ClosedCase.note_emb (agent/embed.py, 256-d, cosine).
+// Run once after schema.gsql:
+//   USE GLOBAL
+//   CREATE GLOBAL SCHEMA_CHANGE JOB add_note_emb { ALTER VERTEX ClosedCase ADD VECTOR ATTRIBUTE note_emb(DIMENSION=256, METRIC="COSINE"); }
+//   RUN GLOBAL SCHEMA_CHANGE JOB add_note_emb
+USE GRAPH Sentinel
+// Exact k-NN (cosine) over the closed-case note embeddings. Vectors are L2-normalised, so cosine = dot product.
+// ~5.6k vectors → an exact scan is instant and avoids HNSW recall problems on these templated notes (many cleared
+// notes embed to identical vectors). note_emb (VECTOR, HNSW-indexed) is kept for tigergraph__search_top_k_similarity.
+CREATE OR REPLACE QUERY similar_notes(LIST<DOUBLE> qv, INT k = 5) FOR GRAPH Sentinel {
+  SumAccum<DOUBLE> @sim;
+  ListAccum<DOUBLE> @@q;
+  INT n;
+  FOREACH x IN qv DO @@q += x; END;
+  n = @@q.size();
+  S = {ClosedCase.*};
+  S = SELECT s FROM S:s WHERE s.note_vec.size() == n
+      POST-ACCUM
+        FOREACH i IN RANGE[0, n - 1] DO
+          s.@sim += s.note_vec.get(i) * @@q.get(i)
+        END
+      ORDER BY s.@sim DESC
+      LIMIT k;
+  PRINT S[S.id, S.outcome, S.pattern, S.analyst_notes, S.@sim AS similarity];
+}
+INSTALL QUERY similar_notes

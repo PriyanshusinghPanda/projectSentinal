@@ -243,12 +243,25 @@
       "source": "graph",
       "ref": "mcp:ring_components(2016-07-01..2016-12-31)",
       "entity_ids": []
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4968 \u2014 cleared, none (similarity 0.60); CC-5308 \u2014 cleared, none (similarity 0.60); CC-3625 \u2014 cleared, none (similarity 0.60)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-4968",
+       "CC-5308",
+       "CC-3625"
+      ]
      }
     ],
     "similar_prior_cases": [
      "CC-1383",
      "CC-0001",
-     "CC-0007"
+     "CC-0007",
+     "CC-4968",
+     "CC-5308",
+     "CC-3625"
     ],
     "summary": "Card not present fraud on card C04570-K1: 3 transaction(s), exposure $300.14. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -302,9 +315,9 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 18,
+   "tool_calls": 19,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 0.004
   },
   "deny": {
    "case_id": "HHG-017",
@@ -385,12 +398,25 @@
       "source": "graph",
       "ref": "mcp:ring_components(2016-07-01..2016-12-31)",
       "entity_ids": []
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4968 \u2014 cleared, none (similarity 0.60); CC-5308 \u2014 cleared, none (similarity 0.60); CC-3625 \u2014 cleared, none (similarity 0.60)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-4968",
+       "CC-5308",
+       "CC-3625"
+      ]
      }
     ],
     "similar_prior_cases": [
      "CC-1383",
      "CC-0001",
-     "CC-0007"
+     "CC-0007",
+     "CC-4968",
+     "CC-5308",
+     "CC-3625"
     ],
     "summary": "Card not present fraud on card C04570-K1: 3 transaction(s), exposure $300.14. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -444,7 +470,7 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 11,
+   "tool_calls": 12,
    "tokens": 0,
    "latency_s": 0.001
   },
@@ -522,11 +548,24 @@
       "source": "graph",
       "ref": "mcp:ring_components(2016-07-01..2016-12-31)",
       "entity_ids": []
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4968 \u2014 cleared, none (similarity 0.60); CC-5308 \u2014 cleared, none (similarity 0.60); CC-3625 \u2014 cleared, none (similarity 0.60)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-4968",
+       "CC-5308",
+       "CC-3625"
+      ]
      }
     ],
     "similar_prior_cases": [
      "CC-1383",
-     "CC-0009"
+     "CC-0009",
+     "CC-4968",
+     "CC-5308",
+     "CC-3625"
     ],
     "summary": "Alert on 3450629 ($100.09) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -580,7 +619,7 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 10,
+   "tool_calls": 11,
    "tokens": 0,
    "latency_s": 0.001
   }

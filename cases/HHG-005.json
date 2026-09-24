@@ -51,13 +51,25 @@
         "source": "graph",
         "ref": "mcp:device_neighbors(days=31)",
         "entity_ids": []
+      },
+      {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-0455 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-2677 \u2014 confirmed fraud, account_takeover (similarity 0.56); CC-1510 \u2014 confirmed fraud, account_takeover (similarity 0.56)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-0455",
+          "CC-2677",
+          "CC-1510"
+        ]
       }
     ],
     "similar_prior_cases": [
       "CC-2400",
       "CC-2717",
       "CC-2857",
-      "CC-1672"
+      "CC-1672",
+      "CC-0455",
+      "CC-2677"
     ],
     "summary": "Alert on 3523199 ($100.07) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -106,7 +118,7 @@
     "activity_dates": []
   },
   "stop_reason": "The verification response settles the question (policy 6).",
-  "tool_calls": 19,
+  "tool_calls": 20,
   "tokens": 0,
-  "latency_s": 0.005
+  "latency_s": 0.024
 }

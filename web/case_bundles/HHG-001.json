@@ -276,13 +276,25 @@
       "entity_ids": [
        "3514030"
       ]
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5145 \u2014 confirmed fraud, out_of_region_use (similarity 0.56); CC-5177 \u2014 confirmed fraud, out_of_region_use (similarity 0.56); CC-5046 \u2014 confirmed fraud, out_of_region_use (similarity 0.56)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-5145",
+       "CC-5177",
+       "CC-5046"
+      ]
      }
     ],
     "similar_prior_cases": [
      "CC-1066",
      "CC-1673",
      "CC-2964",
-     "CC-3587"
+     "CC-3587",
+     "CC-5145",
+     "CC-5177"
     ],
     "summary": "Alert on 3514030 ($77.07) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -336,9 +348,9 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 18,
+   "tool_calls": 19,
    "tokens": 0,
-   "latency_s": 0.01
+   "latency_s": 0.005
   },
   "deny": {
    "case_id": "HHG-001",
@@ -397,13 +409,25 @@
       "entity_ids": [
        "3514030"
       ]
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5145 \u2014 confirmed fraud, out_of_region_use (similarity 0.56); CC-5177 \u2014 confirmed fraud, out_of_region_use (similarity 0.56); CC-5046 \u2014 confirmed fraud, out_of_region_use (similarity 0.56)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-5145",
+       "CC-5177",
+       "CC-5046"
+      ]
      }
     ],
     "similar_prior_cases": [
      "CC-1066",
      "CC-1673",
      "CC-2964",
-     "CC-3587"
+     "CC-3587",
+     "CC-5145",
+     "CC-5177"
     ],
     "summary": "Out of region use on card C12382-K1: 1 transaction(s), exposure $77.07. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -457,7 +481,7 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 11,
+   "tool_calls": 12,
    "tokens": 0,
    "latency_s": 0.002
   },
@@ -516,13 +540,25 @@
       "entity_ids": [
        "3514030"
       ]
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-5145 \u2014 confirmed fraud, out_of_region_use (similarity 0.56); CC-5177 \u2014 confirmed fraud, out_of_region_use (similarity 0.56); CC-5046 \u2014 confirmed fraud, out_of_region_use (similarity 0.56)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-5145",
+       "CC-5177",
+       "CC-5046"
+      ]
      }
     ],
     "similar_prior_cases": [
      "CC-1066",
      "CC-1673",
      "CC-2964",
-     "CC-3587"
+     "CC-3587",
+     "CC-5145",
+     "CC-5177"
     ],
     "summary": "Alert on 3514030 ($77.07) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -576,9 +612,9 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 11,
+   "tool_calls": 12,
    "tokens": 0,
-   "latency_s": 0.002
+   "latency_s": 0.001
   }
  }
 }

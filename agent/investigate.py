@@ -604,6 +604,21 @@ def graph_pass(mcp, case, answers):
         ring = RINGS.get(f.dev)
         if ring and ring["customers"] >= 3:
             extra.append({"claim": f"Graph algorithm (connected components over new-device + anonymous/hidden-proxy transactions): this device profile sits in a component of {ring['customers']} customers and {ring['devices']} device profile(s) — {ring['txns']} transactions, ${ring['amount']:,.0f}, {len(ring['fraud_cases'])} confirmed-fraud closed case(s)", "source": "graph", "ref": "mcp:ring_components(2016-07-01..2016-12-31)", "entity_ids": ring["fraud_cases"][:6]})
+        # GraphRAG: vector search over closed-case analyst notes stored in TigerGraph (agent/embed.py embeddings)
+        import embed
+        a0 = answers[0]["case"]
+        qtext = f"{a0['pattern'].replace('_', ' ')} " + " ".join(e["claim"] for e in a0["evidence"][:4])
+        hits = (mcp.query("similar_notes", qv=embed.embed(qtext), k=3) or [{}])[0].get("S", [])
+        calls += 1
+        if hits:
+            extra.append({"claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents " + "; ".join(
+                f"{h['v_id']} — {h['attributes']['S.outcome'].replace('_', ' ')}, {h['attributes']['S.pattern']} (similarity {h['attributes']['similarity']:.2f})" for h in hits),
+                "source": "document", "ref": "mcp:similar_notes(k=3)", "entity_ids": [h["v_id"] for h in hits]})
+            for a in answers:
+                sp = a["case"]["similar_prior_cases"]
+                for h in hits:
+                    if h["v_id"] not in sp and len(sp) < 6:
+                        sp.append(h["v_id"])
         mem = mcp.query("case_memory", cust=case["customer_id"], device_profile=f.dev)
         calls += 1
         ours = [r for block in (mem or []) for r in block.get("Ours", [])]

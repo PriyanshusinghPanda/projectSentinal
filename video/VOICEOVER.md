@@ -31,7 +31,7 @@ Record one take per block (or one continuous take with a short pause between blo
 > Under the hood, the full dataset is in TigerGraph Savanna — over two point three million edges. The agent's graph questions, like device neighbors, are installed GSQL queries called through MCP. And all twenty investigations are written back as case vertices, so the next alert can find them.
 
 **9 · Results — 2:36–2:58** (~50 words)
-> Across the twenty cases: nine fraud, eight legitimate, three escalated. Seventeen times the agent asked for evidence before acting, and sixteen recommendations changed once it arrived. Three reports were filed — and two schemes no documented pattern covers: a shared-device ring, and purchases sized just under a five-hundred-dollar threshold.
+> Across the twenty cases: eleven fraud, eight legitimate, one escalated. The agent asked for evidence in every case, and nineteen recommendations changed once it arrived. Two reports were filed — for two schemes no documented pattern covers. And on five and a half thousand historical cases, it names the right pattern sixty-three percent of the time.
 
 **10 · Outro — 2:58–3:08** (~18 words)
 > Sentinel. Built on TigerGraph, MCP and GraphRAG. The code is on GitHub — thanks for watching.

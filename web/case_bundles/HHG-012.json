@@ -306,11 +306,24 @@
       "entity_ids": [
        "3553342"
       ]
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4968 \u2014 cleared, none (similarity 0.77); CC-5308 \u2014 cleared, none (similarity 0.77); CC-3625 \u2014 cleared, none (similarity 0.77)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-4968",
+       "CC-5308",
+       "CC-3625"
+      ]
      }
     ],
     "similar_prior_cases": [
      "CC-0003",
-     "CC-2370"
+     "CC-2370",
+     "CC-4968",
+     "CC-5308",
+     "CC-3625"
     ],
     "summary": "Alert on 3553342 ($30.91) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -364,9 +377,9 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 16,
+   "tool_calls": 17,
    "tokens": 0,
-   "latency_s": 0.015
+   "latency_s": 0.009
   },
   "deny": {
    "case_id": "HHG-012",
@@ -432,11 +445,24 @@
       "entity_ids": [
        "3553342"
       ]
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4968 \u2014 cleared, none (similarity 0.77); CC-5308 \u2014 cleared, none (similarity 0.77); CC-3625 \u2014 cleared, none (similarity 0.77)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-4968",
+       "CC-5308",
+       "CC-3625"
+      ]
      }
     ],
     "similar_prior_cases": [
      "CC-0003",
-     "CC-2370"
+     "CC-2370",
+     "CC-4968",
+     "CC-5308",
+     "CC-3625"
     ],
     "summary": "Out of region use on card C05876-K2: 1 transaction(s), exposure $30.91. Customer denial confirmed the verdict.",
     "written_to_graph": true,
@@ -490,9 +516,9 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 9,
+   "tool_calls": 10,
    "tokens": 0,
-   "latency_s": 0.003
+   "latency_s": 0.002
   },
   "confirm": {
    "case_id": "HHG-012",
@@ -556,11 +582,24 @@
       "entity_ids": [
        "3553342"
       ]
+     },
+     {
+      "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-4968 \u2014 cleared, none (similarity 0.77); CC-5308 \u2014 cleared, none (similarity 0.77); CC-3625 \u2014 cleared, none (similarity 0.77)",
+      "source": "document",
+      "ref": "mcp:similar_notes(k=3)",
+      "entity_ids": [
+       "CC-4968",
+       "CC-5308",
+       "CC-3625"
+      ]
      }
     ],
     "similar_prior_cases": [
      "CC-0003",
-     "CC-2370"
+     "CC-2370",
+     "CC-4968",
+     "CC-5308",
+     "CC-3625"
     ],
     "summary": "Alert on 3553342 ($30.91) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -614,9 +653,9 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 9,
+   "tool_calls": 10,
    "tokens": 0,
-   "latency_s": 0.002
+   "latency_s": 0.001
   }
  }
 }

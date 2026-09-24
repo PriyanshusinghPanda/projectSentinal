@@ -64,11 +64,24 @@
         "source": "graph",
         "ref": "mcp:ring_components(2016-07-01..2016-12-31)",
         "entity_ids": []
+      },
+      {
+        "claim": "Vector search over 5,565 closed-case notes (GraphRAG, TigerGraph): nearest precedents CC-3942 \u2014 confirmed fraud, account_takeover (similarity 0.45); CC-0364 \u2014 confirmed fraud, account_takeover (similarity 0.45); CC-3150 \u2014 confirmed fraud, account_takeover (similarity 0.45)",
+        "source": "document",
+        "ref": "mcp:similar_notes(k=3)",
+        "entity_ids": [
+          "CC-3942",
+          "CC-0364",
+          "CC-3150"
+        ]
       }
     ],
     "similar_prior_cases": [
       "CC-2277",
-      "CC-2447"
+      "CC-2447",
+      "CC-3942",
+      "CC-0364",
+      "CC-3150"
     ],
     "summary": "Alert on 3509359 ($125.08) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
     "written_to_graph": true,
@@ -122,7 +135,7 @@
     "activity_dates": []
   },
   "stop_reason": "The verification response settles the question (policy 6).",
-  "tool_calls": 17,
+  "tool_calls": 18,
   "tokens": 0,
-  "latency_s": 0.007
+  "latency_s": 0.003
 }
