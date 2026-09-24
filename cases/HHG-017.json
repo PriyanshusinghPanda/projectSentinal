@@ -71,6 +71,12 @@
           "CC-5345",
           "CC-5446"
         ]
+      },
+      {
+        "claim": "Graph algorithm (connected components over new-device + anonymous/hidden-proxy transactions): this device profile sits in a component of 6 customers and 3 device profile(s) \u2014 8 transactions, $695, 0 confirmed-fraud closed case(s)",
+        "source": "graph",
+        "ref": "mcp:ring_components(2016-07-01..2016-12-31)",
+        "entity_ids": []
       }
     ],
     "similar_prior_cases": [
@@ -132,5 +138,5 @@
   "stop_reason": "The verification response settles the question (policy 6).",
   "tool_calls": 18,
   "tokens": 0,
-  "latency_s": 0.007
+  "latency_s": 0.001
 }

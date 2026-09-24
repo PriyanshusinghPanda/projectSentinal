@@ -53,6 +53,15 @@
         "source": "graph",
         "ref": "mcp:device_neighbors(days=31)",
         "entity_ids": []
+      },
+      {
+        "claim": "Graph algorithm (connected components over new-device + anonymous/hidden-proxy transactions): this device profile sits in a component of 5 customers and 3 device profile(s) \u2014 9 transactions, $382, 2 confirmed-fraud closed case(s)",
+        "source": "graph",
+        "ref": "mcp:ring_components(2016-07-01..2016-12-31)",
+        "entity_ids": [
+          "CC-3960",
+          "CC-4033"
+        ]
       }
     ],
     "similar_prior_cases": [
@@ -115,5 +124,5 @@
   "stop_reason": "The verification response settles the question (policy 6).",
   "tool_calls": 19,
   "tokens": 0,
-  "latency_s": 0.029
+  "latency_s": 0.042
 }

@@ -85,6 +85,17 @@
         "entity_ids": []
       },
       {
+        "claim": "Graph algorithm (connected components over new-device + anonymous/hidden-proxy transactions): this device profile sits in a component of 51 customers and 1 device profile(s) \u2014 113 transactions, $16,393, 4 confirmed-fraud closed case(s)",
+        "source": "graph",
+        "ref": "mcp:ring_components(2016-07-01..2016-12-31)",
+        "entity_ids": [
+          "CC-2649",
+          "CC-2971",
+          "CC-2985",
+          "CC-3035"
+        ]
+      },
+      {
         "claim": "Case memory in the graph: 1 earlier Sentinel investigation(s) on this device profile",
         "source": "graph",
         "ref": "mcp:case_memory",
@@ -193,5 +204,5 @@
   "stop_reason": "Probability at or above 0.85 with at least two independent pieces of evidence (policy 6); customer denial confirmed the block.",
   "tool_calls": 19,
   "tokens": 0,
-  "latency_s": 0.006
+  "latency_s": 0.003
 }

@@ -1,0 +1,65 @@
+USE GRAPH Sentinel
+
+// Graph algorithm: weakly connected components (label propagation) over the SUSPICIOUS device subgraph —
+// transactions made from a device the identity record marks New for the account, behind an anonymous/hidden proxy.
+// Customers and device profiles joined by such transactions collapse into one component; a component spanning
+// several customers is a candidate ring (one actor, one device, many cardholders).
+CREATE OR REPLACE QUERY ring_components(DATETIME from_ts, DATETIME to_ts, INT min_customers = 3, INT max_customer_devices = 2, INT max_iter = 20) FOR GRAPH Sentinel SYNTAX v2 {
+  MinAccum<INT> @cc;              // component label = smallest internal vertex id reached
+  MinAccum<INT> @prev;
+  SumAccum<INT> @@changed;
+  MapAccum<INT, SetAccum<STRING>> @@customers, @@devices;
+  MapAccum<INT, SetAccum<STRING>> @@fraud_cases;
+  MapAccum<INT, SumAccum<INT>> @@txns;
+  MapAccum<INT, SumAccum<DOUBLE>> @@amount;
+  INT it = 0;
+
+  T = SELECT t FROM Transaction:t
+      WHERE t.ts >= from_ts AND t.ts <= to_ts AND t.device_new == TRUE
+        AND (t.proxy_type == "anonymous" OR t.proxy_type == "hidden");
+  // Hub guard: a customer whose suspicious transactions touch many different device profiles is a high-volume
+  // aggregate, not a ring victim, and would chain unrelated clusters into one giant component. Drop their edges.
+  SetAccum<VERTEX> @devs;
+  OrAccum @hub;
+  Tdev = SELECT t FROM T:t -(FROM_DEVICE>)- DeviceProfile:d ACCUM t.@devs += d;
+  Chub = SELECT c FROM T:t -(MADE_BY>)- CardProfile:k -(OWNED_BY>)- Customer:c
+      ACCUM c.@devs += t.@devs
+      POST-ACCUM IF c.@devs.size() > max_customer_devices THEN c.@hub += TRUE END;
+  T = SELECT t FROM T:t -(MADE_BY>)- CardProfile:k -(OWNED_BY>)- Customer:c WHERE c.@hub == FALSE;
+
+  D = SELECT d FROM T:t -(FROM_DEVICE>)- DeviceProfile:d;
+  C = SELECT c FROM T:t -(MADE_BY>)- CardProfile:k -(OWNED_BY>)- Customer:c;
+
+  // init: every vertex in the subgraph starts as its own component
+  D = SELECT d FROM D:d POST-ACCUM d.@cc += getvid(d);
+  C = SELECT c FROM C:c POST-ACCUM c.@cc += getvid(c);
+
+  // propagate the minimum label across device <-txn-> customer links until stable
+  @@changed = 1;
+  WHILE @@changed > 0 AND it < max_iter DO
+    it = it + 1;
+    @@changed = 0;
+    X = SELECT t FROM T:t -(FROM_DEVICE>)- DeviceProfile:d ACCUM t.@cc += d.@cc;
+    X = SELECT t FROM T:t -(MADE_BY>)- CardProfile:k -(OWNED_BY>)- Customer:c ACCUM t.@cc += c.@cc;
+    D = SELECT d FROM D:d POST-ACCUM d.@prev = d.@cc;
+    C = SELECT c FROM C:c POST-ACCUM c.@prev = c.@cc;
+    D2 = SELECT d FROM T:t -(FROM_DEVICE>)- DeviceProfile:d ACCUM d.@cc += t.@cc;
+    C2 = SELECT c FROM T:t -(MADE_BY>)- CardProfile:k -(OWNED_BY>)- Customer:c ACCUM c.@cc += t.@cc;
+    D = SELECT d FROM D:d WHERE d.@cc < d.@prev ACCUM @@changed += 1;
+    C = SELECT c FROM C:c WHERE c.@cc < c.@prev ACCUM @@changed += 1;
+    D = SELECT d FROM T:t -(FROM_DEVICE>)- DeviceProfile:d;
+    C = SELECT c FROM T:t -(MADE_BY>)- CardProfile:k -(OWNED_BY>)- Customer:c;
+  END;
+
+  // collect components
+  X = SELECT t FROM T:t -(FROM_DEVICE>)- DeviceProfile:d ACCUM t.@cc += d.@cc;
+  X = SELECT t FROM T:t -(FROM_DEVICE>)- DeviceProfile:d
+      ACCUM @@devices += (t.@cc -> d.id), @@txns += (t.@cc -> 1), @@amount += (t.@cc -> t.amount);
+  X = SELECT t FROM T:t -(MADE_BY>)- CardProfile:k -(OWNED_BY>)- Customer:c ACCUM @@customers += (t.@cc -> c.id);
+  X = SELECT t FROM T:t -(INVOLVED_IN>)- ClosedCase:cc WHERE cc.outcome == "confirmed_fraud" ACCUM @@fraud_cases += (t.@cc -> cc.id);
+
+  PRINT it AS iterations, T.size() AS suspicious_txns;
+  PRINT @@customers AS customers, @@devices AS devices, @@txns AS txns, @@amount AS amount, @@fraud_cases AS fraud_cases;
+}
+
+INSTALL QUERY ring_components

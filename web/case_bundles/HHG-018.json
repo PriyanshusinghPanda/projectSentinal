@@ -415,7 +415,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 19,
    "tokens": 0,
-   "latency_s": 0.122
+   "latency_s": 0.081
   },
   "deny": {
    "case_id": "HHG-018",
@@ -545,7 +545,7 @@
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
    "tool_calls": 12,
    "tokens": 0,
-   "latency_s": 0.018
+   "latency_s": 0.014
   },
   "confirm": {
    "case_id": "HHG-018",

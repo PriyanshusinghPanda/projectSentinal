@@ -243,7 +243,7 @@
    "stop_reason": "The verification response settles the question (policy 6).",
    "tool_calls": 17,
    "tokens": 0,
-   "latency_s": 0.003
+   "latency_s": 0.002
   },
   "deny": {
    "case_id": "HHG-010",

@@ -570,6 +570,23 @@ def investigate(case, assume=None):
     return ans
 
 
+RINGS = {}  # device profile -> component summary, from TigerGraph's ring_components (connected components) algorithm
+
+
+def load_rings(mcp):
+    """Run the WCC ring-detection algorithm once over the whole graph (via MCP) and index components by device."""
+    res = mcp.query("ring_components", from_ts="2016-07-01 00:00:00", to_ts="2016-12-31 23:59:59")
+    comps = res[1]
+    for cid, devs in comps["devices"].items():
+        info = {"component": cid, "customers": len(comps["customers"].get(cid, [])), "devices": len(devs),
+                "txns": comps["txns"].get(cid, 0), "amount": round(comps["amount"].get(cid, 0), 2),
+                "fraud_cases": sorted(comps["fraud_cases"].get(cid, []))}
+        for d in devs:
+            RINGS[d] = info
+    print(f"ring_components: {res[0]['iterations']} iterations over {res[0]['suspicious_txns']} suspicious txns, "
+          f"{sum(1 for i in {v['component']: v for v in RINGS.values()}.values() if i['customers'] >= 3)} components with ≥3 customers", file=sys.stderr)
+
+
 def graph_pass(mcp, case, answers):
     """TigerGraph MCP: corroborate with installed queries, then write the case into the graph (case memory)."""
     f = TX[case["flagged_txn_id"]]
@@ -584,6 +601,9 @@ def graph_pass(mcp, case, answers):
             nb = (mcp.query("device_neighbors", dev=f.dev, around=f.t.strftime("%Y-%m-%d %H:%M:%S"), days=31) or [{}])[0]
             calls += 1
             extra.append({"claim": f"TigerGraph device_neighbors: device profile used by {len(nb.get('customers', []))} customers within 31 days; confirmed-fraud closed cases on it: {', '.join(sorted(nb.get('closed_fraud_cases', []))[:5]) or 'none'}", "source": "graph", "ref": "mcp:device_neighbors(days=31)", "entity_ids": sorted(nb.get("closed_fraud_cases", []))[:5]})
+        ring = RINGS.get(f.dev)
+        if ring and ring["customers"] >= 3:
+            extra.append({"claim": f"Graph algorithm (connected components over new-device + anonymous/hidden-proxy transactions): this device profile sits in a component of {ring['customers']} customers and {ring['devices']} device profile(s) — {ring['txns']} transactions, ${ring['amount']:,.0f}, {len(ring['fraud_cases'])} confirmed-fraud closed case(s)", "source": "graph", "ref": "mcp:ring_components(2016-07-01..2016-12-31)", "entity_ids": ring["fraud_cases"][:6]})
         mem = mcp.query("case_memory", cust=case["customer_id"], device_profile=f.dev)
         calls += 1
         ours = [r for block in (mem or []) for r in block.get("Ours", [])]
@@ -617,6 +637,10 @@ if __name__ == "__main__":
         from tg_mcp import TigerGraphMCP, write_case
         mcp = TigerGraphMCP()
         print("TigerGraph MCP connected", file=sys.stderr)
+        try:
+            load_rings(mcp)
+        except Exception as e:  # noqa: BLE001
+            print(f"ring_components unavailable: {e}", file=sys.stderr)
     for case in CASES:
         if only and case["case_id"] not in only:
             continue

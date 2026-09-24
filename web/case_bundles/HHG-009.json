@@ -239,7 +239,7 @@
    "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
    "tool_calls": 17,
    "tokens": 0,
-   "latency_s": 0.002
+   "latency_s": 0.003
   },
   "deny": {
    "case_id": "HHG-009",
@@ -361,7 +361,7 @@
    "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
    "tool_calls": 10,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 0.0
   },
   "confirm": {
    "case_id": "HHG-009",

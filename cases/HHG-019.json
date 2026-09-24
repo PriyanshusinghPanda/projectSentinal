@@ -108,5 +108,5 @@
   "stop_reason": "The verification response settles the question (policy 6).",
   "tool_calls": 19,
   "tokens": 0,
-  "latency_s": 0.006
+  "latency_s": 0.003
 }
