@@ -39,6 +39,14 @@
           "CC-0007",
           "CC-0012"
         ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 1 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C08299-P13026|216.0|150.0|visa|226.0|credit, hours=48)",
+        "entity_ids": [
+          "3581141"
+        ]
       }
     ],
     "similar_prior_cases": [
@@ -47,8 +55,8 @@
       "CC-0012"
     ],
     "summary": "Mixed evidence on 3581141; escalated with verification pending.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-009"
   },
   "evidence_requests": [
     {
@@ -108,7 +116,7 @@
     "activity_dates": []
   },
   "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
-  "tool_calls": 8,
+  "tool_calls": 17,
   "tokens": 0,
-  "latency_s": 0.001
+  "latency_s": 0.004
 }

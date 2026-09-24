@@ -37,6 +37,20 @@
           "CC-2087",
           "CC-2860"
         ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 2 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C07987-P11539|583.0|150.0|visa|226.0|credit, hours=48)",
+        "entity_ids": [
+          "3503878"
+        ]
+      },
+      {
+        "claim": "TigerGraph device_neighbors: device profile used by 5 customers within 31 days; confirmed-fraud closed cases on it: none",
+        "source": "graph",
+        "ref": "mcp:device_neighbors(days=31)",
+        "entity_ids": []
       }
     ],
     "similar_prior_cases": [
@@ -46,8 +60,8 @@
       "CC-5026"
     ],
     "summary": "Alert on 3503878 ($99.92) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-019"
   },
   "evidence_requests": [
     {
@@ -92,7 +106,7 @@
     "activity_dates": []
   },
   "stop_reason": "The verification response settles the question (policy 6).",
-  "tool_calls": 9,
+  "tool_calls": 19,
   "tokens": 0,
-  "latency_s": 0.001
+  "latency_s": 0.006
 }

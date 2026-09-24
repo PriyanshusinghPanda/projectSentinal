@@ -51,6 +51,26 @@
           "CC-0001",
           "CC-0007"
         ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 3 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C04570-P20749|583.0|150.0|mastercard|135.0|credit, hours=48)",
+        "entity_ids": [
+          "3450629"
+        ]
+      },
+      {
+        "claim": "TigerGraph device_neighbors: device profile used by 297 customers within 31 days; confirmed-fraud closed cases on it: CC-5172, CC-5181, CC-5217, CC-5345, CC-5446",
+        "source": "graph",
+        "ref": "mcp:device_neighbors(days=31)",
+        "entity_ids": [
+          "CC-5172",
+          "CC-5181",
+          "CC-5217",
+          "CC-5345",
+          "CC-5446"
+        ]
       }
     ],
     "similar_prior_cases": [
@@ -59,8 +79,8 @@
       "CC-0007"
     ],
     "summary": "Card not present fraud on card C04570-K1: 3 transaction(s), exposure $300.14. Customer denial confirmed the verdict.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-017"
   },
   "evidence_requests": [
     {
@@ -110,7 +130,7 @@
     "activity_dates": []
   },
   "stop_reason": "The verification response settles the question (policy 6).",
-  "tool_calls": 8,
+  "tool_calls": 18,
   "tokens": 0,
-  "latency_s": 0.0
+  "latency_s": 0.003
 }

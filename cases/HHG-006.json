@@ -45,6 +45,20 @@
           "CC-3841",
           "CC-3907"
         ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 7 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C07297-P13729|455.0|150.0|mastercard|126.0|debit, hours=48)",
+        "entity_ids": [
+          "3476682"
+        ]
+      },
+      {
+        "claim": "TigerGraph device_neighbors: device profile used by 144 customers within 31 days; confirmed-fraud closed cases on it: none",
+        "source": "graph",
+        "ref": "mcp:device_neighbors(days=31)",
+        "entity_ids": []
       }
     ],
     "similar_prior_cases": [
@@ -53,8 +67,8 @@
       "CC-3907"
     ],
     "summary": "Undocumented on card C07297-K1: 4 transaction(s), exposure $1,906.07. 4 online purchases between $450 and $500 within an hour on one card \u2014 amounts appear chosen to stay under a $500 authorization threshold. The same structuring shape appears in confirmed closed cases (e.g. CC-3748, CC-384 Customer denial confirmed the verdict.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-006"
   },
   "evidence_requests": [
     {
@@ -120,7 +134,7 @@
     ]
   },
   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
-  "tool_calls": 8,
+  "tool_calls": 18,
   "tokens": 0,
-  "latency_s": 0.001
+  "latency_s": 0.008
 }

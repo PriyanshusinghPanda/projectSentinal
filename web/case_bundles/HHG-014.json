@@ -314,6 +314,20 @@
        "CC-2971",
        "CC-2985"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 3 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C13487-P13250|555.0|150.0|mastercard|117.0|debit, hours=48)",
+      "entity_ids": [
+       "3478561"
+      ]
+     },
+     {
+      "claim": "TigerGraph device_neighbors: device profile used by 28 customers within 31 days; confirmed-fraud closed cases on it: none",
+      "source": "graph",
+      "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -323,8 +337,8 @@
      "CC-3035"
     ],
     "summary": "Undocumented on card C13487-K1: 1 transaction(s), exposure $74.96. Device profile 'SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080' behind an anonymous proxy is new to this account and transacted on 27 other customers' cards within a month; 4 closed cases on th Customer denial confirmed the verdict.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-014"
    },
    "evidence_requests": [
     {
@@ -416,9 +430,9 @@
     ]
    },
    "stop_reason": "Probability at or above 0.85 with at least two independent pieces of evidence (policy 6); customer denial confirmed the block.",
-   "tool_calls": 9,
+   "tool_calls": 19,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 0.004
   },
   "deny": {
    "case_id": "HHG-014",
@@ -476,6 +490,20 @@
        "CC-2971",
        "CC-2985"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 3 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C13487-P13250|555.0|150.0|mastercard|117.0|debit, hours=48)",
+      "entity_ids": [
+       "3478561"
+      ]
+     },
+     {
+      "claim": "TigerGraph device_neighbors: device profile used by 28 customers within 31 days; confirmed-fraud closed cases on it: none",
+      "source": "graph",
+      "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -485,8 +513,8 @@
      "CC-3035"
     ],
     "summary": "Undocumented on card C13487-K1: 1 transaction(s), exposure $74.96. Device profile 'SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080' behind an anonymous proxy is new to this account and transacted on 27 other customers' cards within a month; 4 closed cases on th Customer denial confirmed the verdict.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-014"
    },
    "evidence_requests": [
     {
@@ -578,9 +606,9 @@
     ]
    },
    "stop_reason": "Probability at or above 0.85 with at least two independent pieces of evidence (policy 6); customer denial confirmed the block.",
-   "tool_calls": 9,
+   "tool_calls": 12,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 0.002
   },
   "confirm": {
    "case_id": "HHG-014",
@@ -638,6 +666,20 @@
        "CC-2971",
        "CC-2985"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 3 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C13487-P13250|555.0|150.0|mastercard|117.0|debit, hours=48)",
+      "entity_ids": [
+       "3478561"
+      ]
+     },
+     {
+      "claim": "TigerGraph device_neighbors: device profile used by 28 customers within 31 days; confirmed-fraud closed cases on it: none",
+      "source": "graph",
+      "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -647,8 +689,8 @@
      "CC-3035"
     ],
     "summary": "Mixed evidence on 3478561; escalated with verification pending.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-014"
    },
    "evidence_requests": [
     {
@@ -718,7 +760,7 @@
     "activity_dates": []
    },
    "stop_reason": "Probability at or above 0.85 with at least two independent pieces of evidence (policy 6); customer denial confirmed the block.",
-   "tool_calls": 9,
+   "tool_calls": 12,
    "tokens": 0,
    "latency_s": 0.001
   }

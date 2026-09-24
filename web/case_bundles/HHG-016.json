@@ -286,6 +286,20 @@
        "CC-2540",
        "CC-2675"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 1 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C09988-P11242|228.0|106.0|visa|226.0|debit, hours=48)",
+      "entity_ids": [
+       "3534820"
+      ]
+     },
+     {
+      "claim": "TigerGraph device_neighbors: device profile used by 71 customers within 31 days; confirmed-fraud closed cases on it: none",
+      "source": "graph",
+      "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -296,8 +310,8 @@
      "CC-2732"
     ],
     "summary": "Undocumented on card C09988-K1: 1 transaction(s), exposure $59.67. Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardhol Customer denial confirmed the verdict.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-016"
    },
    "evidence_requests": [
     {
@@ -369,9 +383,9 @@
     ]
    },
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
-   "tool_calls": 10,
+   "tool_calls": 20,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 0.016
   },
   "deny": {
    "case_id": "HHG-016",
@@ -429,6 +443,20 @@
        "CC-2540",
        "CC-2675"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 1 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C09988-P11242|228.0|106.0|visa|226.0|debit, hours=48)",
+      "entity_ids": [
+       "3534820"
+      ]
+     },
+     {
+      "claim": "TigerGraph device_neighbors: device profile used by 71 customers within 31 days; confirmed-fraud closed cases on it: none",
+      "source": "graph",
+      "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -439,8 +467,8 @@
      "CC-2732"
     ],
     "summary": "Undocumented on card C09988-K1: 1 transaction(s), exposure $59.67. Device profile 'Windows | edge 16.0' is new to this account and transacted on 70 other customers' cards within a month; 10 closed cases on this profile were confirmed fraud. One actor using one device across many cardhol Customer denial confirmed the verdict.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-016"
    },
    "evidence_requests": [
     {
@@ -512,9 +540,9 @@
     ]
    },
    "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
-   "tool_calls": 10,
+   "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 0.002
   },
   "confirm": {
    "case_id": "HHG-016",
@@ -568,6 +596,20 @@
        "CC-2540",
        "CC-2675"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 1 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C09988-P11242|228.0|106.0|visa|226.0|debit, hours=48)",
+      "entity_ids": [
+       "3534820"
+      ]
+     },
+     {
+      "claim": "TigerGraph device_neighbors: device profile used by 71 customers within 31 days; confirmed-fraud closed cases on it: none",
+      "source": "graph",
+      "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -578,8 +620,8 @@
      "CC-2732"
     ],
     "summary": "Alert on 3534820 ($59.67) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-016"
    },
    "evidence_requests": [
     {
@@ -629,9 +671,9 @@
     "activity_dates": []
    },
    "stop_reason": "Verification settled the question (policy 6).",
-   "tool_calls": 10,
+   "tool_calls": 13,
    "tokens": 0,
-   "latency_s": 0.002
+   "latency_s": 0.003
   }
  }
 }

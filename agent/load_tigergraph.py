@@ -64,10 +64,14 @@ def safe(fn, *a, **k):
 
 def gsql_file(conn, name, graph=None):
     text = open(os.path.join(TG, name)).read()
-    out = conn.gsql(text, graphname=graph) if graph else conn.gsql(text)
+    try:
+        out = conn.gsql(text, graphname=graph) if graph else conn.gsql(text)
+    except Exception as e:  # pyTigerGraph 2.x raises on some successful DDL responses; judge by the text
+        out = str(e)
     out = out if isinstance(out, str) else str(out)
     print(f"--- {name}\n{out.strip()[-1500:]}")
-    if any(w in out for w in ("Semantic Check Fails", "Syntax Error", "failed", "Failed")):
+    import re
+    if re.search(r"Semantic Check Fails|Syntax Error|Failed to|failed: [1-9]", out):
         sys.exit(f"GSQL errors in {name} — see output above")
     return out
 
@@ -92,7 +96,7 @@ def upload(conn, tag, filename):
                 break
             body += f.readline()  # finish the current row
             with tempfile.NamedTemporaryFile(suffix=".csv", delete=False) as tmp:
-                tmp.write(header + body)
+                tmp.write(body)  # REST uploads ignore header="true", so never send the header line
             for attempt in range(3):
                 try:
                     res = conn.runLoadingJobWithFile(tmp.name, tag, "load_sentinel", timeout=600_000)
@@ -104,10 +108,12 @@ def upload(conn, tag, filename):
                     time.sleep(3)
             os.unlink(tmp.name)
             sent += len(body)
-            stats = (res or [{}])[0].get("statistics", {}) if isinstance(res, list) else {}
-            loaded += stats.get("validLine", 0) or 0
-            print(f"  {filename}: {min(100, sent * 100 // max(1, size))}%", end="\r")
-    print(f"  {filename}: done ({loaded or '?'} valid lines)          ")
+            try:
+                loaded += res[0]["statistics"]["parsingStatistics"]["fileLevel"]["validLine"]
+            except (TypeError, KeyError, IndexError):
+                print(f"    unexpected response: {str(res)[:300]}")
+    print(f"  {filename}: {loaded:,} rows loaded ({size / 1e6:.1f} MB)", flush=True)
+    return loaded
 
 
 def main():
@@ -129,11 +135,18 @@ def main():
             gsql_file(conn, "schema.gsql")
         else:
             print(f"graph {graph} exists — skipping schema (use --reset to recreate)")
+        safe(conn.gsql, f"USE GRAPH {graph}\nDROP JOB load_sentinel")  # idempotent re-runs
         gsql_file(conn, "loading_job.gsql")
         token(conn)
         t0 = time.time()
+        expected = {fn: sum(1 for _ in open(os.path.join(DATA, fn))) - 1 for _, fn in FILES}
+        short = []
         for tag, fn in FILES:
-            upload(conn, tag, fn)
+            got = upload(conn, tag, fn)
+            if got < expected[fn]:
+                short.append(f"{fn}: {got:,}/{expected[fn]:,}")
+        if short:
+            print("WARNING — rows rejected (check types / quoting):", "; ".join(short))
         print(f"data loaded in {time.time() - t0:.0f}s")
 
     gsql_file(conn, "queries.gsql")

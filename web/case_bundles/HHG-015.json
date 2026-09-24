@@ -230,6 +230,20 @@
        "CC-1313",
        "CC-3886"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 4 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C03042-P15158|562.0|150.0|mastercard|219.0|credit, hours=48)",
+      "entity_ids": [
+       "3464869"
+      ]
+     },
+     {
+      "claim": "TigerGraph device_neighbors: device profile used by 2 customers within 31 days; confirmed-fraud closed cases on it: none",
+      "source": "graph",
+      "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -238,8 +252,8 @@
      "CC-3886"
     ],
     "summary": "Card not present new device on card C03042-K1: 1 transaction(s), exposure $599.94. Customer denial confirmed the verdict.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-015"
    },
    "evidence_requests": [
     {
@@ -289,9 +303,9 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 8,
+   "tool_calls": 18,
    "tokens": 0,
-   "latency_s": 0.001
+   "latency_s": 0.004
   },
   "deny": {
    "case_id": "HHG-015",
@@ -336,6 +350,20 @@
        "CC-1313",
        "CC-3886"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 4 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C03042-P15158|562.0|150.0|mastercard|219.0|credit, hours=48)",
+      "entity_ids": [
+       "3464869"
+      ]
+     },
+     {
+      "claim": "TigerGraph device_neighbors: device profile used by 2 customers within 31 days; confirmed-fraud closed cases on it: none",
+      "source": "graph",
+      "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -344,8 +372,8 @@
      "CC-3886"
     ],
     "summary": "Card not present new device on card C03042-K1: 1 transaction(s), exposure $599.94. Customer denial confirmed the verdict.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-015"
    },
    "evidence_requests": [
     {
@@ -395,9 +423,9 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 8,
+   "tool_calls": 11,
    "tokens": 0,
-   "latency_s": 0.0
+   "latency_s": 0.001
   },
   "confirm": {
    "case_id": "HHG-015",
@@ -438,6 +466,20 @@
        "CC-1313",
        "CC-3886"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 4 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C03042-P15158|562.0|150.0|mastercard|219.0|credit, hours=48)",
+      "entity_ids": [
+       "3464869"
+      ]
+     },
+     {
+      "claim": "TigerGraph device_neighbors: device profile used by 2 customers within 31 days; confirmed-fraud closed cases on it: none",
+      "source": "graph",
+      "ref": "mcp:device_neighbors(days=31)",
+      "entity_ids": []
      }
     ],
     "similar_prior_cases": [
@@ -446,8 +488,8 @@
      "CC-3886"
     ],
     "summary": "Alert on 3464869 ($599.94) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-015"
    },
    "evidence_requests": [
     {
@@ -497,9 +539,9 @@
     "activity_dates": []
    },
    "stop_reason": "The verification response settles the question (policy 6).",
-   "tool_calls": 8,
+   "tool_calls": 11,
    "tokens": 0,
-   "latency_s": 0.0
+   "latency_s": 0.001
   }
  }
 }

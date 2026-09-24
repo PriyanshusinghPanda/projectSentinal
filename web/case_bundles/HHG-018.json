@@ -336,6 +336,14 @@
        "CC-0405",
        "CC-0454"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 113 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C02354-P19248|490.0|150.0|visa|226.0|debit, hours=48)",
+      "entity_ids": [
+       "3491361"
+      ]
      }
     ],
     "similar_prior_cases": [
@@ -346,8 +354,8 @@
      "CC-1450"
     ],
     "summary": "Mixed evidence on 3491361; escalated with verification pending.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-018"
    },
    "evidence_requests": [
     {
@@ -407,9 +415,9 @@
     "activity_dates": []
    },
    "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
-   "tool_calls": 10,
+   "tool_calls": 19,
    "tokens": 0,
-   "latency_s": 0.014
+   "latency_s": 0.124
   },
   "deny": {
    "case_id": "HHG-018",
@@ -460,6 +468,14 @@
        "CC-0405",
        "CC-0454"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 113 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C02354-P19248|490.0|150.0|visa|226.0|debit, hours=48)",
+      "entity_ids": [
+       "3491361"
+      ]
      }
     ],
     "similar_prior_cases": [
@@ -470,8 +486,8 @@
      "CC-1450"
     ],
     "summary": "Mixed evidence on 3491361; escalated with verification pending.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-018"
    },
    "evidence_requests": [
     {
@@ -531,9 +547,9 @@
     "activity_dates": []
    },
    "stop_reason": "Denial confirmed but the evidence conflicts; further automated steps won't settle it, so it goes to an analyst (policy 6, R8).",
-   "tool_calls": 10,
+   "tool_calls": 12,
    "tokens": 0,
-   "latency_s": 0.016
+   "latency_s": 0.022
   },
   "confirm": {
    "case_id": "HHG-018",
@@ -582,6 +598,14 @@
        "CC-0405",
        "CC-0454"
       ]
+     },
+     {
+      "claim": "TigerGraph card_window returned 113 transactions on this card within 48h of the alert",
+      "source": "graph",
+      "ref": "mcp:card_window(card=C02354-P19248|490.0|150.0|visa|226.0|debit, hours=48)",
+      "entity_ids": [
+       "3491361"
+      ]
      }
     ],
     "similar_prior_cases": [
@@ -592,8 +616,8 @@
      "CC-1450"
     ],
     "summary": "Alert on 3491361 ($39.08) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-018"
    },
    "evidence_requests": [
     {
@@ -643,9 +667,9 @@
     "activity_dates": []
    },
    "stop_reason": "Verification settled the question (policy 6).",
-   "tool_calls": 10,
+   "tool_calls": 12,
    "tokens": 0,
-   "latency_s": 0.015
+   "latency_s": 0.013
   }
  }
 }

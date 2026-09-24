@@ -41,6 +41,20 @@
           "CC-1736",
           "CC-2121"
         ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 2 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C08106-P21429|545.0|185.0|visa|138.0|debit, hours=48)",
+        "entity_ids": [
+          "3583227"
+        ]
+      },
+      {
+        "claim": "TigerGraph device_neighbors: device profile used by 1 customers within 31 days; confirmed-fraud closed cases on it: none",
+        "source": "graph",
+        "ref": "mcp:device_neighbors(days=31)",
+        "entity_ids": []
       }
     ],
     "similar_prior_cases": [
@@ -50,8 +64,8 @@
       "CC-3778"
     ],
     "summary": "Card not present new device on card C08106-K1: 1 transaction(s), exposure $128.33. Customer denial confirmed the verdict.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-004"
   },
   "evidence_requests": [
     {
@@ -101,7 +115,7 @@
     "activity_dates": []
   },
   "stop_reason": "Customer denial confirmed through step-up settles the verdict (policy 6); further queries would not change the actions.",
-  "tool_calls": 9,
+  "tool_calls": 19,
   "tokens": 0,
-  "latency_s": 0.001
+  "latency_s": 0.007
 }

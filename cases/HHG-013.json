@@ -39,6 +39,20 @@
           "CC-3216",
           "CC-3761"
         ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 26 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C07671-P22756|452.0|150.0|mastercard|117.0|debit, hours=48)",
+        "entity_ids": [
+          "3526826"
+        ]
+      },
+      {
+        "claim": "TigerGraph device_neighbors: device profile used by 253 customers within 31 days; confirmed-fraud closed cases on it: none",
+        "source": "graph",
+        "ref": "mcp:device_neighbors(days=31)",
+        "entity_ids": []
       }
     ],
     "similar_prior_cases": [
@@ -48,8 +62,8 @@
       "CC-4294"
     ],
     "summary": "Account takeover on card C07671-K2: 1 transaction(s), exposure $35.66. Customer denial confirmed the verdict.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-013"
   },
   "evidence_requests": [
     {
@@ -99,7 +113,7 @@
     "activity_dates": []
   },
   "stop_reason": "The verification response settles the question (policy 6).",
-  "tool_calls": 9,
+  "tool_calls": 19,
   "tokens": 0,
-  "latency_s": 0.003
+  "latency_s": 0.03
 }

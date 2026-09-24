@@ -36,6 +36,14 @@
           "CC-4160",
           "CC-0009"
         ]
+      },
+      {
+        "claim": "TigerGraph card_window returned 1 transactions on this card within 48h of the alert",
+        "source": "graph",
+        "ref": "mcp:card_window(card=C11891-P18586|177.0|185.0|mastercard|195.0|credit, hours=48)",
+        "entity_ids": [
+          "3478782"
+        ]
       }
     ],
     "similar_prior_cases": [
@@ -43,8 +51,8 @@
       "CC-0009"
     ],
     "summary": "Alert on 3478782 ($292.36) is consistent with the cardholder's own activity after the customer confirmed it. Closed without customer impact.",
-    "written_to_graph": false,
-    "graph_case_id": ""
+    "written_to_graph": true,
+    "graph_case_id": "CASE-HHG-002"
   },
   "evidence_requests": [
     {
@@ -89,7 +97,7 @@
     "activity_dates": []
   },
   "stop_reason": "The verification response settles the question (policy 6).",
-  "tool_calls": 7,
+  "tool_calls": 16,
   "tokens": 0,
-  "latency_s": 0.0
+  "latency_s": 0.002
 }
