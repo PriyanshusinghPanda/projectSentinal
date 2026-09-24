@@ -560,6 +560,12 @@ def graph_pass(mcp, case, answers):
 
 if __name__ == "__main__":
     only = sys.argv[1:]
+    env_file = os.path.join(HERE, "..", ".env")
+    if os.path.exists(env_file):  # same TG_* vars tigergraph-mcp reads
+        for line in open(env_file):
+            if "=" in line and not line.lstrip().startswith("#"):
+                k, v = line.strip().split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
     mcp = None
     if os.environ.get("TG_HOST"):
         from tg_mcp import TigerGraphMCP, write_case

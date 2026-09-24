@@ -8,7 +8,8 @@ import json, os, re, shlex, subprocess, threading
 
 class TigerGraphMCP:
     def __init__(self, command=None):
-        cmd = command or os.environ.get("TG_MCP_COMMAND", "tigergraph-mcp")
+        venv_bin = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".tgvenv", "bin", "tigergraph-mcp")
+        cmd = command or os.environ.get("TG_MCP_COMMAND") or (venv_bin if os.path.exists(venv_bin) else "tigergraph-mcp")
         self.p = subprocess.Popen(shlex.split(cmd), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, bufsize=1)
         self.n = 0
         self.lock = threading.Lock()

@@ -20,13 +20,11 @@ cd agent && python3 slim.py && python3 investigate.py          # -> ../cases/*.j
 # 2. console
 cd web && npm install && npm run dev                           # http://localhost:3100   (demo engine: /?demo=1)
 
-# 3. TigerGraph (Savanna or Community Edition)
-cd tigergraph && python3 prepare_data.py                       # -> load_data/*.csv
-gsql schema.gsql && gsql loading_job.gsql                      # then RUN LOADING JOB (see bottom of loading_job.gsql)
-gsql queries.gsql
-pip install tigergraph-mcp
-export TG_HOST=https://<id>.i.tgcloud.io TG_GRAPHNAME=Sentinel TG_USERNAME=... TG_PASSWORD=... TG_TGCLOUD=true
-cd ../agent && python3 investigate.py                          # queries via MCP, writes InvestigationCase vertices, sets written_to_graph
+# 3. TigerGraph (Savanna): put TG_HOST / TG_USERNAME / TG_PASSWORD / TG_GRAPHNAME=Sentinel / TG_TGCLOUD=true in .env
+python3.12 -m venv .tgvenv && .tgvenv/bin/pip install pyTigerGraph tigergraph-mcp
+python3 tigergraph/prepare_data.py                             # -> tigergraph/load_data/*.csv
+.tgvenv/bin/python agent/load_tigergraph.py                    # schema + loading job + data + queries
+cd agent && python3 investigate.py                             # queries via MCP, writes InvestigationCase vertices
 ```
 
 ## Notes

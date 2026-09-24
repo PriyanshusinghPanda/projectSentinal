@@ -11,3 +11,4 @@ __pycache__/
 
 # organiser brief (not ours to publish)
 *.docx
+.tgvenv/
